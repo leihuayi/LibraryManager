@@ -1,6 +1,6 @@
 import java.lang.reflect.Array;
 
-public class Book extends LibraryItem {
+public class Book extends LibraryItem implements Item {
 	
 	private int ISBNCode;
 	private int borrowingDuration;
@@ -26,6 +26,13 @@ public class Book extends LibraryItem {
 		super(title, publisher, publishingYear, volumeNumber, consultationType, borrowingDeadline, measures, location);
 		ISBNCode = iSBNCode;
 		this.borrowingDuration=4;
+	}
+
+	@Override
+	public void draw() {
+		// TODO Auto-generated method stub
+		System.out.println("Book created");
+		
 	}
 
 		

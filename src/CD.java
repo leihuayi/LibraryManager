@@ -1,6 +1,6 @@
 import java.lang.reflect.Array;
 
-public class CD extends LibraryItem {
+public class CD extends LibraryItem implements Item{
 	private int borrowingDuration;
 
 	public int getBorrowingDuration() {
@@ -17,4 +17,11 @@ public class CD extends LibraryItem {
 	
 	this.borrowingDuration=1;
 	}
+
+	@Override
+	public void draw() {
+		// TODO Auto-generated method stub
+		System.out.println("CD created");
+	}
+	
 }

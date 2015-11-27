@@ -71,7 +71,6 @@ public abstract class LibraryItem {
 		this.measures = measures;
 		this.location = location;
 	}
-	
-	
+
 	
 }
