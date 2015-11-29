@@ -15,10 +15,10 @@ public class Bookcase {
 	public void setListShelves(ArrayList<Shelf> listShelves) {
 		this.listShelves = listShelves;
 	}
-	public Bookcase(String bcName, ArrayList<Shelf> listShelves) {
+	public Bookcase(String bcName) {
 		super();
 		this.bcName = bcName;
-		this.listShelves = listShelves;
+		this.listShelves = new ArrayList<Shelf>();
 	}
 	
 }

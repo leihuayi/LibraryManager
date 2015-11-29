@@ -22,10 +22,10 @@ public class Shelf {
 	public void setListItems(ArrayList<LibraryItem> listItems) {
 		this.listItems = listItems;
 	}
-	public Shelf(Cuboid measures, ArrayList<LibraryItem> listItems) {
+	public Shelf(Cuboid measures) {
 		super();
 		this.measures = measures;
-		this.listItems = listItems;
+		this.listItems = new ArrayList<LibraryItem>();
 	}
 	
 }

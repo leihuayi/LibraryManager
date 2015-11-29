@@ -1,13 +1,14 @@
 
 public class Borrowing {
-	private Item item;
+	private LibraryItem item;
 	private Member member;
 	private Date borrowingDate;
 	private Date returnDate;
-	public Item getItem() {
+	
+	public LibraryItem getItem() {
 		return item;
 	}
-	public void setItem(Item item) {
+	public void setItem(LibraryItem item) {
 		this.item = item;
 	}
 	public Member getMember() {
@@ -28,12 +29,13 @@ public class Borrowing {
 	public void setReturnDate(Date returnDate) {
 		this.returnDate = returnDate;
 	}
-	public Borrowing(Item item, Member member, Date borrowingDate, Date returnDate) {
+	public Borrowing(LibraryItem item, Member member, Date borrowingDate, Date returnDate) {
 		super();
 		this.item = item;
 		this.member = member;
 		this.borrowingDate = borrowingDate;
 		this.returnDate = returnDate;
 	}
+	
 	
 }
