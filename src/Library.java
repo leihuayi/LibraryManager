@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Library {
+public class Library{
 	private ArrayList<Room> listRooms;
 	// Parameters for frequent member
 	private int N;
@@ -56,5 +56,6 @@ public class Library {
 		this.storageRoom = new ArrayList<LibraryItem>();
 		Nbi = nbi;
 	}
+	
 	
 }

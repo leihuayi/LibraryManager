@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Room {
+public class Room{
 	private String roomName;
 	private ArrayList<Bookcase> listBookcases;
 	public String getRoomName() {
@@ -20,5 +20,6 @@ public class Room {
 		this.roomName = roomName;
 		this.listBookcases = new ArrayList<Bookcase>();
 	}
+	
 	
 }

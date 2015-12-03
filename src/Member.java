@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Member {
+public class Member{
 	private static int ID;
 	private String name;
 	private String surname;

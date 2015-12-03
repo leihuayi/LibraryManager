@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Bookcase {
+public class Bookcase{
 	private String bcName;
 	private ArrayList<Shelf> listShelves;
 	public String getBcName() {

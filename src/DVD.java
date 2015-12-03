@@ -1,6 +1,6 @@
 import java.lang.reflect.Array;
 
-public class DVD extends LibraryItem implements Item {
+public class DVD extends LibraryItem{
 	private int borrowingDuration;
 
 	public int getBorrowingDuration() {
@@ -17,10 +17,5 @@ public class DVD extends LibraryItem implements Item {
 		this.borrowingDuration=2;
 	}
 
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		System.out.println("DVD created");
-	}
 	
 }
