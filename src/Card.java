@@ -14,10 +14,8 @@ public class Card {
 	public void setExpirationDate(Date expirationDate) {
 		this.expirationDate = expirationDate;
 	}
-	public Card(CardType type, Date expirationDate) {
-		super();
-		this.type = type;
-		this.expirationDate = expirationDate;
+	public Card() {
+		this.type=CardType.standard;
 	}
 	
 }

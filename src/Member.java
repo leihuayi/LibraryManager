@@ -9,6 +9,14 @@ public class Member{
 	private int ccNumber;
 	private ArrayList<Borrowing> currentItems;
 	private ArrayList<Borrowing> history;
+	private Card card;
+	
+	public Card getCard() {
+		return card;
+	}
+	public void setCard(Card card) {
+		this.card = card;
+	}
 	public static int getID() {
 		return ID;
 	}
@@ -59,6 +67,8 @@ public class Member{
 		this.ccNumber = ccNumber;
 		this.history = new ArrayList<Borrowing>();
 		this.currentItems= new ArrayList<Borrowing>();
+		this.card= new Card();
+		
 	}
 	
 	
