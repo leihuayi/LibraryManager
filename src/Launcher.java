@@ -1,3 +1,8 @@
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Launcher {
@@ -9,9 +14,12 @@ public class Launcher {
 		
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		// TODO Auto-generated method stub
-		
+		String string = "January 2, 2010";
+		DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+		Date date = format.parse(string);
+		System.out.println(date.getMonth());
 		
 	}
 
