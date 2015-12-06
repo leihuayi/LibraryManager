@@ -75,16 +75,27 @@ public class Library{
 	  }
 
 	
-	public static void membersSuspended(Library library){
-		for (Member member : library.getListMembers()){
+	//this function check everything needed when the program launches
+	public static void check(Library library){
+		for (Member member : library.getListMembers()) {
+			//check members suspended
 			if (member.getEndingOfSuspension().equals(new Date())){
 				member.setUnsuspended(true);
 			}
-		}
-	}
-	
-	public static void checkCardType(Library library){
-		for (Member member : library.getListMembers()){
+			//check borrowings
+			for (Borrowing borrowing : member.getCurrentItems()){
+				if (borrowing.getBorrowingDate().equals(modifyDate(-7))){
+					borrowing.notifyObserver();
+					member.getPenalties().add(new Date());
+				}
+				else if (borrowing.getBorrowingDate().equals(modifyDate(-21))){
+					member.setEndingOfSuspension(modifyDate(member.lowerSuspensionTime()));
+				}
+				else if (borrowing.getBorrowingDate().equals(modifyDate(-42))){
+					member.setEndingOfSuspension(modifyDate(member.higherSuspensionTime()));
+				}
+			}
+			//check of cards
 			if (!member.getCard().getType().equals(CardType.golden)){
 				int count =0;
 				boolean bool=true;
@@ -109,25 +120,4 @@ public class Library{
 		}
 	}
 	
-	public static void checkBorrowings(Library library){
-		for (Member member : library.getListMembers()) {
-			for (Borrowing borrowing : member.getCurrentItems()){
-				if (borrowing.getBorrowingDate().equals(modifyDate(-7))){
-					borrowing.notifyObserver();
-					member.getPenalties().add(new Date());
-				}
-				else if (borrowing.getBorrowingDate().equals(modifyDate(-21))){
-					member.setEndingOfSuspension(modifyDate(member.lowerSuspensionTime()));
-				}
-				else if (borrowing.getBorrowingDate().equals(modifyDate(-42))){
-					member.setEndingOfSuspension(modifyDate(member.higherSuspensionTime()));
-				}
-			}
-		}
-	}
-	
-	public static void check(Library library){
-		membersSuspended(library);
-		checkBorrowings(library);
-	}
 }
