@@ -102,6 +102,9 @@ public class Library{
 				if (bool && count>=library.getN()){
 					member.getCard().setType(CardType.frequent);
 				}
+				else{
+					member.getCard().setType(CardType.standard);
+				}
 			}
 		}
 	}
