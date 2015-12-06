@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Borrowing {
@@ -36,6 +37,10 @@ public class Borrowing {
 		this.member = member;
 		this.borrowingDate = borrowingDate;
 		this.returnDate = returnDate;
+	}
+	
+	public static ArrayList<LibraryItem> checkReturns(){
+		return null;
 	}
 	
 	
