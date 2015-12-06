@@ -20,8 +20,38 @@ public class Member implements Observer{
 	private int higherSuspensionTimeStandard =10;
 	private int higherSuspensionTimeFrequent =5;
 	private int higherSuspensionTimeGolden =3;
+	private int fineSuspensionStandard=50;
+	private int fineSuspensionFrequent=30;
+	private int fineSuspensionGolden=20;
+	//Amount of money due to the library
+	private int amount=0;
 	
 	
+	
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public int getFineSuspensionStandard() {
+		return fineSuspensionStandard;
+	}
+	public void setFineSuspensionStandard(int fineSuspensionStandard) {
+		this.fineSuspensionStandard = fineSuspensionStandard;
+	}
+	public int getFineSuspensionFrequent() {
+		return fineSuspensionFrequent;
+	}
+	public void setFineSuspensionFrequent(int fineSuspensionFrequent) {
+		this.fineSuspensionFrequent = fineSuspensionFrequent;
+	}
+	public int getFineSuspensionGolden() {
+		return fineSuspensionGolden;
+	}
+	public void setFineSuspensionGolden(int fineSuspensionGolden) {
+		this.fineSuspensionGolden = fineSuspensionGolden;
+	}
 	public int getLowerSuspensionTimeStandard() {
 		return lowerSuspensionTimeStandard;
 	}
@@ -152,8 +182,9 @@ public class Member implements Observer{
 		// TODO Auto-generated method stub
 		System.out.println("Vous n'avez toujours pas rendu le livre "+title);
 	}
-	
+	//method which suspends the member and returns the lower suspension time
 	public int lowerSuspensionTime(){
+		this.setUnsuspended(false);
 		if (this.getCard().getType().equals(CardType.standard)){
 			return this.getLowerSuspensionTimeStandard();
 		}
@@ -166,15 +197,21 @@ public class Member implements Observer{
 			}
 		
 	}
+	
+	//method which suspends the member, creates the fine and returns the higher suspension time
 	public int higherSuspensionTime(){
+		this.setUnsuspended(false);
 		if (this.getCard().getType().equals(CardType.standard)){
+			this.setAmount(this.getFineSuspensionStandard());
 			return this.getHigherSuspensionTimeStandard();
 		}
 		else if (this.getCard().getType().equals(CardType.frequent)){
 			this.getCard().setType(CardType.standard);
+			this.setAmount(this.getFineSuspensionFrequent());
 			return this.getHigherSuspensionTimeFrequent();
 		}
 		else{
+			this.setAmount(this.getFineSuspensionGolden());
 			return 	this.getHigherSuspensionTimeGolden();
 			}
 		

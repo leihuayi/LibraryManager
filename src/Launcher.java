@@ -31,11 +31,9 @@ public class Launcher {
 					borrowing.notifyObserver();
 				}
 				else if (borrowing.getBorrowingDate().equals(modifyDate(-21))){
-					member.setUnsuspended(false);
 					member.setEndingOfSuspension(modifyDate(member.lowerSuspensionTime()));
 				}
 				else if (borrowing.getBorrowingDate().equals(modifyDate(-42))){
-					member.setUnsuspended(false);
 					member.setEndingOfSuspension(modifyDate(member.higherSuspensionTime()));
 				}
 			}
@@ -46,7 +44,8 @@ public class Launcher {
 		Library library = new Library("Hey",0,0,0);
 		Member member= new Member("Cocher","Thomas",new Date(),123,library);
 		library.getListMembers().add(member);
-		System.out.println(member.getHigherSuspensionTimeFrequent());
+		member.higherSuspensionTime();
+		System.out.println(member.getAmount());
 		
 	}
 
