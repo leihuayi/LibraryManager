@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 public class Library{
 	private ArrayList<Room> listRooms;
@@ -65,5 +69,56 @@ public class Library{
 		this.listMembers= new ArrayList<Member>();
 	}
 	
+	private static Date modifyDate(int numberOfDay)
+	  {
+		  Calendar cal = Calendar.getInstance();
+		  cal.add(Calendar.DATE, numberOfDay);
+		  return cal.getTime();
+	  }
+
 	
+	public static void membersSuspended(Library library){
+		for (Member member : library.getListMembers()){
+			if (member.getEndingOfSuspension().equals(new Date())){
+				member.setUnsuspended(true);
+			}
+		}
+	}
+	
+	public static void checkCardType(Library library){
+		for (Member member : library.getListMembers()){
+			if (!member.getCard().getType().equals(CardType.golden)){
+				int count =0;
+				boolean bool=true;
+				for (Borrowing borrowing : member.getHistory()){
+					if (borrowing.getBorrowingDate().after(modifyDate(-library.getM()*7))){
+						if (){
+							count=count+1;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public static void checkBorrowings(Library library){
+		for (Member member : library.getListMembers()) {
+			for (Borrowing borrowing : member.getCurrentItems()){
+				if (borrowing.getBorrowingDate().equals(modifyDate(-7))){
+					borrowing.notifyObserver();
+				}
+				else if (borrowing.getBorrowingDate().equals(modifyDate(-21))){
+					member.setEndingOfSuspension(modifyDate(member.lowerSuspensionTime()));
+				}
+				else if (borrowing.getBorrowingDate().equals(modifyDate(-42))){
+					member.setEndingOfSuspension(modifyDate(member.higherSuspensionTime()));
+				}
+			}
+		}
+	}
+	
+	public static void check(Library library){
+		membersSuspended(library);
+		checkBorrowings(library);
+	}
 }
