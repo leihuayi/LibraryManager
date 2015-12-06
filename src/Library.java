@@ -9,8 +9,15 @@ public class Library{
 	//Limitation of borrowing
 	private int Nbi;
 	private String libraryName;
+	private ArrayList<Member> listMembers;
 	
 	
+	public ArrayList<Member> getListMembers() {
+		return listMembers;
+	}
+	public void setListMembers(ArrayList<Member> listMembers) {
+		this.listMembers = listMembers;
+	}
 	public String getLibraryName() {
 		return libraryName;
 	}
@@ -55,6 +62,7 @@ public class Library{
 		M = m;
 		this.storageRoom = new ArrayList<LibraryItem>();
 		Nbi = nbi;
+		this.listMembers= new ArrayList<Member>();
 	}
 	
 	

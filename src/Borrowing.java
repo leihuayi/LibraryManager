@@ -1,11 +1,13 @@
-import java.util.ArrayList;
+
 import java.util.Date;
 
-public class Borrowing {
+public class Borrowing implements Observable{
 	private LibraryItem item;
+	// the member is the observer
 	private Member member;
 	private Date borrowingDate;
 	private Date returnDate;
+	
 	
 	public LibraryItem getItem() {
 		return item;
@@ -38,10 +40,11 @@ public class Borrowing {
 		this.borrowingDate = borrowingDate;
 		this.returnDate = returnDate;
 	}
-	
-	public static ArrayList<LibraryItem> checkReturns(){
-		return null;
+	@Override
+	public void notifyObserver() {
+		// TODO Auto-generated method stub
+		member.update(item.getTitle());
 	}
 	
-	
+		
 }

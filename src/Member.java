@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Member{
+public class Member implements Observer{
 	private static int ID;
 	private String name;
 	private String surname;
@@ -12,7 +12,14 @@ public class Member{
 	private ArrayList<Borrowing> history;
 	private Card card;
 	private Library library;
+	private boolean unsuspended;
 	
+	public boolean isUnsuspended() {
+		return unsuspended;
+	}
+	public void setUnsuspended(boolean unsuspended) {
+		this.unsuspended = unsuspended;
+	}
 	public Library getLibrary() {
 		return library;
 	}
@@ -77,6 +84,7 @@ public class Member{
 		this.currentItems= new ArrayList<Borrowing>();
 		this.card= new Card();
 		this.library= library;
+		this.unsuspended=true;
 		
 	}
 	
@@ -88,6 +96,11 @@ public class Member{
 		else{
 			return false;
 		}
+	}
+	@Override
+	public void update (String title) {
+		// TODO Auto-generated method stub
+		System.out.println("Vous n'avez toujours pas rendu le livre "+title);
 	}
 	
 	
