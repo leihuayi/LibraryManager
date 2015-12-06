@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.text.DateFormat;
 
 public class Library{
 	private ArrayList<Room> listRooms;
@@ -91,11 +89,18 @@ public class Library{
 				int count =0;
 				boolean bool=true;
 				for (Borrowing borrowing : member.getHistory()){
-					if (borrowing.getBorrowingDate().after(modifyDate(-library.getM()*7))){
-						if (){
-							count=count+1;
+					for(Date date: member.getPenalties()) {
+						if(date.after(modifyDate(-library.getM()*7))){
+							bool=false;
 						}
 					}
+					if (bool && borrowing.getBorrowingDate().after(modifyDate(-library.getM()*7))){
+							count=count+1;
+						}
+					
+				}
+				if (bool && count>=library.getN()){
+					member.getCard().setType(CardType.frequent);
 				}
 			}
 		}
@@ -106,6 +111,7 @@ public class Library{
 			for (Borrowing borrowing : member.getCurrentItems()){
 				if (borrowing.getBorrowingDate().equals(modifyDate(-7))){
 					borrowing.notifyObserver();
+					member.getPenalties().add(new Date());
 				}
 				else if (borrowing.getBorrowingDate().equals(modifyDate(-21))){
 					member.setEndingOfSuspension(modifyDate(member.lowerSuspensionTime()));

@@ -25,9 +25,17 @@ public class Member implements Observer{
 	private int fineSuspensionGolden=20;
 	//Amount of money due to the library
 	private int amount=0;
+	//list of dates when the member took penalties
+	private ArrayList<Date> penalties;
 	
 	
 	
+	public ArrayList<Date> getPenalties() {
+		return penalties;
+	}
+	public void setPenalties(ArrayList<Date> penalties) {
+		this.penalties = penalties;
+	}
 	public int getAmount() {
 		return amount;
 	}
@@ -165,6 +173,7 @@ public class Member implements Observer{
 		this.card= new Card();
 		this.library= library;
 		this.unsuspended=true;
+		this.penalties=new ArrayList<Date>();
 		
 	}
 	
