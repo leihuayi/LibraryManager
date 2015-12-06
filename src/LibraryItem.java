@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class LibraryItem {
@@ -11,7 +12,15 @@ public abstract class LibraryItem {
 	private Date borrowingDeadline;
 	private Cuboid measures;
 	private Array location;
+	private ArrayList<Member> borrowingList;
 	
+	
+	public ArrayList<Member> getBorrowingList() {
+		return borrowingList;
+	}
+	public void setBorrowingList(ArrayList<Member> borrowingList) {
+		this.borrowingList = borrowingList;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -71,6 +80,7 @@ public abstract class LibraryItem {
 		this.borrowingDeadline = borrowingDeadline;
 		this.measures = measures;
 		this.location = location;
+		this.borrowingList=new ArrayList<Member>();
 	}
 
 	
