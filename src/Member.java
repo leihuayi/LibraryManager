@@ -13,7 +13,57 @@ public class Member implements Observer{
 	private Card card;
 	private Library library;
 	private boolean unsuspended;
+	private Date endingOfSuspension;
+	private int lowerSuspensionTimeStandard =6;
+	private int lowerSuspensionTimeFrequent =3;
+	private int lowerSuspensionTimeGolden =2;
+	private int higherSuspensionTimeStandard =10;
+	private int higherSuspensionTimeFrequent =5;
+	private int higherSuspensionTimeGolden =3;
 	
+	
+	public int getLowerSuspensionTimeStandard() {
+		return lowerSuspensionTimeStandard;
+	}
+	public void setLowerSuspensionTimeStandard(int lowerSuspensionTimeStandard) {
+		this.lowerSuspensionTimeStandard = lowerSuspensionTimeStandard;
+	}
+	public int getLowerSuspensionTimeFrequent() {
+		return lowerSuspensionTimeFrequent;
+	}
+	public void setLowerSuspensionTimeFrequent(int lowerSuspensionTimeFrequent) {
+		this.lowerSuspensionTimeFrequent = lowerSuspensionTimeFrequent;
+	}
+	public int getLowerSuspensionTimeGolden() {
+		return lowerSuspensionTimeGolden;
+	}
+	public void setLowerSuspensionTimeGolden(int lowerSuspensionTimeGolden) {
+		this.lowerSuspensionTimeGolden = lowerSuspensionTimeGolden;
+	}
+	public int getHigherSuspensionTimeStandard() {
+		return higherSuspensionTimeStandard;
+	}
+	public void setHigherSuspensionTimeStandard(int higherSuspensionTimeStandard) {
+		this.higherSuspensionTimeStandard = higherSuspensionTimeStandard;
+	}
+	public int getHigherSuspensionTimeFrequent() {
+		return higherSuspensionTimeFrequent;
+	}
+	public void setHigherSuspensionTimeFrequent(int higherSuspensionTimeFrequent) {
+		this.higherSuspensionTimeFrequent = higherSuspensionTimeFrequent;
+	}
+	public int getHigherSuspensionTimeGolden() {
+		return higherSuspensionTimeGolden;
+	}
+	public void setHigherSuspensionTimeGolden(int higherSuspensionTimeGolden) {
+		this.higherSuspensionTimeGolden = higherSuspensionTimeGolden;
+	}
+	public Date getEndingOfSuspension() {
+		return endingOfSuspension;
+	}
+	public void setEndingOfSuspension(Date endingOfSuspension) {
+		this.endingOfSuspension = endingOfSuspension;
+	}
 	public boolean isUnsuspended() {
 		return unsuspended;
 	}
@@ -103,5 +153,30 @@ public class Member implements Observer{
 		System.out.println("Vous n'avez toujours pas rendu le livre "+title);
 	}
 	
-	
+	public int lowerSuspensionTime(){
+		if (this.getCard().getType().equals(CardType.standard)){
+			return this.getLowerSuspensionTimeStandard();
+		}
+		else if (this.getCard().getType().equals(CardType.frequent)){
+			this.getCard().setType(CardType.standard);
+			return this.getLowerSuspensionTimeFrequent();
+		}
+		else{
+			return 	this.getLowerSuspensionTimeGolden();
+			}
+		
+	}
+	public int higherSuspensionTime(){
+		if (this.getCard().getType().equals(CardType.standard)){
+			return this.getHigherSuspensionTimeStandard();
+		}
+		else if (this.getCard().getType().equals(CardType.frequent)){
+			this.getCard().setType(CardType.standard);
+			return this.getHigherSuspensionTimeFrequent();
+		}
+		else{
+			return 	this.getHigherSuspensionTimeGolden();
+			}
+		
+	}
 }
