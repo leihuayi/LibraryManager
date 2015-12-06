@@ -11,7 +11,14 @@ public class Member{
 	private ArrayList<Borrowing> currentItems;
 	private ArrayList<Borrowing> history;
 	private Card card;
+	private Library library;
 	
+	public Library getLibrary() {
+		return library;
+	}
+	public void setLibrary(Library library) {
+		this.library = library;
+	}
 	public Card getCard() {
 		return card;
 	}
@@ -60,7 +67,7 @@ public class Member{
 	public void setHistory(ArrayList<Borrowing> history) {
 		this.history = history;
 	}
-	public Member(String name, String surname, Date birthDate, int ccNumber) {
+	public Member(String name, String surname, Date birthDate, int ccNumber, Library library) {
 		super();
 		this.name = name;
 		this.surname = surname;
@@ -69,7 +76,18 @@ public class Member{
 		this.history = new ArrayList<Borrowing>();
 		this.currentItems= new ArrayList<Borrowing>();
 		this.card= new Card();
+		this.library= library;
 		
+	}
+	
+	public boolean checkBorrowings(){
+		Integer size = (this.getCurrentItems()).size();
+		if (size<this.library.getNbi()){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	
