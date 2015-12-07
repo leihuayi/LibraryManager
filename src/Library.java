@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Library{
+public class Library implements java.io.Serializable{
 	private ArrayList<Room> listRooms;
 	// Parameters for frequent member
 	private int N;
@@ -66,6 +66,15 @@ public class Library{
 		Nbi = nbi;
 		this.listMembers= new ArrayList<Member>();
 	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Library [N=" + N + ", M=" + M + ", Nbi="
+				+ Nbi + ", libraryName=" + libraryName + ", listMembers=" + listMembers + "]";
+	}
+	
 	
 	private static Date modifyDate(int numberOfDay)
 	  {

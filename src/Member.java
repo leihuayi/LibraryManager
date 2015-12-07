@@ -1,7 +1,9 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Member implements Observer{
+public class Member implements Observer , java.io.Serializable{
 	private static int ID;
 	private String name;
 	private String surname;
@@ -176,6 +178,15 @@ public class Member implements Observer{
 		this.penalties=new ArrayList<Date>();
 		
 	}
+	
+		
+	@Override
+	public String toString() {
+		return "Member [name=" + name + ", surname=" + surname + ", birthDate=" + (new SimpleDateFormat ("dd/MM/yyyy")).format(birthDate) + ", ccNumber=" + ccNumber
+				+ ", currentItems=" + currentItems + ", history=" + history + ", card=" + card + ", library=" + library
+				+ ", unsuspended=" + unsuspended + "]";
+	}
+	
 	
 	public boolean checkBorrowings(){
 		Integer size = (this.getCurrentItems()).size();

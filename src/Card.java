@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class Card {
+public class Card implements java.io.Serializable{
 	private CardType type;
 	private Date expirationDate;
 	public CardType getType() {
