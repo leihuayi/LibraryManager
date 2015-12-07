@@ -26,7 +26,7 @@ public class Serialization {
 			out.writeObject(library);
 			out.close();
 			fileOut.close();
-			System.out.println("Serialized library in tmp/library.ser");
+			System.out.println("Serialized library "+library.getLibraryName()+" in tmp/library.ser");
 		}
 		catch(IOException i){
 			i.printStackTrace();

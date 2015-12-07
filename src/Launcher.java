@@ -11,7 +11,7 @@ public class Launcher {
 	
 	public static void main(String[] args) throws ParseException{
 		// TODO Auto-generated method stub	
-		Library library = new Library("Hey",0,0,0);
+		Library library = new Library("LibrairieDeSassa",0,0,0);
 		Member member= new Member("Cocher","Thomas",new Date(),123,library);
 		library.getListMembers().add(member);
 		Date actuelle = new Date();
@@ -20,13 +20,7 @@ public class Launcher {
 		 System.out.println("======================");
 		 System.out.println(dat);
 		 
-			new File("tmp").mkdir();
-			try{
-				new File("tmp/library.txt").createNewFile();
-			}
-			catch (IOException i){
-				i.printStackTrace();
-			}
+
 		//library.toString();
 		Serialization ser = new Serialization();
 		ser.saveLibrary(library);
