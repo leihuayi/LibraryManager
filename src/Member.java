@@ -202,6 +202,7 @@ public class Member implements Observer , java.io.Serializable{
 		// TODO Auto-generated method stub
 		System.out.println("Vous n'avez toujours pas rendu le livre "+title);
 	}
+	
 	//method which suspends the member and returns the lower suspension time
 	public int lowerSuspensionTime(){
 		this.setUnsuspended(false);
