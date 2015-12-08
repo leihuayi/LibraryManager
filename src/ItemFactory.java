@@ -18,7 +18,7 @@ public class ItemFactory {
 			//title
 			while (testType){
 				Scanner sc = new Scanner(System.in);
-				System.out.println("Title of the item: ");
+				System.out.print("Title of the item: ");
 
 				
 				//check that the user enters a title
@@ -36,7 +36,7 @@ public class ItemFactory {
 			testType = true;
 			while (testType){
 				Scanner sc = new Scanner(System.in);
-				System.out.println("publisher: ");
+				System.out.print("publisher: ");
 
 				//check that the user enters an publisher
 				if (sc.nextLine() == ""){
@@ -52,7 +52,7 @@ public class ItemFactory {
 			testType = true;
 			while (testType){
 				Scanner sc = new Scanner(System.in);
-				System.out.println("Publishing year: ");
+				System.out.print("Publishing year: ");
 				
 				//check that the user enters an int
 				try{
@@ -69,7 +69,7 @@ public class ItemFactory {
 			testType = true;
 			while (testType){
 				Scanner sc = new Scanner(System.in);
-				System.out.println("Volume number (press enter if there is only one volume): ");
+				System.out.print("Volume number (press enter if there is only one volume): ");
 				
 				//check that the user enters an int
 				try{
@@ -86,7 +86,7 @@ public class ItemFactory {
 			testType = true;
 			while (testType){
 				Scanner sc = new Scanner(System.in);
-				System.out.println("Consultation type (online consultation / borrowing): ");
+				System.out.print("Consultation type (online consultation / borrowing): ");
 				
 				//check that the user enters a consultation type
 				if(sc.nextLine().equalsIgnoreCase("online consultation") || sc.nextLine().equalsIgnoreCase("borrowing")){
@@ -111,7 +111,7 @@ public class ItemFactory {
 			testType = true;
 			while (testType){
 				Scanner sc = new Scanner(System.in);
-				System.out.println("Publishing year: \n Day:");
+				System.out.print("Borrowing deadline: \n \t Day:");
 				
 				try{
 					int day = sc.nextInt();
@@ -125,7 +125,7 @@ public class ItemFactory {
 			boolean testType1 = true;
 			while (testType1){
 				Scanner sc1 = new Scanner(System.in);
-				System.out.println("Month:");
+				System.out.print("\t Month:");
 					
 				try{
 					int month = sc1.nextInt();
@@ -142,7 +142,7 @@ public class ItemFactory {
 			boolean testType2 = true;
 			while (testType2){
 				Scanner sc2 = new Scanner(System.in);
-				System.out.println("Year:");
+				System.out.print("\t Year:");
 				
 				try{
 					int year = sc2.nextInt();
@@ -152,6 +152,7 @@ public class ItemFactory {
 					System.out.println("You did not enter a number");
 				}
 			}
+			//The date will be stored in the form dd/MM/yyyy , and will be fetched with a regexp
 			listOfAttributes.add(5,"day"+":"+"month"+":"+"year");
 			
 			

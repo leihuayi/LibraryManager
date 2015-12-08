@@ -37,6 +37,46 @@ public class Launcher {
 		String[] items = p.split("23:10:1994");
 		System.out.println("jour: "+items[0]+ ", mois: "+items[1]+", année: "+items[2]);
 		
+		boolean testType = true;
+
+		//volumenumber
+		testType = true;
+		while (testType){
+			Scanner sc = new Scanner(System.in);
+			System.out.print("Volume number (press enter if there is only one volume): ");
+			
+			//check that the user enters an int
+			if (sc.hasNextInt()==false){
+				System.out.println("bouh");
+			}
+			else{
+				testType = false;
+			}
+
+		}
+		
+		//consultationType
+		testType = true;
+		while (testType){
+			Scanner sc = new Scanner(System.in);
+			System.out.print("Consultation type (online consultation / borrowing): ");
+			
+			//check that the user enters a consultation type
+			if(sc.nextLine().equalsIgnoreCase("online consultation") || (sc.nextLine().equalsIgnoreCase("borrowing"))){
+				testType = false;
+
+			}
+			
+			else {
+				System.out.println("You have to enter either 'online consultation' or 'borrowing' ");
+			}
+		}
+		System.out.println("fini! ");
+	
+		
+		
+		
+
 
 
 
