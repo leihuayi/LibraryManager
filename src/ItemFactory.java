@@ -20,14 +20,14 @@ public class ItemFactory {
 				Scanner sc = new Scanner(System.in);
 				System.out.print("Title of the item: ");
 
-				
+				String answer = sc.nextLine();
 				//check that the user enters a title
-				if (sc.nextLine() == ""){
+				if (answer == ""){
 					System.out.println("You did not enter a title");
 
 				}
 				else {
-					listOfAttributes.add(0,sc.nextLine());
+					listOfAttributes.add(0,answer);
 					testType = false;
 				}
 			}
@@ -37,13 +37,13 @@ public class ItemFactory {
 			while (testType){
 				Scanner sc = new Scanner(System.in);
 				System.out.print("publisher: ");
-
+				String answer = sc.nextLine();
 				//check that the user enters an publisher
-				if (sc.nextLine() == ""){
+				if (answer == ""){
 					System.out.println("You did not enter a publisher");
 				}
 				else {
-					listOfAttributes.add(1,sc.nextLine());
+					listOfAttributes.add(1,answer);
 					testType = false;
 				}
 			}
@@ -54,7 +54,7 @@ public class ItemFactory {
 				Scanner sc = new Scanner(System.in);
 				System.out.print("Publishing year: ");
 				
-				//check that the user enters an int
+				//check that the user enters an int	
 				try{
 					int year = sc.nextInt();
 					listOfAttributes.add(2,Integer.toString(year));
@@ -86,10 +86,10 @@ public class ItemFactory {
 			testType = true;
 			while (testType){
 				Scanner sc = new Scanner(System.in);
-				System.out.print("Consultation type (online consultation / borrowing): ");
+				String answer = sc.nextLine();
 				
 				//check that the user enters a consultation type
-				if(sc.nextLine().equalsIgnoreCase("online consultation") || sc.nextLine().equalsIgnoreCase("borrowing")){
+				if(answer.equalsIgnoreCase("borrowing") || answer.equalsIgnoreCase("online consultation")){
 					testType = false;
 					if (sc.nextLine().equalsIgnoreCase("online consultation")){
 						listOfAttributes.add(4,"onlineConsultation");

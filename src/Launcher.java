@@ -43,38 +43,35 @@ public class Launcher {
 		testType = true;
 		while (testType){
 			Scanner sc = new Scanner(System.in);
+			System.out.print("Title of the item: ");
+
+			String answer = sc.nextLine();
+			//check that the user enters a title
+			if (answer == ""){
+				System.out.println("You did not enter a title");
+
+			}
+			
+			
+			/*
+			Scanner sc = new Scanner(System.in);
 			System.out.print("Volume number (press enter if there is only one volume): ");
 			
 			//check that the user enters an int
-			if (sc.hasNextInt()==false){
+			if (!sc.hasNextLine()){
+				System.out.println("entrée vide");
+			}
+			else if (sc.hasNextInt()==false){
 				System.out.println("bouh");
 			}
 			else{
 				testType = false;
 			}
-
+			System.out.println("fini!");
+		*/
 		}
 		
-		//consultationType
-		testType = true;
-		while (testType){
-			Scanner sc = new Scanner(System.in);
-			System.out.print("Consultation type (online consultation / borrowing): ");
-			
-			//check that the user enters a consultation type
-			if(sc.nextLine().equalsIgnoreCase("online consultation") || (sc.nextLine().equalsIgnoreCase("borrowing"))){
-				testType = false;
 
-			}
-			
-			else {
-				System.out.println("You have to enter either 'online consultation' or 'borrowing' ");
-			}
-		}
-		System.out.println("fini! ");
-	
-		
-		
 		
 
 
