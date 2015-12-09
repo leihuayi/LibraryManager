@@ -83,12 +83,7 @@ public class ItemFactory {
 				//check that the user enters an int
 				try{
 					int volnum = sc.nextInt();
-					if (volnum ==0){
-						listOfAttributes.add(3,"");
-					}
-					else{
-						listOfAttributes.add(3,Integer.toString(volnum));
-					}
+					listOfAttributes.add(3,Integer.toString(volnum));
 					testType = false;
 				}
 				catch (java.util.InputMismatchException ime){
@@ -122,6 +117,7 @@ public class ItemFactory {
 			
 			//borrowingdeadline
 
+			int day=0, month=0, year=0;
 			//loop for day
 			testType = true;
 			while (testType){
@@ -129,7 +125,7 @@ public class ItemFactory {
 				System.out.print("Borrowing deadline: \n \t Day:");
 				
 				try{
-					int day = sc.nextInt();
+					day = sc.nextInt();
 					testType = false;
 				}
 				catch (java.util.InputMismatchException ime){
@@ -143,7 +139,7 @@ public class ItemFactory {
 				System.out.print("\t Month:");
 					
 				try{
-					int month = sc1.nextInt();
+					month = sc1.nextInt();
 					testType1 = false;
 					}
 
@@ -160,21 +156,23 @@ public class ItemFactory {
 				System.out.print("\t Year:");
 				
 				try{
-					int year = sc2.nextInt();
+					year = sc2.nextInt();
 					testType2 = false;
 				}
 				catch (java.util.InputMismatchException ime){
 					System.out.println("You did not enter a number");
 				}
 			}
-			//The date will be stored in the form dd:MM:yyyy , and will be stored as a Date with SimpleDateFormat
-			listOfAttributes.add(5,"year"+"/"+"month"+"/"+"day");
+			//The date will be stored in the form yyyy/MM/dd , and will be stored as a Date with SimpleDateFormat
+			listOfAttributes.add(5,Integer.toString(year)+"/"+Integer.toString(month)+"/"+Integer.toString(day));
+			
+
 			
 			
 			
 			
 			//measures
-
+			double length=0.0,height=0.0,width=0.0;
 			//loop for length
 			testType = true;
 			while (testType){
@@ -182,7 +180,7 @@ public class ItemFactory {
 				System.out.print("Measure of the item in cm  /!\\ put a , and NOT a . before the decimals : \n \t Length:");
 				
 				try{
-					double length = sc.nextDouble();
+					length = sc.nextDouble();
 					testType = false;
 				}
 				catch (java.util.InputMismatchException ime){
@@ -196,7 +194,7 @@ public class ItemFactory {
 				System.out.print("\t Height:");
 					
 				try{
-					double height = sc1.nextDouble();
+					height = sc1.nextDouble();
 					testType1 = false;
 					}
 
@@ -213,7 +211,7 @@ public class ItemFactory {
 				System.out.print("\t Width:");
 				
 				try{
-					double width = sc2.nextDouble();
+					width = sc2.nextDouble();
 					testType2 = false;
 				}
 				catch (java.util.InputMismatchException ime){
@@ -221,7 +219,7 @@ public class ItemFactory {
 				}
 			}
 			//The measure will be stored in the form length:heigth:width , and will be fetched with a regexp
-			listOfAttributes.add(6,"length"+":"+"height"+":"+"width");
+			listOfAttributes.add(6,Double.toString(length)+":"+Double.toString(height)+":"+Double.toString(width));
 			
 			
 			
@@ -322,9 +320,7 @@ public class ItemFactory {
 				
 			}
 			
-			
-
-								
+										
 			
 		}
 		

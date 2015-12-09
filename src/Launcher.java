@@ -28,13 +28,13 @@ public class Launcher {
 		System.out.print("Enter the type of item you want to create (book/CD/DVD): ");
 		String itemType = scType.nextLine();
 		
-		/*
+		
 		// ask the factory to create the item
 		itemFactory.createItem(itemType,library);
-		*/
 		
-
-
+		
+		
+	
 
 
 		
