@@ -69,12 +69,17 @@ public class ItemFactory {
 			testType = true;
 			while (testType){
 				Scanner sc = new Scanner(System.in);
-				System.out.print("Volume number (press enter if there is only one volume): ");
+				System.out.print("Volume number (press 0 if there is only one volume): ");
 				
 				//check that the user enters an int
 				try{
 					int volnum = sc.nextInt();
-					listOfAttributes.add(3,Integer.toString(volnum));
+					if (volnum ==0){
+						listOfAttributes.add(3,"");
+					}
+					else{
+						listOfAttributes.add(3,Integer.toString(volnum));
+					}
 					testType = false;
 				}
 				catch (java.util.InputMismatchException ime){
