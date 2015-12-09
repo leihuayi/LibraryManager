@@ -51,9 +51,14 @@ public class Borrowing implements Observable{
 		this.returnDate = returnDate;
 	}
 	@Override
-	public void notifyObserver() {
+	public void notifyObserverDelay() {
 		// TODO Auto-generated method stub
 		member.update(item.getTitle());
+	}
+	@Override
+	public void notifyObserverItemBorrowable() {
+		// TODO Auto-generated method stub
+		member.secondUpdate(item.getTitle());
 	}
 	
 		

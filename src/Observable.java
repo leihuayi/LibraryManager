@@ -1,5 +1,6 @@
 
 public interface Observable {
 	
-	public void notifyObserver();
+	public void notifyObserverDelay();
+	public void notifyObserverItemBorrowable();
 }
