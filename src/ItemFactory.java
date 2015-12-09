@@ -168,7 +168,7 @@ public class ItemFactory {
 				}
 			}
 			//The date will be stored in the form dd:MM:yyyy , and will be stored as a Date with SimpleDateFormat
-			listOfAttributes.add(5,"day"+"/"+"month"+"/"+"year");
+			listOfAttributes.add(5,"year"+"/"+"month"+"/"+"day");
 			
 			
 			
@@ -221,12 +221,12 @@ public class ItemFactory {
 				}
 			}
 			//The measure will be stored in the form length:heigth:width , and will be fetched with a regexp
-			listOfAttributes.add(5,"length"+":"+"height"+":"+"width");
+			listOfAttributes.add(6,"length"+":"+"height"+":"+"width");
 			
 			
 			
 			//location
-			listOfAttributes.add(6,"endroit");		
+			listOfAttributes.add(7,"");		
 			
 			/*
 			 * End of the attributes in common ! 
@@ -252,7 +252,7 @@ public class ItemFactory {
 			//BorrowingDeadline
 			Date date = new Date();
 		    try {
-		        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 		        date = formatter.parse(listOfAttributes.get(5));
 		      } catch (ParseException e) {
 		        e.printStackTrace();
@@ -285,7 +285,7 @@ public class ItemFactory {
 					try{
 						int isbn = sc.nextInt();
 						testType = false;
-						listOfAttributes.add(7,"isbn");
+						listOfAttributes.add(8,"isbn");
 					}
 					catch (java.util.InputMismatchException ime){
 						System.out.println("You did not enter a number");
@@ -298,7 +298,7 @@ public class ItemFactory {
 				 * Creation of the object
 				 */
 				return new Book(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
-						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, location , Integer.parseInt(listOfAttributes.get(7)) );
+						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, location , Integer.parseInt(listOfAttributes.get(8)) );
 				
 			}
 			
