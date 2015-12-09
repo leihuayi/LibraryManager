@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.regex.*;
 
 public class Launcher {
@@ -14,6 +15,7 @@ public class Launcher {
 		// TODO Auto-generated method stub	
 		Library library = new Library("LibrairieDeSassa",0,0,0);
 		Member member= new Member("Cocher","Thomas",new Date(),123,library);
+	
 		library.getListMembers().add(member);
 		Date actuelle = new Date();
 		 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
