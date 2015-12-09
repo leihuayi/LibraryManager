@@ -98,9 +98,37 @@ public abstract class LibraryItem {
 		this.borrowable=true;
 		this.library=library;
 	}
-
+	
+	public void borrow_item(Member member, LibraryItem item){
+		//will be made in part 2
+	}
+	
 	public void returnItem(Library library, LibraryItem item, Member member){
 		item.setBorrowable(true);
 		ArrayList<Borrowing> list = member.getCurrentItems();
+		ArrayList<Borrowing> list2= new ArrayList<>();
+		for (Borrowing borrowing : list){
+			//one member can borrow one copy of each item
+			if (borrowing.getItem().equals(item)){
+				list.remove(borrowing);
+				for (Borrowing borrow : library.getReservationList()){
+					if (borrow.getItem().equals(borrowing.getItem())){
+						list2.add(borrow);
+					}
+				}
+			}
+		}
+		if(!list2.isEmpty()){
+			//getting the first member who wanted to borrow
+			Borrowing borrowing = list2.get(0);
+			for (Borrowing borrow : list2){
+				if(borrow.getBorrowingDate().before(borrowing.getBorrowingDate())){
+					borrowing=borrow;
+				}
+			}
+			library.getReservationList().remove(borrowing);
+			borrowing.getItem().borrow_item(borrowing.getMember(),borrowing.getItem());
+		}
+		
 	}
 }
