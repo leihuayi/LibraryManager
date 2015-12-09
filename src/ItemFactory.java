@@ -257,7 +257,7 @@ public class ItemFactory {
 		      }
 		    
 		    //location
-		    Location location = new Location(library);
+		    Location location = new Location(library,room,bookcase,shelf);
 		    
 		    
 		    //Measures: use a regexp to get each side
