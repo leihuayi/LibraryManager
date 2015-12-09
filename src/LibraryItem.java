@@ -13,8 +13,22 @@ public abstract class LibraryItem {
 	private Cuboid measures;
 	private Array location;
 	private ArrayList<Member> borrowingList;
+	private boolean borrowable;
+	private Library library;
 	
 	
+	public Library getLibrary() {
+		return library;
+	}
+	public void setLibrary(Library library) {
+		this.library = library;
+	}
+	public boolean isBorrowable() {
+		return borrowable;
+	}
+	public void setBorrowable(boolean borrowable) {
+		this.borrowable = borrowable;
+	}
 	public ArrayList<Member> getBorrowingList() {
 		return borrowingList;
 	}
@@ -70,7 +84,7 @@ public abstract class LibraryItem {
 		this.location = location;
 	}
 	public LibraryItem(String title, String publisher, int publishingYear, int volumeNumber,
-			ConsultationType consultationType, Date borrowingDeadline, Cuboid measures, Array location) {
+			ConsultationType consultationType, Date borrowingDeadline, Cuboid measures, Array location, Library library) {
 		super();
 		this.title = title;
 		this.publisher = publisher;
@@ -81,6 +95,8 @@ public abstract class LibraryItem {
 		this.measures = measures;
 		this.location = location;
 		this.borrowingList=new ArrayList<Member>();
+		this.borrowable=true;
+		this.library=library;
 	}
 
 	

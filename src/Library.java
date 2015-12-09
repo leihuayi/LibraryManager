@@ -12,8 +12,15 @@ public class Library implements java.io.Serializable{
 	private int Nbi;
 	private String libraryName;
 	private ArrayList<Member> listMembers;
+	private ArrayList <Borrowing> reservationList;
 	
 	
+	public ArrayList<Borrowing> getReservationList() {
+		return reservationList;
+	}
+	public void setReservationList(ArrayList<Borrowing> reservationList) {
+		this.reservationList = reservationList;
+	}
 	public ArrayList<Member> getListMembers() {
 		return listMembers;
 	}
@@ -65,6 +72,7 @@ public class Library implements java.io.Serializable{
 		this.storageRoom = new ArrayList<LibraryItem>();
 		Nbi = nbi;
 		this.listMembers= new ArrayList<Member>();
+		this.reservationList= new ArrayList<Borrowing>();
 	}
 	
 	

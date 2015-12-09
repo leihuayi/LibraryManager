@@ -5,10 +5,20 @@ public class Borrowing implements Observable{
 	private LibraryItem item;
 	// the member is the observer
 	private Member member;
+	// date when the member does the borrowing
 	private Date borrowingDate;
+	//date when the member gets the item;
+	private Date effectiveBorrowingDate; 
+	//date when the member returns the borrowing
 	private Date returnDate;
 	
 	
+	public Date getEffectiveBorrowingDate() {
+		return effectiveBorrowingDate;
+	}
+	public void setEffectiveBorrowingDate(Date effectiveBorrowingDate) {
+		this.effectiveBorrowingDate = effectiveBorrowingDate;
+	}
 	public LibraryItem getItem() {
 		return item;
 	}
