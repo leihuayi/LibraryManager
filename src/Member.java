@@ -200,8 +200,9 @@ public class Member implements Observer , java.io.Serializable{
 	@Override
 	public void update (String title) {
 		// TODO Auto-generated method stub
-		System.out.println("Vous n'avez toujours pas rendu le livre "+title);
+		System.out.println("You still haven't given back the book "+title);
 	}
+	
 	
 	//method which suspends the member and returns the lower suspension time
 	public int lowerSuspensionTime(){
@@ -236,5 +237,10 @@ public class Member implements Observer , java.io.Serializable{
 			return 	this.getHigherSuspensionTimeGolden();
 			}
 		
+	}
+	@Override
+	public void secondUpdate(String title) {
+		// TODO Auto-generated method stub
+		System.out.println("The book "+title+" is available at the library !");
 	}
 }

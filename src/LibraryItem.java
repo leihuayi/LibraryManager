@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class LibraryItem implements java.io.Serializable {
+public abstract class LibraryItem implements java.io.Serializable{
 
 	private String title;
 	private String publisher;
@@ -96,6 +96,7 @@ public abstract class LibraryItem implements java.io.Serializable {
 	
 	public void borrow_item(Member member, LibraryItem item){
 		//will be made in part 2
+		//if the item is under reservation u can't borrow it
 	}
 	
 	public void returnItem(Library library, LibraryItem item, Member member){
@@ -121,9 +122,9 @@ public abstract class LibraryItem implements java.io.Serializable {
 					borrowing=borrow;
 				}
 			}
-			library.getReservationList().remove(borrowing);
-			borrowing.getItem().borrow_item(borrowing.getMember(),borrowing.getItem());
+			borrowing.notifyObserverItemBorrowable();
 		}
 		
 	}
+	
 }

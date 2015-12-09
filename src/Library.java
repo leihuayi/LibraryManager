@@ -102,7 +102,7 @@ public class Library implements java.io.Serializable{
 			//check borrowings
 			for (Borrowing borrowing : member.getCurrentItems()){
 				if (borrowing.getBorrowingDate().equals(modifyDate(-7))){
-					borrowing.notifyObserver();
+					borrowing.notifyObserverDelay();
 					member.getPenalties().add(new Date());
 				}
 				else if (borrowing.getBorrowingDate().equals(modifyDate(-21))){
