@@ -1,19 +1,18 @@
-
 public class Cuboid implements java.io.Serializable{
-	private double lenght;
+	private double length;
 	private double height;
 	private double width;
-	public Cuboid(double lenght, double height, double width) {
+	public Cuboid(double length, double height, double width) {
 		super();
-		this.lenght = lenght;
+		this.length = length;
 		this.height = height;
 		this.width = width;
 	}
-	public double getLenght() {
-		return lenght;
+	public double getLength() {
+		return length;
 	}
-	public void setLenght(double lenght) {
-		this.lenght = lenght;
+	public void setLength(double length) {
+		this.length = length;
 	}
 	public double getHeight() {
 		return height;

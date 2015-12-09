@@ -13,8 +13,17 @@ public abstract class LibraryItem implements java.io.Serializable {
 	private Cuboid measures;
 	private Location location;
 	private ArrayList<Member> borrowingList;
+	private boolean borrowable;
+
 	
 	
+
+	public boolean isBorrowable() {
+		return borrowable;
+	}
+	public void setBorrowable(boolean borrowable) {
+		this.borrowable = borrowable;
+	}
 	public ArrayList<Member> getBorrowingList() {
 		return borrowingList;
 	}
@@ -71,6 +80,7 @@ public abstract class LibraryItem implements java.io.Serializable {
 	}
 	public LibraryItem(String title, String publisher, int publishingYear, int volumeNumber,
 			ConsultationType consultationType, Date borrowingDeadline, Cuboid measures, Location location) {
+
 		super();
 		this.title = title;
 		this.publisher = publisher;
@@ -81,7 +91,39 @@ public abstract class LibraryItem implements java.io.Serializable {
 		this.measures = measures;
 		this.location = location;
 		this.borrowingList=new ArrayList<Member>();
+		this.borrowable=true;
 	}
-
 	
+	public void borrow_item(Member member, LibraryItem item){
+		//will be made in part 2
+	}
+	
+	public void returnItem(Library library, LibraryItem item, Member member){
+		item.setBorrowable(true);
+		ArrayList<Borrowing> list = member.getCurrentItems();
+		ArrayList<Borrowing> list2= new ArrayList<>();
+		for (Borrowing borrowing : list){
+			//one member can borrow one copy of each item
+			if (borrowing.getItem().equals(item)){
+				list.remove(borrowing);
+				for (Borrowing borrow : library.getReservationList()){
+					if (borrow.getItem().equals(borrowing.getItem())){
+						list2.add(borrow);
+					}
+				}
+			}
+		}
+		if(!list2.isEmpty()){
+			//getting the first member who wanted to borrow
+			Borrowing borrowing = list2.get(0);
+			for (Borrowing borrow : list2){
+				if(borrow.getBorrowingDate().before(borrowing.getBorrowingDate())){
+					borrowing=borrow;
+				}
+			}
+			library.getReservationList().remove(borrowing);
+			borrowing.getItem().borrow_item(borrowing.getMember(),borrowing.getItem());
+		}
+		
+	}
 }

@@ -12,11 +12,14 @@ public class CD extends LibraryItem{
 		this.borrowingDuration = borrowingDuration;
 	}
 
+
 	public CD(String title, String publisher, int publishingYear, int volumeNumber, ConsultationType consultationType,
 			Date borrowingDeadline, Cuboid measures, Location location) {
 		super(title, publisher, publishingYear, volumeNumber, consultationType, borrowingDeadline, measures, location);
 	
 	this.borrowingDuration=1;
+
+
 	}
 
 	
