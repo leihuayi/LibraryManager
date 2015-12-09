@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class LibraryItem {
+public abstract class LibraryItem implements java.io.Serializable {
 
 	private String title;
 	private String publisher;
@@ -11,7 +11,7 @@ public abstract class LibraryItem {
 	private ConsultationType consultationType;
 	private Date borrowingDeadline;
 	private Cuboid measures;
-	private Array location;
+	private Location location;
 	private ArrayList<Member> borrowingList;
 	
 	
@@ -63,14 +63,14 @@ public abstract class LibraryItem {
 	public void setMeasures(Cuboid measures) {
 		this.measures = measures;
 	}
-	public Array getLocation() {
+	public Location getLocation() {
 		return location;
 	}
-	public void setLocation(Array location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 	public LibraryItem(String title, String publisher, int publishingYear, int volumeNumber,
-			ConsultationType consultationType, Date borrowingDeadline, Cuboid measures, Array location) {
+			ConsultationType consultationType, Date borrowingDeadline, Cuboid measures, Location location) {
 		super();
 		this.title = title;
 		this.publisher = publisher;

@@ -1,5 +1,5 @@
 
-public class Cuboid {
+public class Cuboid implements java.io.Serializable{
 	private double lenght;
 	private double height;
 	private double width;

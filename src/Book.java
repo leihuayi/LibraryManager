@@ -23,7 +23,7 @@ public class Book extends LibraryItem {
 	}
 
 	public Book(String title, String publisher, int publishingYear, int volumeNumber, ConsultationType consultationType,
-			Date borrowingDeadline, Cuboid measures, Array location, int iSBNCode) {
+			Date borrowingDeadline, Cuboid measures, Location location, int iSBNCode) {
 		super(title, publisher, publishingYear, volumeNumber, consultationType, borrowingDeadline, measures, location);
 		ISBNCode = iSBNCode;
 		this.borrowingDuration=4;

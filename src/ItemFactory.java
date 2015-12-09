@@ -1,5 +1,9 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class ItemFactory {
 	
@@ -163,8 +167,8 @@ public class ItemFactory {
 					System.out.println("You did not enter a number");
 				}
 			}
-			//The date will be stored in the form dd:MM:yyyy , and will be fetched with a regexp
-			listOfAttributes.add(5,"day"+":"+"month"+":"+"year");
+			//The date will be stored in the form dd:MM:yyyy , and will be stored as a Date with SimpleDateFormat
+			listOfAttributes.add(5,"day"+"/"+"month"+"/"+"year");
 			
 			
 			
@@ -226,9 +230,48 @@ public class ItemFactory {
 			
 			/*
 			 * End of the attributes in common ! 
-			 * Now for the attributes specific for a type of item:
+			 * Now for the attributes specific for a type of item and the creation of the Object !
 			 * 
 			 */
+			
+			
+			
+			/*
+			 * Transformation of the Strings in Objects in order to fill in the attributes of the item
+			 */
+			
+			//ConsultationType
+			ConsultationType ct;
+			if(listOfAttributes.get(4)=="onlineConsultation"){
+				ct = ConsultationType.onlineConsultation;
+			}
+			else{
+				ct = ConsultationType.borrowing;
+			}
+			
+			//BorrowingDeadline
+			Date date = new Date();
+		    try {
+		        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		        date = formatter.parse(listOfAttributes.get(5));
+		      } catch (ParseException e) {
+		        e.printStackTrace();
+		      }
+		    
+		    //location
+		    Location location = new Location(library);
+		    
+		    
+		    //Measures: use a regexp to get each side
+			Pattern p = Pattern.compile(":");
+			String[] arrayCuboid = p.split(listOfAttributes.get(6));
+			Cuboid cuboid = new Cuboid(Double.parseDouble(arrayCuboid[0]),Double.parseDouble(arrayCuboid[1]),Double.parseDouble(arrayCuboid[2]));
+		    
+			
+			/*
+			 * Now the implementation regarding the type of item requested!
+			 */
+			
 			
 			//book
 			if(itemType.equalsIgnoreCase("BOOK")){
@@ -249,21 +292,39 @@ public class ItemFactory {
 					}
 				}
 				
+
+				
+				/*
+				 * Creation of the object
+				 */
+				return new Book(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
+						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, location , Integer.parseInt(listOfAttributes.get(7)) );
+				
+			}
+			
+			else if(itemType.equalsIgnoreCase("CD")){
+				
+				/*
+				 * Creation of the object
+				 */
+				return new CD(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
+						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, location );
+				
+			}
+			
+			else{
+				
+				/*
+				 * Creation of the object
+				 */
+				return new DVD(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
+						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, location );
 				
 			}
 			
 			
-			
-			
-			
-			
-			
-			
 
-
-
-			
-			
+								
 			
 		}
 		
@@ -273,5 +334,9 @@ public class ItemFactory {
 			System.out.println("You did not enter a valid item type");
 			return null;
 		}
+		
+		
+		
+
 	}
 }
