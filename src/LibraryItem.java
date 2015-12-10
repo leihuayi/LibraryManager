@@ -11,6 +11,7 @@ public abstract class LibraryItem implements java.io.Serializable{
 	private ConsultationType consultationType;
 	private Date borrowingDeadline;
 	private Cuboid measures;
+	//location set as null when the item is borrowed and calculated again when the item is returned
 	private Location location;
 	private ArrayList<Member> borrowingList;
 	private boolean borrowable;
@@ -123,6 +124,7 @@ public abstract class LibraryItem implements java.io.Serializable{
 				}
 			}
 			borrowing.notifyObserverItemBorrowable();
+			//research of the location with one of the four algorithms
 		}
 		
 	}

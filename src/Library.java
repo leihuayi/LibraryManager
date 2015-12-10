@@ -137,4 +137,32 @@ public class Library implements java.io.Serializable{
 		}
 	}
 	
+	public void anyFit(LibraryItem item){
+		ArrayList<Integer> sum = new ArrayList<>();
+		ArrayList<Room> listRoom = this.getListRooms();
+		for (Room room : listRoom){
+			ArrayList<Bookcase> listBookcase = room.getListBookcases();
+			for (Bookcase bookcase : listBookcase){
+				ArrayList<Shelf> listShelf = bookcase.getListShelves();
+				for (Shelf shelf : listShelf){
+					ArrayList<LibraryItem> listItem = shelf.getListItems();
+					Integer a = sum.get(0);
+					Integer b = sum.get(1);
+					Integer c = sum.get(2);
+					for (LibraryItem libraryItem : listItem){						
+						a= (int) (a+libraryItem.getMeasures().getHeight());
+						b= (int) (b+libraryItem.getMeasures().getLength());
+						c= (int) (c+libraryItem.getMeasures().getWidth());
+					}
+					if (shelf.getMeasures().getHeight()-a>=item.getMeasures().getHeight()&&shelf.getMeasures().getLength()-b>=item.getMeasures().getLength()&&shelf.getMeasures().getWidth()-c>=item.getMeasures().getWidth()){
+						shelf.getListItems().add(item);
+						Location location = new Location(this,room,bookcase,shelf);
+						item.setLocation(location);
+					}
+				}
+			}
+		}
+		
+	}
+	
 }
