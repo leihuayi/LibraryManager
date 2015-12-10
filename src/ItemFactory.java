@@ -177,7 +177,7 @@ public class ItemFactory {
 			testType = true;
 			while (testType){
 				Scanner sc = new Scanner(System.in);
-				System.out.print("Measure of the item in cm  /!\\ put a , and NOT a . before the decimals : \n \t Length:");
+				System.out.print("Measure of the item in cm  /!\\ put a , and NOT a . before the decimals : \n \t Length (thickness):");
 				
 				try{
 					length = sc.nextDouble();
@@ -256,15 +256,12 @@ public class ItemFactory {
 		        e.printStackTrace();
 		      }
 		    
-		   
-		    
-		    
-		    
 		    //Measures: use a regexp to get each side
 			Pattern p = Pattern.compile(":");
 			String[] arrayCuboid = p.split(listOfAttributes.get(6));
 			Cuboid cuboid = new Cuboid(Double.parseDouble(arrayCuboid[0]),Double.parseDouble(arrayCuboid[1]),Double.parseDouble(arrayCuboid[2]));
 		    
+			
 			
 			/*
 			 * Now the implementation regarding the type of item requested!
