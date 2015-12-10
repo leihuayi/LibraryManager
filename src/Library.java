@@ -137,7 +137,7 @@ public class Library implements java.io.Serializable{
 		}
 	}
 	
-	public void anyFit(LibraryItem item){
+	public Location anyFit(LibraryItem item){
 		ArrayList<Room> listRoom = this.getListRooms();
 		for (Room room : listRoom){
 			ArrayList<Bookcase> listBookcase = room.getListBookcases();
@@ -153,6 +153,7 @@ public class Library implements java.io.Serializable{
 						shelf.getListItems().add(item);
 						Location location = new Location(this,room,bookcase,shelf);
 						item.setLocation(location);
+						return location;
 					}
 				}
 			}
@@ -160,6 +161,7 @@ public class Library implements java.io.Serializable{
 		if (item.getLocation().equals(null)){
 			System.out.println("There is no place");
 		}
+		return null;
 	}
 	
 	//method which gives the array of potential locations for an item
@@ -187,7 +189,7 @@ public class Library implements java.io.Serializable{
 	}
 	
 	
-	public void bestShelf(LibraryItem item){
+	public Location bestShelf(LibraryItem item){
 		
 		ArrayList<Location> listLocation= this.potentialLocationForItem(item);
 		
@@ -210,10 +212,14 @@ public class Library implements java.io.Serializable{
 		
 		if (item.getLocation().equals(null)){
 			System.out.println("There is no place");
+			return null;
+		}
+		else{
+			return location;
 		}
 	}
 	
-	public void bestBookcase (LibraryItem item){
+	public Location bestBookcase (LibraryItem item){
 		ArrayList<Location> listLocation= this.potentialLocationForItem(item);
 		Location location = listLocation.get(0);
 		for (Location locat : listLocation){
@@ -238,10 +244,14 @@ public class Library implements java.io.Serializable{
 		
 		if (item.getLocation().equals(null)){
 			System.out.println("There is no place");
+			return null;
+		}
+		else{
+			return location;
 		}
 	}
 	
-	public void bestRoom(LibraryItem item){
+	public Location bestRoom(LibraryItem item){
 		ArrayList<Location> listLocation= this.potentialLocationForItem(item);
 		Location location = listLocation.get(0);
 		for (Location locat : listLocation){
@@ -270,6 +280,10 @@ public class Library implements java.io.Serializable{
 		
 		if (item.getLocation().equals(null)){
 			System.out.println("There is no place");
+			return null;
+		}
+		else{
+			return location;
 		}
 	}
 }

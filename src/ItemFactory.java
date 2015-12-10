@@ -256,8 +256,8 @@ public class ItemFactory {
 		        e.printStackTrace();
 		      }
 		    
-		    //location
-		    Location location = new Location(library,room,bookcase,shelf);
+		   
+		    
 		    
 		    
 		    //Measures: use a regexp to get each side
@@ -295,8 +295,12 @@ public class ItemFactory {
 				/*
 				 * Creation of the object
 				 */
-				return new Book(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
-						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, location , Integer.parseInt(listOfAttributes.get(8)) );
+				Book book= new Book(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
+						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, null , Integer.parseInt(listOfAttributes.get(8)) );
+				// we can use any algorithm for the location
+				Location location = library.anyFit(book);
+				book.setLocation(location);
+				return book;
 				
 			}
 			
@@ -305,8 +309,11 @@ public class ItemFactory {
 				/*
 				 * Creation of the object
 				 */
-				return new CD(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
-						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, location );
+				CD CD = new CD(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
+						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, null );
+				Location location = library.anyFit(CD);
+				CD.setLocation(location);
+				return CD;
 				
 			}
 			
@@ -315,8 +322,11 @@ public class ItemFactory {
 				/*
 				 * Creation of the object
 				 */
-				return new DVD(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
-						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, location );
+				DVD DVD= new DVD(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
+						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, null );
+				Location location = library.anyFit(DVD);
+				DVD.setLocation(location);
+				return DVD;
 				
 			}
 			
