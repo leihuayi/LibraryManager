@@ -138,7 +138,6 @@ public class Library implements java.io.Serializable{
 	}
 	
 	public void anyFit(LibraryItem item){
-		ArrayList<Integer> sum = new ArrayList<>();
 		ArrayList<Room> listRoom = this.getListRooms();
 		for (Room room : listRoom){
 			ArrayList<Bookcase> listBookcase = room.getListBookcases();
@@ -146,15 +145,11 @@ public class Library implements java.io.Serializable{
 				ArrayList<Shelf> listShelf = bookcase.getListShelves();
 				for (Shelf shelf : listShelf){
 					ArrayList<LibraryItem> listItem = shelf.getListItems();
-					Integer a = sum.get(0);
-					Integer b = sum.get(1);
-					Integer c = sum.get(2);
-					for (LibraryItem libraryItem : listItem){						
-						a= (int) (a+libraryItem.getMeasures().getHeight());
-						b= (int) (b+libraryItem.getMeasures().getLength());
-						c= (int) (c+libraryItem.getMeasures().getWidth());
+					Integer sum = new Integer(0);
+					for (LibraryItem libraryItem : listItem){	
+						sum= (int) (sum+libraryItem.getMeasures().getLength());
 					}
-					if (shelf.getMeasures().getHeight()-a>=item.getMeasures().getHeight()&&shelf.getMeasures().getLength()-b>=item.getMeasures().getLength()&&shelf.getMeasures().getWidth()-c>=item.getMeasures().getWidth()){
+					if (shelf.getMeasures().getHeight()>=item.getMeasures().getHeight()&&shelf.getMeasures().getLength()-sum>=item.getMeasures().getLength()&&shelf.getMeasures().getWidth()>=item.getMeasures().getWidth()){
 						shelf.getListItems().add(item);
 						Location location = new Location(this,room,bookcase,shelf);
 						item.setLocation(location);
@@ -162,7 +157,51 @@ public class Library implements java.io.Serializable{
 				}
 			}
 		}
+		if (item.getLocation().equals(null)){
+			System.out.println("There is no place");
+		}
+	}
+	
+	public void bestShelf(LibraryItem item){
+		ArrayList<Room> listRoom = this.getListRooms();
+		ArrayList<Location> listLocation= new ArrayList<>();
+		for (Room room : listRoom){
+			ArrayList<Bookcase> listBookcase = room.getListBookcases();
+			for (Bookcase bookcase : listBookcase){
+				ArrayList<Shelf> listShelf = bookcase.getListShelves();
+				for (Shelf shelf : listShelf){
+					ArrayList<LibraryItem> listItem = shelf.getListItems();
+					Integer sum = new Integer(0);
+					for (LibraryItem libraryItem : listItem){	
+						sum= (int) (sum+libraryItem.getMeasures().getLength());
+					}
+					if (shelf.getMeasures().getHeight()>=item.getMeasures().getHeight()&&shelf.getMeasures().getLength()-sum>=item.getMeasures().getLength()&&shelf.getMeasures().getWidth()>=item.getMeasures().getWidth()){
+						Location location = new Location(this,room,bookcase,shelf);
+						listLocation.add(location);
+					}
+				}
+			}
+		}
+		Location location = listLocation.get(0);
+		for (Location locat : listLocation){
+			Integer sum1 = new Integer(0);
+			for (LibraryItem libraryItem : locat.getShelf().getListItems()){	
+				sum1= (int) (sum1+libraryItem.getMeasures().getLength());
+			}
+			Integer sum2 = new Integer(0);
+			for (LibraryItem libraryItem : location.getShelf().getListItems()){	
+				sum2= (int) (sum2+libraryItem.getMeasures().getLength());
+			}
+			if(sum1>sum2){
+				location=locat;
+			}
+		}
+		item.setLocation(location);
+		location.getShelf().getListItems().add(item);
 		
+		if (item.getLocation().equals(null)){
+			System.out.println("There is no place");
+		}
 	}
 	
 }
