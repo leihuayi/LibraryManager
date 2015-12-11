@@ -3,6 +3,9 @@ Is1220_Group 24 Thomas Cocher & Sarah Gross
 
 Introduction
 
+The two major difficulties we had making this project are technical issues and difficulties in chosing the design of the LMS.
+The technical issues were long to solve but quite easy whereas the chosing difficulties where a bit harder and took us some times.
+
 
 1)	Presentation of the project
 This project is about developing a Library Management System (LMS). We have to implement with OOP a fully-operational library, where 3 kinds of items are stored books, CDs and DVDs. One can register to the library and then be able to consult onsite or borrow those items, with rules which depend on the status of their membership.
@@ -34,3 +37,7 @@ We hesitated about first making the tests we needed, then programming the classe
 
 
 Conclusion
+
+We've enjoyed working on the LMS but lately realized during this first part that we may have spent too much time working on elements of the second part.
+The serialization, check and item factory systems should be done during the second part of the project and we've done it in the first one which left us less time to work on the first part.
+That's why the last two algorithms of storing are imcomplete.
