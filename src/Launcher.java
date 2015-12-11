@@ -21,7 +21,7 @@ public class Launcher {
 	
 		library.getListMembers().add(member);
 
-		
+		/*
 		ItemFactory itemFactory = new ItemFactory();
 		
 		Scanner scType = new Scanner(System.in);
@@ -31,7 +31,7 @@ public class Launcher {
 		
 		// ask the factory to create the item
 		itemFactory.createItem(itemType,library);
-		
+		*/
 		
 		
 	
