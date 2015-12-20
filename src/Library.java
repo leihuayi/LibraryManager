@@ -146,7 +146,7 @@ public class Library implements java.io.Serializable{
 	
 	
 	
-	public Location anyFit(LibraryItem item){
+	public void anyFit(LibraryItem item){
 		Location location = null;
 		ArrayList<Room> listRoom = this.getListRooms();
 		for (Room room : listRoom){
@@ -156,24 +156,20 @@ public class Library implements java.io.Serializable{
 				for (Shelf shelf : listShelf){
 					//reminder: the length of an item is its thickness. We check that the item can enter in the shelf
 					if (shelf.getFreeSpace()>=item.getLength()){
-						if (shelf.getFreeSpace()>=item.getLength()){
-							//we place the item there and stop looking for a location
-							location = new Location(this,room,bookcase,shelf);
-							shelf.setFreeSpace(shelf.getFreeSpace()-item.getLength());
-							bookcase.setFreeSpace(bookcase.getFreeSpace()-item.getLength());
-							room.setFreeSpace(room.getFreeSpace()-item.getLength());
-							break;
-						}
+						//we place the item there and stop looking for a location
+						location = new Location(this,room,bookcase,shelf);
+						item.setLocation(location);
+						shelf.getListItems().add(item);
+						shelf.setFreeSpace(shelf.getFreeSpace()-item.getLength());
+						bookcase.setFreeSpace(bookcase.getFreeSpace()-item.getLength());
+						room.setFreeSpace(room.getFreeSpace()-item.getLength());
+						break;
 					}
 				}
 			}
 		}
 		if (item.getLocation().equals(null)){
 			System.out.println("No place was found to put the item");
-			return null;
-		}
-		else {
-			return location;
 		}
 	}
 	
@@ -200,7 +196,7 @@ public class Library implements java.io.Serializable{
 	}
 	*/
 	
-	public Location bestShelf(LibraryItem item){
+	public void bestShelf(LibraryItem item){
 		
 		ArrayList<Room> listRoom = this.getListRooms();
 		ArrayList<Location> listPossibleLocation= new ArrayList<>();
@@ -227,21 +223,19 @@ public class Library implements java.io.Serializable{
 		
 		if (item.getLocation().equals(null)){
 			System.out.println("There is no place");
-			return null;
 		}
 		else{
 			//we place the item at the location bestShelfLocation
+			bestShelfLocation.getShelf().getListItems().add(item);
 			bestShelfLocation.getShelf().setFreeSpace(bestShelfLocation.getShelf().getFreeSpace()-item.getLength());
 			bestShelfLocation.getBookcase().setFreeSpace(bestShelfLocation.getBookcase().getFreeSpace()-item.getLength());
 			bestShelfLocation.getRoom().setFreeSpace(bestShelfLocation.getRoom().getFreeSpace()-item.getLength());
-			return bestShelfLocation;
-
 		}
 	
 	}
 	
 	
-	public Location bestBookcase (LibraryItem item){
+	public void bestBookcase (LibraryItem item){
 		
 		ArrayList<Room> listRoom = this.getListRooms();
 		ArrayList<Bookcase> listPossibleHostBookcase= new ArrayList<Bookcase>();
@@ -280,6 +274,8 @@ public class Library implements java.io.Serializable{
 			if (shelf.getFreeSpace()>=item.getLength()){
 				//we place the item there and stop searching for a location
 				oneLocationInBestBookcase = new Location(this,roomOfBestBk,bestBk,shelf);
+				item.setLocation(oneLocationInBestBookcase);
+				shelf.getListItems().add(item);
 				shelf.setFreeSpace(shelf.getFreeSpace()-item.getLength());
 				bestBk.setFreeSpace(bestBk.getFreeSpace()-item.getLength());
 				roomOfBestBk.setFreeSpace(roomOfBestBk.getFreeSpace()-item.getLength());
@@ -288,17 +284,14 @@ public class Library implements java.io.Serializable{
 		}
 		
 		if (item.getLocation().equals(null)){
-			System.out.println("There is no place");
-			return null;
+			System.out.println("No place was found to store the item");
 		}
-		else{
-			return oneLocationInBestBookcase;
-		}
+
 	}
 	
 	
 	
-	public Location bestRoom(LibraryItem item){
+	public void bestRoom(LibraryItem item){
 		
 		ArrayList<Room> listPossibleHostRooms= new ArrayList<Room>();
 		for (Room room : this.listRooms){
@@ -335,6 +328,8 @@ public class Library implements java.io.Serializable{
 				if (shelf.getFreeSpace()>=item.getLength()){
 					//we place the item there ans stop looking for a location
 					oneLocationInBestRoom = new Location(this,bestRoom,bookcase,shelf);
+					item.setLocation(oneLocationInBestRoom);
+					shelf.getListItems().add(item);
 					shelf.setFreeSpace(shelf.getFreeSpace()-item.getLength());
 					bookcase.setFreeSpace(bookcase.getFreeSpace()-item.getLength());
 					bestRoom.setFreeSpace(bestRoom.getFreeSpace()-item.getLength());
@@ -346,10 +341,6 @@ public class Library implements java.io.Serializable{
 		
 		if (item.getLocation().equals(null)){
 			System.out.println("No place was found to put the item");
-			return null;
-		}
-		else{
-			return oneLocationInBestRoom;
 		}
 		
 
