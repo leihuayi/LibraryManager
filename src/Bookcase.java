@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Bookcase extends Cuboid{
 	private String bcName;
+	private double freeSpace;
 	private ArrayList<Shelf> listShelves;
 	
 
@@ -11,6 +12,15 @@ public class Bookcase extends Cuboid{
 	public void setBcName(String bcName) {
 		this.bcName = bcName;
 	}
+	
+	
+	public double getFreeSpace() {
+		return freeSpace;
+	}
+	public void setFreeSpace(double freeSpace) {
+		this.freeSpace = freeSpace;
+	}
+	
 	public ArrayList<Shelf> getListShelves() {
 		return listShelves;
 	}
@@ -24,7 +34,18 @@ public class Bookcase extends Cuboid{
 		this.setHeight(height);
 		this.setWidth(width);
 		this.listShelves = new ArrayList<Shelf>();
-
+		this.freeSpace = initFreeSpace();
+	
 	}
+	
+	//to calculate the initial free space in the whole bookcase
+	public double initFreeSpace(){
+		double sum= 0.0;
+		for (Shelf sh : this.listShelves){
+			sum = sum + sh.getFreeSpace();
+		}
+		return sum;		
+	}
+	
 	
 }
