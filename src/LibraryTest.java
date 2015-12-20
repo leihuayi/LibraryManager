@@ -17,10 +17,11 @@ public class LibraryTest {
 		bookcase.getListShelves().add(shelf);
 		Date date=new Date();
 		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,date,1,1,1,null);
-		Location location = library.anyFit(CD);
+		library.anyFit(CD);
 		assertTrue(shelf.getListItems().contains(CD));
 	}
-	/*
+	
+	
 	@Test
 	public void testBestShelf() {
 		Library library = new Library("library",10,10,10);
@@ -34,10 +35,11 @@ public class LibraryTest {
 		bookcase.getListShelves().add(shelfbis);
 		Date date=new Date();
 		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,date,1,1,1,null);
-		Location location = library.bestShelf(CD);
+		library.bestShelf(CD);
 		assertTrue(shelfbis.getListItems().contains(CD));
 	}
 
+		/*
 	@Test
 	public void testBestBookcase() {
 		Library library = new Library("library",10,10,10);
