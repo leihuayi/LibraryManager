@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
-public class Shelf {
+public class Shelf extends Cuboid {
 	private static int shelfNumber=0;
-	private Cuboid measures;
+	private double freeSpace;
 	private ArrayList<LibraryItem> listItems;
 	public static int getShelfNumber() {
 		return shelfNumber;
@@ -10,11 +10,12 @@ public class Shelf {
 	public static void setShelfNumber(int shelfNumber) {
 		Shelf.shelfNumber = shelfNumber;
 	}
-	public Cuboid getMeasures() {
-		return measures;
+	
+	public double getFreeSpace() {
+		return freeSpace;
 	}
-	public void setMeasures(Cuboid measures) {
-		this.measures = measures;
+	public void setFreeSpace(double freeSpace) {
+		this.freeSpace = freeSpace;
 	}
 	public ArrayList<LibraryItem> getListItems() {
 		return listItems;
@@ -22,10 +23,16 @@ public class Shelf {
 	public void setListItems(ArrayList<LibraryItem> listItems) {
 		this.listItems = listItems;
 	}
-	public Shelf(Cuboid measures) {
+	
+	public Shelf(double length, double height, double width) {
+		//when we create a new shelf, it is empty
 		super();
-		this.measures = measures;
+		this.setLength(length);
+		this.setHeight(height);
+		this.setWidth(width);
 		this.listItems = new ArrayList<LibraryItem>();
+		this.freeSpace = length;
+		shelfNumber++;
 	}
 	
 	

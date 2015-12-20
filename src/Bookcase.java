@@ -1,17 +1,10 @@
 import java.util.ArrayList;
 
-public class Bookcase{
+public class Bookcase extends Cuboid{
 	private String bcName;
 	private ArrayList<Shelf> listShelves;
-	private Cuboid measures;
 	
-	
-	public Cuboid getMeasures() {
-		return measures;
-	}
-	public void setMeasures(Cuboid measures) {
-		this.measures = measures;
-	}
+
 	public String getBcName() {
 		return bcName;
 	}
@@ -24,11 +17,14 @@ public class Bookcase{
 	public void setListShelves(ArrayList<Shelf> listShelves) {
 		this.listShelves = listShelves;
 	}
-	public Bookcase(String bcName, Cuboid measures) {
+	public Bookcase(String bcName, double length, double height, double width) {
 		super();
 		this.bcName = bcName;
+		this.setLength(length);
+		this.setHeight(height);
+		this.setWidth(width);
 		this.listShelves = new ArrayList<Shelf>();
-		this.measures=measures;
+
 	}
 	
 }

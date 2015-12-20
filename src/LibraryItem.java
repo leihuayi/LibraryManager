@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class LibraryItem implements java.io.Serializable{
+public abstract class LibraryItem extends Cuboid implements java.io.Serializable{
 
 	private String title;
 	private String publisher;
@@ -10,7 +10,6 @@ public abstract class LibraryItem implements java.io.Serializable{
 	private int volumeNumber;
 	private ConsultationType consultationType;
 	private Date borrowingDeadline;
-	private Cuboid measures;
 	//location set as null when the item is borrowed and calculated again when the item is returned
 	private Location location;
 	private ArrayList<Member> borrowingList;
@@ -67,12 +66,7 @@ public abstract class LibraryItem implements java.io.Serializable{
 	public void setBorrowingDeadline(Date borrowingDeadline) {
 		this.borrowingDeadline = borrowingDeadline;
 	}
-	public Cuboid getMeasures() {
-		return measures;
-	}
-	public void setMeasures(Cuboid measures) {
-		this.measures = measures;
-	}
+	
 	public Location getLocation() {
 		return location;
 	}
@@ -80,7 +74,7 @@ public abstract class LibraryItem implements java.io.Serializable{
 		this.location = location;
 	}
 	public LibraryItem(String title, String publisher, int publishingYear, int volumeNumber,
-			ConsultationType consultationType, Date borrowingDeadline, Cuboid measures, Location location) {
+			ConsultationType consultationType, Date borrowingDeadline, double length, double height, double width, Location location) {
 
 		super();
 		this.title = title;
@@ -89,7 +83,9 @@ public abstract class LibraryItem implements java.io.Serializable{
 		this.volumeNumber = volumeNumber;
 		this.consultationType = consultationType;
 		this.borrowingDeadline = borrowingDeadline;
-		this.measures = measures;
+		this.setLength(length);
+		this.setHeight(height);
+		this.setWidth(width);
 		this.location = location;
 		this.borrowingList=new ArrayList<Member>();
 		this.borrowable=true;

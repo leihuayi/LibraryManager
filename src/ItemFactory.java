@@ -219,12 +219,13 @@ public class ItemFactory {
 				}
 			}
 			//The measure will be stored in the form length:heigth:width , and will be fetched with a regexp
-			listOfAttributes.add(6,Double.toString(length)+":"+Double.toString(height)+":"+Double.toString(width));
+			listOfAttributes.add(6,Double.toString(length));
+			listOfAttributes.add(7,Double.toString(height));
+			listOfAttributes.add(8,Double.toString(width));
 			
 			
 			
-			//location
-			listOfAttributes.add(7,"");		
+
 			
 			/*
 			 * End of the attributes in common ! 
@@ -256,11 +257,6 @@ public class ItemFactory {
 		        e.printStackTrace();
 		      }
 		    
-		    //Measures: use a regexp to get each side
-			Pattern p = Pattern.compile(":");
-			String[] arrayCuboid = p.split(listOfAttributes.get(6));
-			Cuboid cuboid = new Cuboid(Double.parseDouble(arrayCuboid[0]),Double.parseDouble(arrayCuboid[1]),Double.parseDouble(arrayCuboid[2]));
-		    
 			
 			
 			/*
@@ -280,7 +276,7 @@ public class ItemFactory {
 					try{
 						int isbn = sc.nextInt();
 						testType = false;
-						listOfAttributes.add(8,"isbn");
+						listOfAttributes.add(9,"isbn");
 					}
 					catch (java.util.InputMismatchException ime){
 						System.out.println("You did not enter a number");
@@ -293,7 +289,7 @@ public class ItemFactory {
 				 * Creation of the object
 				 */
 				Book book= new Book(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
-						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, null , Integer.parseInt(listOfAttributes.get(8)) );
+						Integer.parseInt(listOfAttributes.get(3)),ct, date, Double.parseDouble(listOfAttributes.get(6)),Double.parseDouble(listOfAttributes.get(7)),Double.parseDouble(listOfAttributes.get(8)), null , Integer.parseInt(listOfAttributes.get(9)) );
 				// we can use any algorithm for the location
 				Location location = library.anyFit(book);
 				book.setLocation(location);
@@ -307,7 +303,7 @@ public class ItemFactory {
 				 * Creation of the object
 				 */
 				CD CD = new CD(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
-						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, null );
+						Integer.parseInt(listOfAttributes.get(3)),ct, date, Double.parseDouble(listOfAttributes.get(6)),Double.parseDouble(listOfAttributes.get(7)),Double.parseDouble(listOfAttributes.get(8)), null );
 				Location location = library.anyFit(CD);
 				CD.setLocation(location);
 				return CD;
@@ -320,7 +316,7 @@ public class ItemFactory {
 				 * Creation of the object
 				 */
 				DVD DVD= new DVD(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
-						Integer.parseInt(listOfAttributes.get(3)),ct, date, cuboid, null );
+						Integer.parseInt(listOfAttributes.get(3)),ct, date, Double.parseDouble(listOfAttributes.get(6)),Double.parseDouble(listOfAttributes.get(7)),Double.parseDouble(listOfAttributes.get(8)), null );
 				Location location = library.anyFit(DVD);
 				DVD.setLocation(location);
 				return DVD;

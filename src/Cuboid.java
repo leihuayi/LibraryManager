@@ -1,13 +1,8 @@
-public class Cuboid implements java.io.Serializable{
+public abstract class Cuboid implements java.io.Serializable{
 	private double length;
 	private double height;
 	private double width;
-	public Cuboid(double length, double height, double width) {
-		super();
-		this.length = length;
-		this.height = height;
-		this.width = width;
-	}
+
 	public double getLength() {
 		return length;
 	}
