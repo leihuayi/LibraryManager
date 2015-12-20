@@ -147,6 +147,7 @@ public class Library implements java.io.Serializable{
 	
 	
 	public Location anyFit(LibraryItem item){
+		Location location = null;
 		ArrayList<Room> listRoom = this.getListRooms();
 		for (Room room : listRoom){
 			ArrayList<Bookcase> listBookcase = room.getListBookcases();
@@ -155,23 +156,31 @@ public class Library implements java.io.Serializable{
 				for (Shelf shelf : listShelf){
 					//reminder: the length of an item is its thickness. We check that the item can enter in the shelf
 					if (shelf.getFreeSpace()>=item.getLength()){
-						shelf.getListItems().add(item);
-						//the free space in the shelf has disminished
-						shelf.setFreeSpace(shelf.getFreeSpace()-item.getLength());
-						Location location = new Location(this,room,bookcase,shelf);
-						item.setLocation(location);
-						return location;
+						if (shelf.getFreeSpace()>=item.getLength()){
+							//we place the item there and stop looking for a location
+							location = new Location(this,room,bookcase,shelf);
+							shelf.setFreeSpace(shelf.getFreeSpace()-item.getLength());
+							bookcase.setFreeSpace(bookcase.getFreeSpace()-item.getLength());
+							room.setFreeSpace(room.getFreeSpace()-item.getLength());
+							break;
+						}
 					}
 				}
 			}
 		}
 		if (item.getLocation().equals(null)){
 			System.out.println("No place was found to put the item");
+			return null;
 		}
-		return null;
+		else {
+			return location;
+		}
 	}
 	
-	//method which gives the array of potential locations for an item
+	
+	/*
+	//method which gives the array of potential locations for an item... not needed for the new versions of the algorithms
+	 * 
 	public ArrayList<Location> potentialLocationForItem(LibraryItem item){
 		ArrayList<Room> listRoom = this.getListRooms();
 		ArrayList<Location> listLocation= new ArrayList<>();
@@ -189,49 +198,46 @@ public class Library implements java.io.Serializable{
 		}
 		return listLocation;
 	}
-	
+	*/
 	
 	public Location bestShelf(LibraryItem item){
 		
-
-		
-		
-		/*
-		ArrayList<Location> listLocation= this.potentialLocationForItem(item);
-		
-		Location bestLocation = listLocation.get(0);
-		
-		for (Location locat : listLocation){
-			Double sumLoop = new Double(0.0);
-			//we calculate how much space is used in the Location locat and then deduct the remaining space
-			for (LibraryItem libraryItem : locat.getShelf().getListItems()){	
-				sumLoop= (sumLoop+libraryItem.getMeasures().getLength());
-			}
-			double remainingSpaceLoop = locat.getShelf().getMeasures().getLength() - sumLoop;
-			//we calculate how much space is used in the Location bestLocation and then deduct the remaining space
-			Double sumBest = new Double(0.0);
-			for (LibraryItem libraryItem : bestLocation.getShelf().getListItems()){	
-				sumBest= (sumBest+libraryItem.getMeasures().getLength());
-			}
-			double remainingSpaceBest = bestLocation.getShelf().getMeasures().getLength() - sumLoop;
-			
-			//the best shelf is the one with the biggest remaining space
-			if(remainingSpaceLoop>remainingSpaceBest){
-				bestLocation=locat;
+		ArrayList<Room> listRoom = this.getListRooms();
+		ArrayList<Location> listPossibleLocation= new ArrayList<>();
+		for (Room room : listRoom){
+			ArrayList<Bookcase> listBookcase = room.getListBookcases();
+			for (Bookcase bookcase : listBookcase){
+				ArrayList<Shelf> listShelf = bookcase.getListShelves();
+				for (Shelf shelf : listShelf){
+					if (shelf.getFreeSpace()>=item.getLength()){
+						Location location = new Location(this,room,bookcase,shelf);
+						listPossibleLocation.add(location);
+					}
+				}
 			}
 		}
-		item.setLocation(bestLocation);
-		bestLocation.getShelf().getListItems().add(item);
+		
+		Location bestShelfLocation = null;
+		for (Location location : listPossibleLocation){
+			if(location.getShelf().getFreeSpace()>bestShelfLocation.getShelf().getFreeSpace()){
+				bestShelfLocation = location;
+			}
+		}
+		item.setLocation(bestShelfLocation);
 		
 		if (item.getLocation().equals(null)){
-			System.out.println("No place was found to put the item");
+			System.out.println("There is no place");
 			return null;
 		}
 		else{
-			return bestLocation;
+			//we place the item at the location bestShelfLocation
+			bestShelfLocation.getShelf().setFreeSpace(bestShelfLocation.getShelf().getFreeSpace()-item.getLength());
+			bestShelfLocation.getBookcase().setFreeSpace(bestShelfLocation.getBookcase().getFreeSpace()-item.getLength());
+			bestShelfLocation.getRoom().setFreeSpace(bestShelfLocation.getRoom().getFreeSpace()-item.getLength());
+			return bestShelfLocation;
+
 		}
-		
-		*/
+	
 	}
 	
 	
@@ -245,7 +251,7 @@ public class Library implements java.io.Serializable{
 				ArrayList<Shelf> listShelf = bookcase.getListShelves();
 				for (Shelf shelf : listShelf){
 					if (shelf.getFreeSpace()>=item.getLength()){
-						//this bookcase contains a shelf big enough to host our book
+						//this room contains a shelf big enough to host our book
 						listPossibleHostBookcase.add(bookcase);
 						break;
 					}
@@ -272,10 +278,12 @@ public class Library implements java.io.Serializable{
 		ArrayList<Shelf> listShelf = bestBk.getListShelves();
 		for (Shelf shelf : listShelf){
 			if (shelf.getFreeSpace()>=item.getLength()){
-				Location location = new Location(this,roomOfBestBk,bestBk,shelf);
+				//we place the item there and stop searching for a location
+				oneLocationInBestBookcase = new Location(this,roomOfBestBk,bestBk,shelf);
 				shelf.setFreeSpace(shelf.getFreeSpace()-item.getLength());
 				bestBk.setFreeSpace(bestBk.getFreeSpace()-item.getLength());
 				roomOfBestBk.setFreeSpace(roomOfBestBk.getFreeSpace()-item.getLength());
+				break;
 			}
 		}
 		
@@ -312,127 +320,29 @@ public class Library implements java.io.Serializable{
 			}
 		}
 		
-		Bookcase bestBk = listPossibleHostBookcase.get(0);
-		for (Bookcase bookcase : listPossibleHostBookcase){
-			if(bookcase.getFreeSpace()>bestBk.getFreeSpace()){
-				bestBk = bookcase;
-			}
-		}
-		//looking for the room of the best bookcase to be able to set the location
-		Room roomOfBestBk = this.listRooms.get(0);
-		for (Room room : this.listRooms){
-			if(room.getListBookcases().contains(bestBk)){
-				roomOfBestBk = room;
-				break;
+		Room bestRoom = listPossibleHostRooms.get(0);
+		for (Room room : listPossibleHostRooms){
+			if(room.getFreeSpace()>bestRoom.getFreeSpace()){
+				bestRoom = room;
 			}
 		}
 		
-		Location oneLocationInBestBookcase = null;
-		ArrayList<Shelf> listShelf = bestBk.getListShelves();
-		for (Shelf shelf : listShelf){
-			if (shelf.getFreeSpace()>=item.getLength()){
-				Location location = new Location(this,roomOfBestBk,bestBk,shelf);
-				shelf.setFreeSpace(shelf.getFreeSpace()-item.getLength());
-				bestBk.setFreeSpace(bestBk.getFreeSpace()-item.getLength());
-				roomOfBestBk.setFreeSpace(roomOfBestBk.getFreeSpace()-item.getLength());
-			}
-		}
-		
-		if (item.getLocation().equals(null)){
-			System.out.println("There is no place");
-			return null;
-		}
-		else{
-			return oneLocationInBestBookcase;
-		}
-		
-		
-		/*ArrayList<Location> listLocation= this.potentialLocationForItem(item);
-		
-		//instantiation
-		double bestAvaibleSpace = 0.0;
-		Room bestRoomInAvaibleSpace = listLocation.get(0).getRoom();
-		
-		
-		ist<Room> alreadySeenRoom = new ArrayList<Room>();
-		
-		
-		for (Location locat : listLocation){
-			
-			
-			
-			//We check that we didn't calculate this bookcase before
-			if (!alreadySeenRoom.contains(locat.getRoom())){
-				
-				Double sumLoopRoom = new Double(0.0);
-				
-				//for each bookcase of the room where locat is located
-				for (Bookcase bookcase : locat.getRoom().getListBookcases()){
-					
-					Double sumLoopBookcase = new Double(0.0);
-					
-					//we calculate the whole remaining space in this bookcase : code of the previous algorithm				
-					for (Shelf shelf : bookcase.getListShelves()){
-						
-						//if the shelf is big enough to welcome the book (= if this location is inside listLocation)
-						if (listLocation.contains(new Location(this,locat.getRoom(),bookcase, shelf))){
-							
-							//We calculate the remaining space for the shelf
-							Double sumLoopShelf = new Double(0.0);
-							for (LibraryItem libraryItem : shelf.getListItems()){
-								sumLoopShelf= (sumLoopShelf+libraryItem.getMeasures().getLength());				
-							}
-							double remainingSpaceLoop = shelf.getMeasures().getLength() - sumLoopShelf;
-							
-							//and then we sum to know the whole place avaible in the entire bookcase
-							sumLoopBookcase = sumLoopBookcase + remainingSpaceLoop;
-							
-						}
-
-					}
-				
-					
-					//To get the remaining space in the whole room, we get the whole remaining space of each bookcase
-					sumLoopRoom = sumLoopRoom + sumLoopBookcase;
-					
-					
-				}
-				
-				
-				//We inform that we have calculated this bookcase
-				alreadySeenRoom.add(locat.getRoom());
-			
-			
-				//We compare to the best remaining space we have found up to now for a bookcase
-				if (sumLoopRoom>bestAvaibleSpace){
-					bestRoomInAvaibleSpace = locat.getRoom();
-				}
-				
-			}
-	
-		}
-			
-		
-		
-		//We put our item in any Shelf big enough to welcome it inside our best Room
 		Location oneLocationInBestRoom = null;
-		
-		for (Bookcase bookcase : bestRoomInAvaibleSpace.getListBookcases()){
-			for (Shelf shelf : bookcase.getListShelves()){
-				oneLocationInBestRoom = new Location(this,bestRoomInAvaibleSpace,bookcase, shelf);
-				if (listLocation.contains(oneLocationInBestRoom)){
-					item.setLocation(oneLocationInBestRoom);
-					oneLocationInBestRoom.getShelf().getListItems().add(item);
-					//we stop as soon as we have found a convenient location
+		ArrayList<Bookcase> listBookcase = bestRoom.getListBookcases();
+		for (Bookcase bookcase : listBookcase){
+			ArrayList<Shelf> listShelf = bookcase.getListShelves();
+			for (Shelf shelf : listShelf){
+				if (shelf.getFreeSpace()>=item.getLength()){
+					//we place the item there ans stop looking for a location
+					oneLocationInBestRoom = new Location(this,bestRoom,bookcase,shelf);
+					shelf.setFreeSpace(shelf.getFreeSpace()-item.getLength());
+					bookcase.setFreeSpace(bookcase.getFreeSpace()-item.getLength());
+					bestRoom.setFreeSpace(bestRoom.getFreeSpace()-item.getLength());
 					break;
 				}
 			}
-			
-			//we stop as soon as we have found a convenient location
-			if(item.getLocation() != null){
-				break;
-			}
 		}
+
 		
 		if (item.getLocation().equals(null)){
 			System.out.println("No place was found to put the item");
@@ -441,7 +351,8 @@ public class Library implements java.io.Serializable{
 		else{
 			return oneLocationInBestRoom;
 		}
-		*/
+		
+
 		
 	}
 }
