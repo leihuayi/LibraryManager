@@ -8,7 +8,7 @@ public class LibraryTest {
 
 	@Test
 	public void testAnyFit() {
-		Library library = new Library("library",10,10,10);
+		Library library = new Library("library",10,10,10,10);
 		Room room = new Room("room",10,10,10);
 		library.getListRooms().add(room);
 		Bookcase bookcase = new Bookcase("bookcase", 5,5,5);
@@ -25,7 +25,7 @@ public class LibraryTest {
 	
 	@Test
 	public void testBestShelf() {
-		Library library = new Library("library",10,10,10);
+		Library library = new Library("library",10,10,10,10);
 		Room room = new Room("room",10,10,10);
 		library.getListRooms().add(room);
 		Bookcase bookcase = new Bookcase("bookcase", 8,8,8);
@@ -44,7 +44,7 @@ public class LibraryTest {
 		
 	@Test
 	public void testBestBookcase() {
-		Library library = new Library("library",10,10,10);
+		Library library = new Library("library",10,10,10,10);
 		Room room = new Room("room",10,10,10);
 		library.getListRooms().add(room);
 		Bookcase bookcase = new Bookcase("bookcase", 5,5,5);
@@ -67,7 +67,7 @@ public class LibraryTest {
 	
 	@Test
 	public void testBestRoom() {
-		Library library = new Library("library",20,20,20);
+		Library library = new Library("library",20,20,20,20);
 		Room room = new Room("room",10,10,10);
 		library.getListRooms().add(room);
 		Bookcase bookcase = new Bookcase("bookcase", 5,5,5);
@@ -93,5 +93,7 @@ public class LibraryTest {
 		strategy.store(CD,library);
 		assertTrue(shelf.getListItems().contains(CD)||shelfter.getListItems().contains(CD)||shelfquar.getListItems().contains(CD)||shelfbis.getListItems().contains(CD));
 	}
+	
+	
 	
 }

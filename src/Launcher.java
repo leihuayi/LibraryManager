@@ -16,7 +16,7 @@ public class Launcher {
 		// TODO Auto-generated method stub	
 		
 
-		Library library = new Library("LibrairieDeSassa",0,0,0);
+		Library library = new Library("LibrairieDeSassa",0,0,0,0);
 		Member member= new Member("Cocher","Thomas",new Date(),123,library);
 	
 		library.getListMembers().add(member);
@@ -32,6 +32,10 @@ public class Launcher {
 		// ask the factory to create the item
 		itemFactory.createItem(itemType,library);
 		*/
+		
+		LibraryFactory libF = new LibraryFactory();
+		libF.create_library("Librairie_De_Tomate");
+		
 		
 
 		

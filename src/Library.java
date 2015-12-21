@@ -7,6 +7,7 @@ public class Library implements java.io.Serializable{
 	// Parameters for frequent member
 	private int N;
 	private int M;
+	private int Mp;
 	private ArrayList<LibraryItem> storageRoom;
 	//Limitation of borrowing
 	private int Nbi;
@@ -51,6 +52,13 @@ public class Library implements java.io.Serializable{
 	public void setM(int m) {
 		M = m;
 	}
+	
+	public int getMp() {
+		return Mp;
+	}
+	public void setMp(int mp) {
+		Mp = mp;
+	}
 	public ArrayList<LibraryItem> getStorageRoom() {
 		return storageRoom;
 	}
@@ -63,7 +71,7 @@ public class Library implements java.io.Serializable{
 	public void setNbi(int nbi) {
 		Nbi = nbi;
 	}
-	public Library(String name, int n, int m, int nbi) {
+	public Library(String name, int n, int m, int mp, int nbi) {
 		super();
 		this.libraryName=name;
 		this.listRooms = new ArrayList<Room>();
