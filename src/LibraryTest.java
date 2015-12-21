@@ -17,7 +17,8 @@ public class LibraryTest {
 		bookcase.getListShelves().add(shelf);
 		Date date=new Date();
 		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,date,1,1,1,null);
-		library.anyFit(CD);
+		AnyFit strategy = new AnyFit();
+		strategy.store(CD,library);
 		assertTrue(shelf.getListItems().contains(CD));
 	}
 	
@@ -35,7 +36,8 @@ public class LibraryTest {
 		bookcase.getListShelves().add(shelfbis);
 		Date date=new Date();
 		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,date,1,1,1,null);
-		library.bestShelf(CD);
+		BestShelf strategy = new BestShelf();
+		strategy.store(CD,library);
 		assertTrue(shelfbis.getListItems().contains(CD));
 	}
 	
@@ -58,7 +60,8 @@ public class LibraryTest {
 		bookcasebis.getListShelves().add(shelfquar);
 		Date date=new Date();
 		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,date,1,1,1,null);
-		library.bestBookcase(CD);
+		BestBookcase strategy = new BestBookcase();
+		strategy.store(CD,library);
 		assertTrue(shelf.getListItems().contains(CD)||shelfbis.getListItems().contains(CD));
 	}
 	
@@ -86,7 +89,8 @@ public class LibraryTest {
 		Shelf shelf2=new Shelf(2,2,2);
 		bookcase2.getListShelves().add(shelf2);
 		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,date,1,1,1,null);
-		library.bestRoom(CD);
+		BestRoom strategy = new BestRoom();
+		strategy.store(CD,library);
 		assertTrue(shelf.getListItems().contains(CD)||shelfter.getListItems().contains(CD)||shelfquar.getListItems().contains(CD)||shelfbis.getListItems().contains(CD));
 	}
 	
