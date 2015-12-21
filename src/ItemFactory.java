@@ -291,8 +291,7 @@ public class ItemFactory {
 				Book book= new Book(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
 						Integer.parseInt(listOfAttributes.get(3)),ct, date, Double.parseDouble(listOfAttributes.get(6)),Double.parseDouble(listOfAttributes.get(7)),Double.parseDouble(listOfAttributes.get(8)), null , Integer.parseInt(listOfAttributes.get(9)) );
 				// we can use any algorithm for the location
-				Location location = library.anyFit(book);
-				book.setLocation(location);
+				library.anyFit(book);
 				return book;
 				
 			}
@@ -304,8 +303,7 @@ public class ItemFactory {
 				 */
 				CD CD = new CD(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
 						Integer.parseInt(listOfAttributes.get(3)),ct, date, Double.parseDouble(listOfAttributes.get(6)),Double.parseDouble(listOfAttributes.get(7)),Double.parseDouble(listOfAttributes.get(8)), null );
-				Location location = library.anyFit(CD);
-				CD.setLocation(location);
+				library.anyFit(CD);
 				return CD;
 				
 			}
@@ -317,8 +315,7 @@ public class ItemFactory {
 				 */
 				DVD DVD= new DVD(listOfAttributes.get(0),listOfAttributes.get(1),Integer.parseInt(listOfAttributes.get(2)),
 						Integer.parseInt(listOfAttributes.get(3)),ct, date, Double.parseDouble(listOfAttributes.get(6)),Double.parseDouble(listOfAttributes.get(7)),Double.parseDouble(listOfAttributes.get(8)), null );
-				Location location = library.anyFit(DVD);
-				DVD.setLocation(location);
+				library.anyFit(DVD);
 				return DVD;
 				
 			}

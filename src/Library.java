@@ -213,19 +213,20 @@ public class Library implements java.io.Serializable{
 			}
 		}
 		
-		Location bestShelfLocation = null;
+		Location bestShelfLocation = listPossibleLocation.get(0);
 		for (Location location : listPossibleLocation){
-			if(location.getShelf().getFreeSpace()>bestShelfLocation.getShelf().getFreeSpace()){
+			if(location.getShelf().getFreeSpace()>=bestShelfLocation.getShelf().getFreeSpace()){
 				bestShelfLocation = location;
 			}
 		}
-		item.setLocation(bestShelfLocation);
+
 		
-		if (item.getLocation().equals(null)){
+		if (listPossibleLocation.isEmpty()){
 			System.out.println("There is no place");
 		}
 		else{
 			//we place the item at the location bestShelfLocation
+			item.setLocation(bestShelfLocation);
 			bestShelfLocation.getShelf().getListItems().add(item);
 			bestShelfLocation.getShelf().setFreeSpace(bestShelfLocation.getShelf().getFreeSpace()-item.getLength());
 			bestShelfLocation.getBookcase().setFreeSpace(bestShelfLocation.getBookcase().getFreeSpace()-item.getLength());
