@@ -35,7 +35,7 @@ public class Launcher {
 				System.out.println("the creation of the library was successful");
 			}
 			catch(Exception NumberFormatException){
-				System.out.println("You must have entered the wrong type of data.");
+				System.out.println("You must have entered the wrong type of data or the wrong number of arguments.");
 			}
 
 			

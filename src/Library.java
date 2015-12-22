@@ -71,7 +71,7 @@ public class Library implements java.io.Serializable{
 	public void setNbi(int nbi) {
 		Nbi = nbi;
 	}
-	public Library(String name, int n, int m, int mp, int nbi) {
+	public Library(String name, int nbi, int n, int m, int mp) {
 		super();
 		this.libraryName=name;
 		this.listRooms = new ArrayList<Room>();
