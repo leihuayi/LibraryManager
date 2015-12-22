@@ -16,7 +16,7 @@ public class Launcher {
 		// TODO Auto-generated method stub	
 		
 		LibraryFactory libF = new LibraryFactory();
-		
+		/*
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Please call a method :");
 		String calledMethod = sc.nextLine();
@@ -44,7 +44,26 @@ public class Launcher {
 		else{
 			System.out.println("You must have made a mistake in writing the method name. Please try again.");
 		}
+		*/
 		
+		Library library = new Library("library",20,20,20,20);
+		Room room = new Room("room",10,10,10);
+		library.getListRooms().add(room);
+		Bookcase bookcase = new Bookcase("bookcase", 5,5,5);
+		room.getListBookcases().add(bookcase);
+		Shelf shelf = new Shelf(3,3,3);
+		Shelf shelfbis=new Shelf(2,2,2);
+		bookcase.getListShelves().add(shelf);
+		bookcase.getListShelves().add(shelfbis);
+		CD CD1 =new CD("CD1","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD2","Alexandre Rozier",2016,1,ConsultationType.borrowing,2,1,1,null);
+		shelf.getListItems().add(CD1);
+		shelf.getListItems().add(CD2);
+		DVD DVD =new DVD("DVD","yolo",2015,1,ConsultationType.borrowing,1,1,1,null);
+		shelfbis.getListItems().add(DVD);
+		
+
+		System.out.println(libF.list_items(library));
 
 		
 	}

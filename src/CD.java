@@ -41,6 +41,11 @@ public class CD extends LibraryItem{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "CD ["+ super.toString() +", borrowingDuration=" + borrowingDuration + "]";
+	}
 	
 	
 

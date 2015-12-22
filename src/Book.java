@@ -53,6 +53,11 @@ public class Book extends LibraryItem {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Book ["+ super.toString() + ", borrowingDuration=" + borrowingDuration +", ISBNCode=" + ISBNCode +  "]";
+	}
 	
 	
 

@@ -46,6 +46,10 @@ public class Room extends Cuboid{
 	
 	
 	@Override
+	public String toString() {
+		return "Room [roomName=" + roomName + ", length=" + getLength() + ", height=" + getHeight() + ", width=" + getWidth() +", freeSpace=" + freeSpace + ", listBookcases=" + listBookcases + "]";
+	}
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();

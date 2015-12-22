@@ -77,12 +77,53 @@ public class LibraryFactory {
 		}
 	}
 	
-	public String list_items(){
-		return "";
+	public String list_items(Library lib){
+		String listItems = new String("List of the items :");
+		ArrayList<Room> listRoom = lib.getListRooms();
+		for (Room room : listRoom){
+			ArrayList<Bookcase> listBookcase = room.getListBookcases();
+			for (Bookcase bookcase : listBookcase){
+				ArrayList<Shelf> listShelf = bookcase.getListShelves();
+				for (Shelf shelf : listShelf){
+					for (LibraryItem item : shelf.getListItems()){
+						listItems = listItems + "\n" + item.toString();
+					}
+				}
+			}
+		}
+		return listItems;
 	}
 	
-	public String list_room(){
-		return "";
+	public String list_room(Library lib, String roomName){
+		boolean hasRoom = false;
+
+		ArrayList<Room> listRoom = lib.getListRooms();
+		String listContent = new String();
+		for (Room room : listRoom){
+			if (room.getRoomName().equalsIgnoreCase(roomName)){
+				listContent += "List of the content in room "+ roomName + " :\n";
+				
+				ArrayList<Bookcase> listBookcase = room.getListBookcases();
+				for (Bookcase bookcase : listBookcase){
+					listContent += "\t Bookcase named " + bookcase.getBcName()+ " containing :\n";
+					
+					ArrayList<Shelf> listShelf = bookcase.getListShelves();
+					for (Shelf shelf : listShelf){
+						listContent += "\t Shelf number " + shelf.getShelfNumber()+ " containing :\n";
+						for (LibraryItem item : shelf.getListItems()){
+							listContent = listContent + "\n" + item.toString();
+						}
+					}
+					
+					listContent += "\n";
+				}
+			}
+
+			else{
+				listContent += "No room with the name "+roomName+" was found.";
+			}
+		}
+		return listContent;
 	}
 	
 	public String list_bookcase(){

@@ -51,6 +51,12 @@ public abstract class Cuboid implements java.io.Serializable{
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Cuboid [length=" + length + ", height=" + height + ", width=" + width + "]";
+	}
+	
+	
 	
 	
 	

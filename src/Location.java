@@ -100,7 +100,12 @@ public class Location implements Serializable {
 		return true;
 	}
 
-	
+
+	@Override
+	public String toString() {
+		return "Location [library=" + library.getLibraryName() + ", room=" + room.getRoomName() + ", bookcase=" + bookcase.getBcName() + ", shelf=" + shelf.getShelfNumber() + "]";
+	}
+
 	
 	
 	

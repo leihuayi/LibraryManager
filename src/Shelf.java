@@ -62,6 +62,10 @@ public class Shelf extends Cuboid {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Shelf number" + shelfNumber + ", containting the items: \n" + listItems + "]";
+	}
 	
 	
 	

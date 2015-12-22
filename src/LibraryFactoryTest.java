@@ -84,7 +84,7 @@ public class LibraryFactoryTest {
 	}
 	*/
 
-	
+	/*
 	@Test
 	public void testUnstore_items() {
 		Library library = new Library("library",20,20,20,20);
@@ -104,12 +104,35 @@ public class LibraryFactoryTest {
 		assertTrue(library.getStorageRoom().contains(CD1));
 		
 	}
+	*/
 
-	/*
+	
 	@Test
 	public void testList_items() {
-		fail("Not yet implemented");
+		Library library = new Library("library",20,20,20,20);
+		Room room = new Room("room",10,10,10);
+		library.getListRooms().add(room);
+		Bookcase bookcase = new Bookcase("bookcase", 5,5,5);
+		room.getListBookcases().add(bookcase);
+		Shelf shelf = new Shelf(3,3,3);
+		Shelf shelfbis=new Shelf(2,2,2);
+		bookcase.getListShelves().add(shelf);
+		bookcase.getListShelves().add(shelfbis);
+		CD CD1 =new CD("CD1","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD2","Alexandre Rozier",2016,1,ConsultationType.borrowing,2,1,1,null);
+		shelf.getListItems().add(CD1);
+		shelf.getListItems().add(CD2);
+		DVD DVD =new DVD("DVD","yolo",2015,1,ConsultationType.borrowing,1,1,1,null);
+		shelfbis.getListItems().add(DVD);
+		
+		String result = "List of the items :\n"+
+				"CD [title=CD1, publisher=Alexandre Prot, publishingYear=2015, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]\n"+
+				"CD [title=CD2, publisher=Alexandre Rozier, publishingYear=2016, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]\n"+
+				"DVD [title=DVD, publisher=yolo, publishingYear=2015, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=2]";
+		
+		assertTrue(Test.list_items(library).equals(result));
 	}
+	/*
 
 	@Test
 	public void testList_room() {
