@@ -1,25 +1,34 @@
 import static org.junit.Assert.*;
-
 import java.util.Date;
-
 import org.junit.Test;
 
 public class LibraryFactoryTest {
-
+	
+	LibraryFactory Test = new LibraryFactory();
+	
 	@Test
 	public void testCreate_library() {
-		LibraryFactory libF = new LibraryFactory();
-		Library lib = new Library("coucou",2,1,5,6);
+		Library lib = Test.create_library("coucou",2,1,5,6);
 		Library libTest = new Library("coucou",2,1,5,6);
 		assertTrue(lib.equals(libTest));
 	}
 
-		/*
+		
 	@Test
 	public void testAdd_room() {
-		fail("Not yet implemented");
+		
+		Library library = new Library("library",20,20,20,20);
+		Test.add_room(library,"room",10,10,10);
+		boolean bool = false;
+		for (Room room : library.getListRooms()){
+			if (room.getRoomName().equals("room")&&room.getHeight()==10&&room.getLength()==10&&room.getWidth()==10){
+				bool=true;
+				break;
+			}
+		}
+		assertTrue(bool);
 	}
-
+	/*
 	@Test
 	public void testAdd_bookcase() {
 		fail("Not yet implemented");
@@ -29,12 +38,11 @@ public class LibraryFactoryTest {
 	public void testAdd_item() {
 		fail("Not yet implemented");
 	}
- */
-	
+ 
+	*/
 	@Test
 	public void testStore_items() {
 		Library library = new Library("library",20,20,20,20);
-		LibraryFactory libF = new LibraryFactory();
 		Room room = new Room("room",10,10,10);
 		library.getListRooms().add(room);
 		Bookcase bookcase = new Bookcase("bookcase", 5,5,5);
@@ -58,7 +66,7 @@ public class LibraryFactoryTest {
 		bookcase2.getListShelves().add(shelf2);
 		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,date,1,1,1,null);
 		BestRoom strategy = new BestRoom();
-		libF.store_items(library, "anyfit");
+		Test.store_items(library, "anyfit");
 		assertTrue(shelf2.getListItems().contains(CD));
 		//assertTrue(shelf.getListItems().contains(CD)||shelfter.getListItems().contains(CD)||shelfquar.getListItems().contains(CD)||shelfbis.getListItems().contains(CD));
 	}

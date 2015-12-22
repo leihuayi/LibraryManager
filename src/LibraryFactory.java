@@ -7,6 +7,8 @@ public class LibraryFactory {
 	}
 	
 	public void add_room(Library lib, String roomName, double length, double height, double width){
+		Room room = new Room(roomName,length,height,width);
+		lib.getListRooms().add(room);
 	}
 	
 	public void add_bookcase(){
