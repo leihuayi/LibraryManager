@@ -46,6 +46,7 @@ public class LibraryFactory {
 	}
 	
 	public void add_item(){
+		
 	}
 	
 	public void store_items(Library lib, String storing_strategy){
