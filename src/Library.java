@@ -92,6 +92,32 @@ public class Library implements java.io.Serializable{
 	}
 	
 	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Library other = (Library) obj;
+		if (M != other.M)
+			return false;
+		if (Mp != other.Mp)
+			return false;
+		if (N != other.N)
+			return false;
+		if (Nbi != other.Nbi)
+			return false;
+		if (libraryName == null) {
+			if (other.libraryName != null)
+				return false;
+		} else if (!libraryName.equals(other.libraryName))
+			return false;
+		return true;
+	}
+	
 	private static Date modifyDate(int numberOfDay)
 	  {
 		  Calendar cal = Calendar.getInstance();
