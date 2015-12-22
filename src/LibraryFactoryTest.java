@@ -58,7 +58,6 @@ public class LibraryFactoryTest {
 		bookcase.getListShelves().add(shelfbis);
 		bookcasebis.getListShelves().add(shelfter);
 		bookcasebis.getListShelves().add(shelfquar);
-		Date date=new Date();
 		Room roombis=new Room("room",5,5,5);
 		/*
 		 * but the room of shelf2 is placed before the room of the other shelves => shelf2
@@ -75,7 +74,6 @@ public class LibraryFactoryTest {
 		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
 		Test.store_items(library, "anyfit");
 		assertTrue(shelf2.getListItems().contains(CD));
-		//assertTrue(shelf.getListItems().contains(CD)||shelfter.getListItems().contains(CD)||shelfquar.getListItems().contains(CD)||shelfbis.getListItems().contains(CD));
 	}
 
 	/*

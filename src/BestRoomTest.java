@@ -23,7 +23,6 @@ public class BestRoomTest {
 		bookcase.getListShelves().add(shelfbis);
 		bookcasebis.getListShelves().add(shelfter);
 		bookcasebis.getListShelves().add(shelfquar);
-		Date date=new Date();
 		Room roombis=new Room("room",5,5,5);
 		library.getListRooms().add(roombis);;
 		Bookcase bookcase2=new Bookcase("bookcase",4,4,4);

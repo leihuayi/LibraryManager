@@ -85,6 +85,60 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 	}
 	
 	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + (borrowable ? 1231 : 1237);
+		result = prime * result + ((borrowingList == null) ? 0 : borrowingList.hashCode());
+		result = prime * result + ((consultationType == null) ? 0 : consultationType.hashCode());
+		result = prime * result + ((location == null) ? 0 : location.hashCode());
+		result = prime * result + ((publisher == null) ? 0 : publisher.hashCode());
+		result = prime * result + publishingYear;
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + volumeNumber;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LibraryItem other = (LibraryItem) obj;
+		if (borrowable != other.borrowable)
+			return false;
+		if (borrowingList == null) {
+			if (other.borrowingList != null)
+				return false;
+		} else if (!borrowingList.equals(other.borrowingList))
+			return false;
+		if (consultationType != other.consultationType)
+			return false;
+		if (location == null) {
+			if (other.location != null)
+				return false;
+		} else if (!location.equals(other.location))
+			return false;
+		if (publisher == null) {
+			if (other.publisher != null)
+				return false;
+		} else if (!publisher.equals(other.publisher))
+			return false;
+		if (publishingYear != other.publishingYear)
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		if (volumeNumber != other.volumeNumber)
+			return false;
+		return true;
+	}
 	public void returnItem(Library library, LibraryItem item, Member member){
 		item.setBorrowable(true);
 		ArrayList<Borrowing> list = member.getCurrentItems();

@@ -34,6 +34,35 @@ public class Shelf extends Cuboid {
 		this.freeSpace = length;
 		shelfNumber++;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		long temp;
+		temp = Double.doubleToLongBits(freeSpace);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((listItems == null) ? 0 : listItems.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Shelf other = (Shelf) obj;
+		if (Double.doubleToLongBits(freeSpace) != Double.doubleToLongBits(other.freeSpace))
+			return false;
+		if (listItems == null) {
+			if (other.listItems != null)
+				return false;
+		} else if (!listItems.equals(other.listItems))
+			return false;
+		return true;
+	}
+	
 	
 	
 }

@@ -29,6 +29,33 @@ public class Book extends LibraryItem {
 		this.borrowingDuration=4;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ISBNCode;
+		result = prime * result + borrowingDuration;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		if (ISBNCode != other.ISBNCode)
+			return false;
+		if (borrowingDuration != other.borrowingDuration)
+			return false;
+		return true;
+	}
+	
+	
+
 	
 
 	

@@ -56,6 +56,51 @@ public class Location implements Serializable {
 	}
 
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bookcase == null) ? 0 : bookcase.hashCode());
+		result = prime * result + ((library == null) ? 0 : library.hashCode());
+		result = prime * result + ((room == null) ? 0 : room.hashCode());
+		result = prime * result + ((shelf == null) ? 0 : shelf.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Location other = (Location) obj;
+		if (bookcase == null) {
+			if (other.bookcase != null)
+				return false;
+		} else if (!bookcase.equals(other.bookcase))
+			return false;
+		if (library == null) {
+			if (other.library != null)
+				return false;
+		} else if (!library.equals(other.library))
+			return false;
+		if (room == null) {
+			if (other.room != null)
+				return false;
+		} else if (!room.equals(other.room))
+			return false;
+		if (shelf == null) {
+			if (other.shelf != null)
+				return false;
+		} else if (!shelf.equals(other.shelf))
+			return false;
+		return true;
+	}
+
+	
 	
 	
 	

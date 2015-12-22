@@ -18,6 +18,29 @@ public class DVD extends LibraryItem{
 		this.borrowingDuration=2;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + borrowingDuration;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DVD other = (DVD) obj;
+		if (borrowingDuration != other.borrowingDuration)
+			return false;
+		return true;
+	}
+
+	
 	
 	
 }
