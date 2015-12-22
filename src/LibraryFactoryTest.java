@@ -2,10 +2,11 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class LibraryFactoryTest {
-
+	
+	LibraryFactory Test = new LibraryFactory();
+	
 	@Test
 	public void testCreate_library() {
-		LibraryFactory libF = new LibraryFactory();
 		Library lib = new Library("coucou",2,1,5,6);
 		Library libTest = new Library("coucou",2,1,5,6);
 		assertTrue(lib.equals(libTest));
@@ -14,7 +15,7 @@ public class LibraryFactoryTest {
 		
 	@Test
 	public void testAdd_room() {
-		LibraryFactory Test = new LibraryFactory();
+		
 		Library library = new Library("library",20,20,20,20);
 		Test.add_room(library,"room",10,10,10);
 		boolean bool = false;
