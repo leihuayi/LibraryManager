@@ -145,5 +145,9 @@ public class Library implements java.io.Serializable{
 		}
 	}
 	
+	public void add_room(String roomName, double length, double height, double width){
+		Room room = new Room(roomName,length,height,width);
+		this.getListRooms().add(room);
+	}
 	
 }
