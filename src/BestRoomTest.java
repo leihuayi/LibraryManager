@@ -29,7 +29,7 @@ public class BestRoomTest {
 		roombis.getListBookcases().add(bookcase2);
 		Shelf shelf2=new Shelf(2,2,2);
 		bookcase2.getListShelves().add(shelf2);
-		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,date,1,1,1,null);
+		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
 		BestRoom strategy = new BestRoom();
 		strategy.store(CD,library);
 		assertTrue(shelf.getListItems().contains(CD)||shelfter.getListItems().contains(CD)||shelfquar.getListItems().contains(CD)||shelfbis.getListItems().contains(CD));

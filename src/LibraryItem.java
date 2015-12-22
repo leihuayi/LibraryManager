@@ -9,7 +9,6 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 	private int publishingYear;
 	private int volumeNumber;
 	private ConsultationType consultationType;
-	private Date borrowingDeadline;
 	//location set as null when the item is borrowed and calculated again when the item is returned
 	private Location location;
 	private ArrayList<Member> borrowingList;
@@ -60,12 +59,7 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 	public void setConsultationType(ConsultationType consultationType) {
 		this.consultationType = consultationType;
 	}
-	public Date getBorrowingDeadline() {
-		return borrowingDeadline;
-	}
-	public void setBorrowingDeadline(Date borrowingDeadline) {
-		this.borrowingDeadline = borrowingDeadline;
-	}
+	
 	
 	public Location getLocation() {
 		return location;
@@ -74,7 +68,7 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 		this.location = location;
 	}
 	public LibraryItem(String title, String publisher, int publishingYear, int volumeNumber,
-			ConsultationType consultationType, Date borrowingDeadline, double length, double height, double width, Location location) {
+			ConsultationType consultationType,double length, double height, double width, Location location) {
 
 		super();
 		this.title = title;
@@ -82,7 +76,6 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 		this.publishingYear = publishingYear;
 		this.volumeNumber = volumeNumber;
 		this.consultationType = consultationType;
-		this.borrowingDeadline = borrowingDeadline;
 		this.setLength(length);
 		this.setHeight(height);
 		this.setWidth(width);
@@ -91,10 +84,6 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 		this.borrowable=true;
 	}
 	
-	public void borrow_item(Member member, LibraryItem item){
-		//will be made in part 2
-		//if the item is under reservation u can't borrow it
-	}
 	
 	public void returnItem(Library library, LibraryItem item, Member member){
 		item.setBorrowable(true);

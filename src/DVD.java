@@ -13,8 +13,8 @@ public class DVD extends LibraryItem{
 	}
 
 	public DVD(String title, String publisher, int publishingYear, int volumeNumber, ConsultationType consultationType,
-			Date borrowingDeadline, double length, double height, double width, Location location) {
-		super(title, publisher, publishingYear, volumeNumber, consultationType, borrowingDeadline, length, height, width, location);
+			 double length, double height, double width, Location location) {
+		super(title, publisher, publishingYear, volumeNumber, consultationType, length, height, width, location);
 		this.borrowingDuration=2;
 	}
 

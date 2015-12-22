@@ -16,7 +16,7 @@ public class AnyFitTest {
 		Shelf shelf = new Shelf(2,2,2);
 		bookcase.getListShelves().add(shelf);
 		Date date=new Date();
-		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,date,1,1,1,null);
+		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
 		AnyFit strategy = new AnyFit();
 		strategy.store(CD,library);
 		assertTrue(shelf.getListItems().contains(CD));

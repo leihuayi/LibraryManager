@@ -18,7 +18,7 @@ public class BestShelfTest {
 		bookcase.getListShelves().add(shelf);
 		bookcase.getListShelves().add(shelfbis);
 		Date date=new Date();
-		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,date,1,1,1,null);
+		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
 		BestShelf strategy = new BestShelf();
 		strategy.store(CD,library);
 		assertTrue(shelfbis.getListItems().contains(CD));
