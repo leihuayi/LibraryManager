@@ -15,27 +15,35 @@ public class Launcher {
 	public static void main(String[] args) throws ParseException{
 		// TODO Auto-generated method stub	
 		
-
-		Library library = new Library("LibrairieDeSassa",0,0,0,0);
-		Member member= new Member("Cocher","Thomas",new Date(),123,library);
-	
-		library.getListMembers().add(member);
-
-		/*
-		ItemFactory itemFactory = new ItemFactory();
-		
-		Scanner scType = new Scanner(System.in);
-		System.out.print("Enter the type of item you want to create (book/CD/DVD): ");
-		String itemType = scType.nextLine();
-		
-		
-		// ask the factory to create the item
-		itemFactory.createItem(itemType,library);
-		*/
-		
 		LibraryFactory libF = new LibraryFactory();
-		libF.create_library("Librairie_De_Tomate");
 		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Please call a method :");
+		String calledMethod = sc.nextLine();
+		
+		String nameOfMethod = calledMethod.substring(0,calledMethod.indexOf('('));
+		String listOfArguments = calledMethod.substring(calledMethod.indexOf('(')+1,calledMethod.indexOf(')'));
+		String tabArguments[] = listOfArguments.split(",");
+		
+		if(nameOfMethod.equals("create_library")){
+			try{
+				int int1 = Integer.parseInt(tabArguments[1]);
+				int int2 = Integer.parseInt(tabArguments[2]);
+				int int3 = Integer.parseInt(tabArguments[3]);
+				int int4 = Integer.parseInt(tabArguments[4]);
+				libF.create_library(tabArguments[0],int1,int2,int3,int4);
+				System.out.println("the creation of the library was successful");
+			}
+			catch(Exception NumberFormatException){
+				System.out.println("You must have entered the wrong type of data.");
+			}
+
+			
+		}
+		
+		else{
+			System.out.println("You must have made a mistake in writing the method name. Please try again.");
+		}
 		
 
 		
