@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Member implements Observer , java.io.Serializable{
-	private static int ID;
+	private static int totalID;
+	private int id;
 	private String name;
 	private String surname;
 	private Date birthDate;
@@ -122,11 +123,11 @@ public class Member implements Observer , java.io.Serializable{
 	public void setCard(Card card) {
 		this.card = card;
 	}
-	public static int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
-	public static void setID(int iD) {
-		ID = iD;
+	public void setId(int iD) {
+		id = iD;
 	}
 	public String getName() {
 		return name;
@@ -176,6 +177,8 @@ public class Member implements Observer , java.io.Serializable{
 		this.library= library;
 		this.unsuspended=true;
 		this.penalties=new ArrayList<Date>();
+		this.id = totalID;
+		totalID++;
 		
 	}
 	
@@ -184,7 +187,7 @@ public class Member implements Observer , java.io.Serializable{
 		
 	@Override
 	public String toString() {
-		return "Member [name=" + name + ", surname=" + surname + ", birthDate=" + (new SimpleDateFormat ("dd/MM/yyyy")).format(birthDate) + ", ccNumber=" + ccNumber
+		return "Member [name=" + name + ", surname=" + surname + ", ID="+ id+ ", birthDate=" + (new SimpleDateFormat ("dd/MM/yyyy")).format(birthDate) + ", ccNumber=" + ccNumber
 				+ ", currentItems=" + currentItems + ", history=" + history + ", card=" + card + ", library=" + library
 				+ ", unsuspended=" + unsuspended + "]";
 	}

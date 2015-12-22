@@ -1,7 +1,9 @@
 
 import java.util.Iterator;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class LibraryFactory {
@@ -286,7 +288,25 @@ public class LibraryFactory {
 		return listItems;
 	}
 	
-	public void add_member(){
+	public void add_member(Library lib, String name, String surname, int ccNumber, String birthDate ) throws AlreadyExistsException {
+
+		Date date = new Date();
+	    try {
+	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+	        date = formatter.parse(birthDate);
+	      } catch (ParseException e) {
+	        e.printStackTrace();
+	      }
+
+	    Member member = new Member(name, surname, date, ccNumber, lib);
+	    if(lib.getListMembers().contains(member)){
+	    	throw new AlreadyExistsException();
+	    }
+	    else{
+		    lib.getListMembers().add(member);
+	    }
+
+		
 	}
 	
 	public void borrow_item(){
