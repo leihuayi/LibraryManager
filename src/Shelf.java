@@ -1,16 +1,18 @@
 import java.util.ArrayList;
 
 public class Shelf extends Cuboid {
-	private static int shelfNumber=0;
+	private static int totalShelfNumber=0;
+	private int shelfNumber;
 	private double freeSpace;
 	private ArrayList<LibraryItem> listItems;
-	public static int getShelfNumber() {
+	
+	
+	public int getShelfNumber() {
 		return shelfNumber;
 	}
-	public static void setShelfNumber(int shelfNumber) {
-		Shelf.shelfNumber = shelfNumber;
+	public void setShelfNumber(int shelfNumber) {
+		this.shelfNumber = shelfNumber;
 	}
-	
 	public double getFreeSpace() {
 		return freeSpace;
 	}
@@ -32,7 +34,8 @@ public class Shelf extends Cuboid {
 		this.setWidth(width);
 		this.listItems = new ArrayList<LibraryItem>();
 		this.freeSpace = length;
-		shelfNumber++;
+		this.shelfNumber = totalShelfNumber;
+		totalShelfNumber++;
 	}
 	@Override
 	public int hashCode() {
@@ -61,6 +64,10 @@ public class Shelf extends Cuboid {
 		} else if (!listItems.equals(other.listItems))
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		return "Shelf number" + shelfNumber + ", containting the items: \n" + listItems + "]";
 	}
 	
 	

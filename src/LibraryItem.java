@@ -86,6 +86,15 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 	
 	
 	
+	
+	@Override
+	public String toString() {
+		return "title=" + title + ", publisher=" + publisher + ", publishingYear=" + publishingYear
+				+ ", volumeNumber=" + volumeNumber + ", consultationType=" + consultationType + ", location=" + location
+				+ ", borrowingList=" + borrowingList + ", borrowable=" + borrowable;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -139,6 +148,8 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 			return false;
 		return true;
 	}
+	
+	
 	public void returnItem(Library library, LibraryItem item, Member member){
 		item.setBorrowable(true);
 		ArrayList<Borrowing> list = member.getCurrentItems();

@@ -41,6 +41,12 @@ public class Bookcase extends Cuboid{
 	
 	
 	@Override
+	public String toString() {
+		return "Bookcase named" + bcName + ", containing the shelves=" + listShelves + "]";
+	}
+	
+	
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();

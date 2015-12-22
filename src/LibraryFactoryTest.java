@@ -96,7 +96,7 @@ public class LibraryFactoryTest {
 	}
 	*/
 
-	
+	/*
 	@Test
 	public void testUnstore_items() {
 		Library library = new Library("library",20,20,20,20);
@@ -116,32 +116,125 @@ public class LibraryFactoryTest {
 		assertTrue(library.getStorageRoom().contains(CD1));
 		
 	}
+	*/
 
-	/*
+	
 	@Test
 	public void testList_items() {
-		fail("Not yet implemented");
+		Library library = new Library("library",20,20,20,20);
+		Room room = new Room("room",10,10,10);
+		library.getListRooms().add(room);
+		Bookcase bookcase = new Bookcase("bookcase", 5,5,5);
+		room.getListBookcases().add(bookcase);
+		Shelf shelf = new Shelf(3,3,3);
+		Shelf shelfbis=new Shelf(2,2,2);
+		bookcase.getListShelves().add(shelf);
+		bookcase.getListShelves().add(shelfbis);
+		CD CD1 =new CD("CD1","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD2","Alexandre Rozier",2016,1,ConsultationType.borrowing,2,1,1,null);
+		shelf.getListItems().add(CD1);
+		shelf.getListItems().add(CD2);
+		DVD DVD =new DVD("DVD","yolo",2015,1,ConsultationType.borrowing,1,1,1,null);
+		shelfbis.getListItems().add(DVD);
+		
+		String result = "List of the items :\n"+
+				"CD [title=CD1, publisher=Alexandre Prot, publishingYear=2015, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]\n"+
+				"CD [title=CD2, publisher=Alexandre Rozier, publishingYear=2016, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]\n"+
+				"DVD [title=DVD, publisher=yolo, publishingYear=2015, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=2]";
+		
+		assertTrue(Test.list_items(library).equals(result));
 	}
+	
 
 	@Test
 	public void testList_room() {
-		fail("Not yet implemented");
+		Library library = new Library("library",20,20,20,20);
+		Room room1 = new Room("room",10,10,10);
+		Room room = new Room("Beautiful Room",10,10,10);
+		library.getListRooms().add(room);
+		Bookcase bookcase = new Bookcase("bookcase 1", 5,5,5);
+		room.getListBookcases().add(bookcase);
+		Shelf shelf = new Shelf(3,3,3);
+		Shelf shelfbis=new Shelf(2,2,2);
+		bookcase.getListShelves().add(shelf);
+		bookcase.getListShelves().add(shelfbis);
+		CD CD1 =new CD("CD1","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		shelf.getListItems().add(CD1);
+
+
+		String result = "List of the content in room beautiful room :\n------------------------------------------------\n"+
+		"Bookcase named bookcase 1 containing :\n"+
+			 "\tShelf number 0 containing :\n"+
+				"\t\tCD [title=CD1, publisher=Alexandre Prot, publishingYear=2015, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]"+
+			 "\n\tShelf number 1 containing : nothing\n\n";
+	 		
+		assertTrue(Test.list_room(library,"beautiful room").equals(result));
 	}
 
+	/*
 	@Test
 	public void testList_bookcase() {
-		fail("Not yet implemented");
+		Library library = new Library("library",20,20,20,20);
+		Room room = new Room("Beautiful Room",10,10,10);
+		library.getListRooms().add(room);
+		Bookcase bookcase = new Bookcase("bookcase 1", 5,5,5);
+		room.getListBookcases().add(bookcase);
+		Shelf shelf = new Shelf(3,3,3);
+		bookcase.getListShelves().add(shelf);
+		CD CD1 =new CD("CD1","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		shelf.getListItems().add(CD1);
+		
+		String result = "List of the content of bookcase bookcase 1 in room beautiful room :\n------------------------------------------------"+
+				"\nShelf number 0 containing :"+
+				"\n\tCD [title=CD1, publisher=Alexandre Prot, publishingYear=2015, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]";
+		
+		assertTrue(Test.list_bookcase(library,"beautiful room", "bookcase 1").equals(result));
 	}
-
+	*/
+	
 	@Test
 	public void testFind_items() {
-		fail("Not yet implemented");
+				Library library = new Library("library",20,20,20,20);
+		Room room = new Room("Beautiful Room",10,10,10);
+		library.getListRooms().add(room);
+		Bookcase bookcase = new Bookcase("bookcase 1", 5,5,5);
+		room.getListBookcases().add(bookcase);
+		Shelf shelf = new Shelf(3,3,3);
+		bookcase.getListShelves().add(shelf);
+		CD CD1 =new CD("CD1","Alexandre",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD2","Alexandre",2016,1,ConsultationType.borrowing,2,1,1,null);
+		shelf.getListItems().add(CD2);
+		shelf.getListItems().add(CD1);
+		
+		String result = "CD [title=CD2, publisher=Alexandre, publishingYear=2016, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]"
+				+"\nCD [title=CD1, publisher=Alexandre, publishingYear=2015, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]\n";
+		
+		assertTrue(Test.find_items(library,"alexandre").equals(result));
 	}
+	
 
 	@Test
 	public void testSearch_title() {
-		fail("Not yet implemented");
+				Library library = new Library("library",20,20,20,20);
+		Room room = new Room("Beautiful Room",10,10,10);
+		library.getListRooms().add(room);
+		Bookcase bookcase = new Bookcase("bookcase 1", 5,5,5);
+		room.getListBookcases().add(bookcase);
+		Shelf shelf = new Shelf(3,3,3);
+		bookcase.getListShelves().add(shelf);
+		CD CD1 =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD","Alexandre Rozier",2016,1,ConsultationType.borrowing,2,1,1,null);
+		shelf.getListItems().add(CD2);
+		shelf.getListItems().add(CD1);
+		
+		String result = "CD [title=CD, publisher=Alexandre Rozier, publishingYear=2016, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]"
+				+"\nCD [title=CD, publisher=Alexandre Prot, publishingYear=2015, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]\n";
+	
+		assertTrue(Test.search_title(library,"CD").equals(result));
+	
 	}
+	
+	/*
 
 	@Test
 	public void testAdd_member() {
@@ -158,64 +251,5 @@ public class LibraryFactoryTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testObject() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetClass() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testHashCode() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testEquals() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testClone() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testToString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testNotify() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testNotifyAll() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testWaitLong() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testWaitLongInt() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testWait() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFinalize() {
-		fail("Not yet implemented");
-	}
 	*/
 }

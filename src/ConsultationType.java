@@ -1,5 +1,16 @@
 
 public enum ConsultationType {
-	onlineConsultation,
-	borrowing;
+	onlineConsultation{
+        @Override
+        public String toString() {
+            return "online consultation";
+        }
+	},
+	borrowing{
+        @Override
+        public String toString() {
+            return "online consultation";
+        }
+	};
+	
 }

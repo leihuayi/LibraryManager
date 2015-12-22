@@ -40,6 +40,13 @@ public class DVD extends LibraryItem{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "DVD ["+ super.toString() + ", borrowingDuration=" + borrowingDuration + "]";
+	}
+	
+
+	
 	
 	
 	

@@ -4,3 +4,166 @@
     |  \  ___/   |  |  / __ \|  |  |  | \  ___/|   |  \/ /_/ |\___ \ 
 /\__|  |\___  >  |__| (____  /__|  |__|  \___  >___|  /\____ /____  >
 \______|    \/             \/                \/     \/      \/    \/ 
+
+
+
+	//booleans which will help us to make tests to know whether the user enters the right type of data
+		boolean testType = true;
+		boolean testType1= true;
+		boolean testType2 = true;
+		
+		
+		
+		if (itemType.equalsIgnoreCase("BOOK") || itemType.equalsIgnoreCase("DVD") || itemType.equalsIgnoreCase("CD")){
+			
+			ArrayList<String> listOfAttributes = new ArrayList<String>();
+			
+			/*
+			 * We first ask the attributes in common for all the items
+			 */
+			
+			//title
+			while (testType){
+				Scanner sc = new Scanner(System.in);
+				System.out.print("Title of the item: ");
+
+				String answer = sc.nextLine();
+				//check that the user enters a title
+				if (answer == ""){
+					System.out.println("You did not enter a title");
+
+				}
+				else {
+					listOfAttributes.add(0,answer);
+					testType = false;
+				}
+			}
+
+			//publisher
+			testType = true;
+			while (testType){
+				Scanner sc = new Scanner(System.in);
+				System.out.print("publisher: ");
+				String answer = sc.nextLine();
+				//check that the user enters an publisher
+				if (answer == ""){
+					System.out.println("You did not enter a publisher");
+				}
+				else {
+					listOfAttributes.add(1,answer);
+					testType = false;
+				}
+			}
+			
+			//publishingyear
+			testType = true;
+			while (testType){
+				Scanner sc = new Scanner(System.in);
+				System.out.print("Publishing year: ");
+				
+				//check that the user enters an int	
+				try{
+					int year = sc.nextInt();
+					listOfAttributes.add(2,Integer.toString(year));
+					testType = false;
+				}
+				catch (java.util.InputMismatchException ime){
+					System.out.println("You did not enter a year");
+				}
+			}
+			
+			//volumenumber
+			testType = true;
+			while (testType){
+				Scanner sc = new Scanner(System.in);
+				System.out.print("Volume number (press 0 if there is only one volume): ");
+				
+				//check that the user enters an int
+				try{
+					int volnum = sc.nextInt();
+					listOfAttributes.add(3,Integer.toString(volnum));
+					testType = false;
+				}
+				catch (java.util.InputMismatchException ime){
+					System.out.println("You did not enter a number");
+				}
+			}
+			
+			//consultationType
+			testType = true;
+			while (testType){
+				Scanner sc = new Scanner(System.in);
+				System.out.print("Consultation type (online consultation / borrowing): ");
+				String answer = sc.nextLine();
+				
+				//check that the user enters a consultation type
+				if(answer.equalsIgnoreCase("borrowing") || answer.equalsIgnoreCase("onlineconsultation")){
+					testType = false;
+					if (answer.equalsIgnoreCase("online consultation")){
+						listOfAttributes.add(4,"onlineConsultation");
+					}
+					else {
+						listOfAttributes.add(4,"borrowing");
+					}
+				}
+				
+				else {
+					System.out.println("You have to enter either 'online consultation' or 'borrowing' ");
+				}
+			}
+			
+			
+			//borrowingdeadline
+
+			int day=0, month=0, year=0;
+			//loop for day
+			testType = true;
+			while (testType){
+				Scanner sc = new Scanner(System.in);
+				System.out.print("Borrowing deadline: \n \t Day:");
+				
+				try{
+					day = sc.nextInt();
+					testType = false;
+				}
+				catch (java.util.InputMismatchException ime){
+					System.out.println("You did not enter a number");
+				}
+			}
+			//loop for month
+			testType1 = true;
+			while (testType1){
+				Scanner sc1 = new Scanner(System.in);
+				System.out.print("\t Month:");
+					
+				try{
+					month = sc1.nextInt();
+					testType1 = false;
+					}
+
+				catch (java.util.InputMismatchException ime){
+					System.out.println("You did not enter a number");
+				}
+					
+			}
+				
+			//loop for year
+			testType2 = true;
+			while (testType2){
+				Scanner sc2 = new Scanner(System.in);
+				System.out.print("\t Year:");
+				
+				try{
+					year = sc2.nextInt();
+					testType2 = false;
+				}
+				catch (java.util.InputMismatchException ime){
+					System.out.println("You did not enter a number");
+				}
+			}
+			//The date will be stored in the form yyyy/MM/dd , and will be stored as a Date with SimpleDateFormat
+			listOfAttrib-utes.add(5,Integer.toString(year)+"/"+Integer.toString(month)+"/"+Integer.toString(day));
+			
+
+			
+			
