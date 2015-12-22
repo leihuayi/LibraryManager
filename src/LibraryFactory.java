@@ -1,3 +1,4 @@
+import java.util.Iterator;
 
 public class LibraryFactory {
 
@@ -11,7 +12,31 @@ public class LibraryFactory {
 		lib.getListRooms().add(room);
 	}
 	
-	public void add_bookcase(){
+	public void add_bookcase(Library library, Room room,Integer numShelves,String bcName,double length,double height,double width){
+		if(library.getListRooms().contains(room)){
+			double sumLength = 0;
+			double sumWidth = 0;
+			for(Bookcase bookcase:room.getListBookcases()){
+				sumLength=sumLength+bookcase.getLength();
+				sumWidth=sumWidth+bookcase.getWidth();
+			}
+			if(room.getLength()-sumLength>length&&room.getWidth()-sumWidth>width&&room.getHeight()>height){
+				Bookcase bookcase=new Bookcase(bcName,length,height,width);				
+				room.getListBookcases().add(bookcase);
+				double new_height=(double)height/numShelves;
+				for (int i = 1; i < numShelves+1; i++) {
+					Shelf shelf = new Shelf(length,new_height,width);
+					bookcase.getListShelves().add(shelf);
+				}
+			}
+		
+			else{
+				System.out.println("There is an issue with your measures");
+			}
+		}
+		else{
+		System.out.println("That room is not in that library");	
+		}
 	}
 	
 	public void add_item(){
