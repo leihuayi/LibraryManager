@@ -92,7 +92,19 @@ public class Library implements java.io.Serializable{
 	}
 	
 	
+
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + M;
+		result = prime * result + Mp;
+		result = prime * result + N;
+		result = prime * result + Nbi;
+		result = prime * result + ((libraryName == null) ? 0 : libraryName.hashCode());
+		return result;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

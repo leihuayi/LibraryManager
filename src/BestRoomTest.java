@@ -14,6 +14,7 @@ public class BestRoomTest {
 		Bookcase bookcase = new Bookcase("bookcase", 5,5,5);
 		Bookcase bookcasebis = new Bookcase("bookcase", 5,5,5);
 		room.getListBookcases().add(bookcase);
+		room.getListBookcases().add(bookcase);
 		Shelf shelf = new Shelf(3,3,3);
 		Shelf shelfbis=new Shelf(2,2,2);
 		Shelf shelfter=new Shelf(2,2,2);
