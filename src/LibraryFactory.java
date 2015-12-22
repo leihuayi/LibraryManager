@@ -264,8 +264,26 @@ public class LibraryFactory {
 	}
 	
 	
-	public String search_title(){
-		return "";
+	public String search_title(Library lib, String title){
+		String listItems = "";
+		ArrayList<Room> listRoom = lib.getListRooms();
+		for (Room room : listRoom){
+			ArrayList<Bookcase> listBookcase = room.getListBookcases();
+			for (Bookcase bookcase : listBookcase){
+				ArrayList<Shelf> listShelf = bookcase.getListShelves();
+				for (Shelf shelf : listShelf){
+					for (LibraryItem item : shelf.getListItems()){
+						if(item.getTitle().equalsIgnoreCase(title)){
+							listItems += item.toString()+"\n";
+						}
+					}
+				}
+			}
+		}
+		if(listItems.equals("")){
+			listItems += "No item with the title "+title+" was found";
+		}		
+		return listItems;
 	}
 	
 	public void add_member(){

@@ -212,12 +212,29 @@ public class LibraryFactoryTest {
 		assertTrue(Test.find_items(library,"alexandre").equals(result));
 	}
 	
-	/*
 
 	@Test
 	public void testSearch_title() {
-		fail("Not yet implemented");
+				Library library = new Library("library",20,20,20,20);
+		Room room = new Room("Beautiful Room",10,10,10);
+		library.getListRooms().add(room);
+		Bookcase bookcase = new Bookcase("bookcase 1", 5,5,5);
+		room.getListBookcases().add(bookcase);
+		Shelf shelf = new Shelf(3,3,3);
+		bookcase.getListShelves().add(shelf);
+		CD CD1 =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD","Alexandre Rozier",2016,1,ConsultationType.borrowing,2,1,1,null);
+		shelf.getListItems().add(CD2);
+		shelf.getListItems().add(CD1);
+		
+		String result = "CD [title=CD, publisher=Alexandre Rozier, publishingYear=2016, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]"
+				+"\nCD [title=CD, publisher=Alexandre Prot, publishingYear=2015, volumeNumber=1, consultationType=online consultation, location=null, borrowingList=[], borrowable=true, borrowingDuration=1]\n";
+	
+		assertTrue(Test.search_title(library,"CD").equals(result));
+	
 	}
+	
+	/*
 
 	@Test
 	public void testAdd_member() {

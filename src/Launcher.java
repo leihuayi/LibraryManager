@@ -53,12 +53,12 @@ public class Launcher {
 		room.getListBookcases().add(bookcase);
 		Shelf shelf = new Shelf(3,3,3);
 		bookcase.getListShelves().add(shelf);
-		CD CD1 =new CD("CD1","Alexandre",2015,1,ConsultationType.borrowing,1,1,1,null);
-		CD CD2 =new CD("CD2","Alexandre",2016,1,ConsultationType.borrowing,2,1,1,null);
+		CD CD1 =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD","Alexandre Rozier",2016,1,ConsultationType.borrowing,2,1,1,null);
 		shelf.getListItems().add(CD2);
 		shelf.getListItems().add(CD1);
 		
-		System.out.println(libF.find_items(library, "Alexandre")+"\n\n");
+		System.out.println(libF.search_title(library, "CD"));
 		
 
 
