@@ -1,7 +1,9 @@
 
 import java.util.Iterator;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class LibraryFactory {
@@ -40,23 +42,11 @@ public class LibraryFactory {
 		}
 		else{
 		System.out.println("That room is not in that library");	
-		}	
+		}
 	}
 	
-	public void add_item(String author,String title,String type,int year,String publisher,Library library,int publishingYear,double length,double width,double height){
-		switch (type) {
-		case "Book":
-			
-			break;
-		case "CD":
-			
-			break;	
-		case "DVD":
-			
-			break;
-		default:
-			break;
-		}
+	public void add_item(){
+		
 	}
 	
 	public void store_items(Library lib, String storing_strategy){
@@ -77,7 +67,7 @@ public class LibraryFactory {
 			}
 			lib.setStorageRoom(new ArrayList<LibraryItem>());
 			break;
-	
+		
 		case "bestroom":
 			BestRoom strategy3 = new BestRoom();
 			for (LibraryItem item : lib.getStorageRoom()){
@@ -118,27 +108,206 @@ public class LibraryFactory {
 		}
 	}
 	
-	public String list_items(){
-		return "";
+	public String list_items(Library lib){
+		String listItems = new String("List of the items :");
+		ArrayList<Room> listRoom = lib.getListRooms();
+		for (Room room : listRoom){
+			ArrayList<Bookcase> listBookcase = room.getListBookcases();
+			for (Bookcase bookcase : listBookcase){
+				ArrayList<Shelf> listShelf = bookcase.getListShelves();
+				for (Shelf shelf : listShelf){
+					for (LibraryItem item : shelf.getListItems()){
+						listItems = listItems + "\n" + item.toString();
+					}
+				}
+			}
+		}
+		return listItems;
 	}
 	
-	public String list_room(){
-		return "";
+	public String list_room(Library lib, String roomName){
+		boolean notRoom = true;
+
+		ArrayList<Room> listRoom = lib.getListRooms();
+		String listContent = new String();
+		for (Room room : listRoom){
+			if (room.getRoomName().equalsIgnoreCase(roomName)){
+				//we have found the room : notRoom = false
+				notRoom = false;
+				listContent += "List of the content in room "+ roomName + " :\n------------------------------------------------\n";
+				
+				ArrayList<Bookcase> listBookcase = room.getListBookcases();
+				for (Bookcase bookcase : listBookcase){
+					listContent += "Bookcase named " + bookcase.getBcName()+ " containing :";
+					
+					ArrayList<Shelf> listShelf = bookcase.getListShelves();
+					if(listShelf.isEmpty()){
+						listContent += " nothing";
+					}
+					else {
+						for (Shelf shelf : listShelf){
+							ArrayList<LibraryItem> listItems = shelf.getListItems();
+							
+							listContent += "\n\tShelf number " + shelf.getShelfNumber()+ " containing :";
+							if(listItems.isEmpty()){
+								listContent += " nothing";
+							}
+							
+							else {
+								for (LibraryItem item : listItems){
+									listContent = listContent + "\n\t\t" + item.toString();
+								}
+							}
+						}
+					}
+					
+					listContent += "\n\n";
+				}
+				//we get out of the loop if we have found the room
+				break;
+			}
+
+		}
+		
+		if(notRoom){
+			listContent += "No room with the name "+roomName+" was found.";
+		}
+		
+		return listContent;
 	}
 	
-	public String list_bookcase(){
-		return "";
+	public String list_bookcase(Library lib, String roomName, String bookcaseName){
+		boolean notRoom = true;
+
+		ArrayList<Room> listRoom = lib.getListRooms();
+		String listContent = new String();
+		for (Room room : listRoom){
+			
+			if (room.getRoomName().equalsIgnoreCase(roomName)){
+				//we have found the room : notRoom = false
+				notRoom = false;
+				
+				boolean notBookcase = true;
+				
+				ArrayList<Bookcase> listBookcase = room.getListBookcases();
+				for (Bookcase bookcase : listBookcase){
+					
+					if (bookcase.getBcName().equalsIgnoreCase(bookcaseName)){
+						//we have found the bookcase : notBookcase = false
+						notBookcase = false;
+						
+						
+						listContent += "List of the content of bookcase "+bookcaseName+" in room "+ roomName + " :\n------------------------------------------------";
+						
+						ArrayList<Shelf> listShelf = bookcase.getListShelves();
+						if(listShelf.isEmpty()){
+							listContent += "\nno shelf in this bookcase";
+						}
+						else {
+							for (Shelf shelf : listShelf){
+								ArrayList<LibraryItem> listItems = shelf.getListItems();
+								
+								listContent += "\nShelf number " + shelf.getShelfNumber()+ " containing :";
+								if(listItems.isEmpty()){
+									listContent += " nothing";
+								}
+								
+								else {
+									for (LibraryItem item : listItems){
+										listContent = listContent + "\n\t" + item.toString();
+									}
+								}
+							}
+						}
+						
+						
+					}
+					
+					//we get out of the loop if we have found the bookcase
+					break;
+				}
+				
+				if(notBookcase){
+					listContent += "No bookcase with the name "+bookcaseName+" was found.";
+				}
+				//we get out of the loop if we have found the room
+				break;
+			}
+
+		}
+		
+		if(notRoom){
+			listContent += "No room with the name "+roomName+" was found.";
+		}
+		
+		return listContent;
 	}
 	
-	public String find_items(){
-		return "";
+	
+	public String find_items(Library lib, String author){
+		String listItems = "";
+		ArrayList<Room> listRoom = lib.getListRooms();
+		for (Room room : listRoom){
+			ArrayList<Bookcase> listBookcase = room.getListBookcases();
+			for (Bookcase bookcase : listBookcase){
+				ArrayList<Shelf> listShelf = bookcase.getListShelves();
+				for (Shelf shelf : listShelf){
+					for (LibraryItem item : shelf.getListItems()){
+						if(item.getPublisher().equalsIgnoreCase(author)){
+							listItems += item.toString()+"\n";
+						}
+					}
+				}
+			}
+		}
+		if(listItems.equals("")){
+			listItems += "No item with publisher name "+author+" was found";
+		}		
+		return listItems;
 	}
 	
-	public String search_title(){
-		return "";
+	
+	public String search_title(Library lib, String title){
+		String listItems = "";
+		ArrayList<Room> listRoom = lib.getListRooms();
+		for (Room room : listRoom){
+			ArrayList<Bookcase> listBookcase = room.getListBookcases();
+			for (Bookcase bookcase : listBookcase){
+				ArrayList<Shelf> listShelf = bookcase.getListShelves();
+				for (Shelf shelf : listShelf){
+					for (LibraryItem item : shelf.getListItems()){
+						if(item.getTitle().equalsIgnoreCase(title)){
+							listItems += item.toString()+"\n";
+						}
+					}
+				}
+			}
+		}
+		if(listItems.equals("")){
+			listItems += "No item with the title "+title+" was found";
+		}		
+		return listItems;
 	}
 	
-	public void add_member(){
+	public void add_member(Library lib, String name, String surname, int ccNumber, String birthDate ) throws AlreadyExistsException {
+
+		Date date = new Date();
+	    try {
+	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+	        date = formatter.parse(birthDate);
+	      } catch (ParseException e) {
+	        e.printStackTrace();
+	      }
+
+	    Member member = new Member(name, surname, date, ccNumber, lib);
+	    if(lib.getListMembers().contains(member)){
+	    	throw new AlreadyExistsException();
+	    }
+	    else{
+		    lib.getListMembers().add(member);
+	    }
+
+		
 	}
 	
 	public void borrow_item(){
