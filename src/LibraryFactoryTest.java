@@ -30,12 +30,24 @@ public class LibraryFactoryTest {
 		}
 		assertTrue(bool);
 	}
-	/*
+	
 	@Test
 	public void testAdd_bookcase() {
-		fail("Not yet implemented");
+		Library library = new Library("library",20,20,20,20);
+		Test.add_room(library,"room",10,10,10);
+		Room room=library.getListRooms().get(0);
+		Test.add_bookcase(library, room,3, "bookcase", 5, 5,5);
+		boolean bool = false;
+		for (Bookcase bookcase:room.getListBookcases()){
+			if (bookcase.getBcName().equals("bookcase")&&bookcase.getHeight()==5&&bookcase.getLength()==5&&bookcase.getWidth()==5){
+				bool=true;
+				break;
+			}
+		}
+		assertTrue(bool);
 	}
-
+	
+	/*
 	@Test
 	public void testAdd_item() {
 		fail("Not yet implemented");
