@@ -12,7 +12,7 @@ public class BestShelf implements StoringStrategy {
 			for (Bookcase bookcase : listBookcase){
 				ArrayList<Shelf> listShelf = bookcase.getListShelves();
 				for (Shelf shelf : listShelf){
-					if (shelf.getFreeSpace()>=item.getLength()){
+					if (shelf.getFreeSpace()>=item.getLength() && shelf.getHeight() >= item.getHeight()){
 						Location location = new Location(library,room,bookcase,shelf);
 						listPossibleLocation.add(location);
 					}

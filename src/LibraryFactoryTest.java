@@ -38,8 +38,8 @@ public class LibraryFactoryTest {
 	public void testAdd_item() {
 		fail("Not yet implemented");
 	}
- 
-	*/
+ 	*/
+	
 	@Test
 	public void testStore_items() {
 		Library library = new Library("library",20,20,20,20);
@@ -50,13 +50,13 @@ public class LibraryFactoryTest {
 		room.getListBookcases().add(bookcase);
 		room.getListBookcases().add(bookcasebis);
 		//shelf, shelfbis and shelfter have more space than shelf2
-		Shelf shelf = new Shelf(3,3,3);
+		Shelf shelf = new Shelf(2.5,3,3);
 		Shelf shelfbis=new Shelf(2,2,2);
 		Shelf shelfter=new Shelf(2,2,2);
 		Shelf shelfquar=new Shelf(1,1,1);
 		bookcase.getListShelves().add(shelf);
-		bookcase.getListShelves().add(shelfbis);
-		bookcasebis.getListShelves().add(shelfter);
+		bookcase.getListShelves().add(0,shelfbis);
+		bookcasebis.getListShelves().add(3,shelfter);
 		bookcasebis.getListShelves().add(shelfquar);
 		Room roombis=new Room("room",5,5,5);
 		/*
@@ -71,9 +71,13 @@ public class LibraryFactoryTest {
 		//the first shelf in this room is shelf1 but is is too small to host the CD
 		bookcase2.getListShelves().add(shelf1);
 		bookcase2.getListShelves().add(1,shelf2);
-		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
-		Test.store_items(library, "anyfit");
-		assertTrue(shelf2.getListItems().contains(CD));
+		CD CD1 =new CD("CD1","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD2","Alexandre Rozier",2016,1,ConsultationType.borrowing,1,1,1,null);
+		library.getStorageRoom().add(CD1);
+		library.getStorageRoom().add(CD2);
+		Test.store_items(library, "bestshelf");
+		assertTrue(shelf.getListItems().contains(CD1));
+		
 	}
 
 	/*

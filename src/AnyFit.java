@@ -13,7 +13,7 @@ public class AnyFit implements StoringStrategy {
 				ArrayList<Shelf> listShelf = bookcase.getListShelves();
 				for (Shelf shelf : listShelf){
 					//reminder: the length of an item is its thickness. We check that the item can enter in the shelf
-					if (shelf.getFreeSpace()>=item.getLength()){
+					if (shelf.getFreeSpace()>=item.getLength() && shelf.getHeight() >= item.getHeight()){
 						//we place the item there and stop looking for a location
 						location = new Location(library,room,bookcase,shelf);
 						item.setLocation(location);
