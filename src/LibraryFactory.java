@@ -15,7 +15,38 @@ public class LibraryFactory {
 	public void add_item(){
 	}
 	
-	public void store_items(){
+	public void store_items(Library lib, String storing_strategy){
+		switch(storing_strategy.toLowerCase())
+		{
+		case "anyfit": 
+			AnyFit strategy1 = new AnyFit();
+			for (LibraryItem item : lib.getStorageRoom()){
+				strategy1.store(item, lib);
+			}
+			break;
+		
+		case "bestbookcase":
+			BestBookcase strategy2 = new BestBookcase();
+			for (LibraryItem item : lib.getStorageRoom()){
+				strategy2.store(item, lib);
+			}
+			break;
+		
+		case "bestroom":
+			BestRoom strategy3 = new BestRoom();
+			for (LibraryItem item : lib.getStorageRoom()){
+				strategy3.store(item, lib);
+			}
+			break;
+		
+		case "bestshelf":
+			BestShelf strategy4 = new BestShelf();
+			for (LibraryItem item : lib.getStorageRoom()){
+				strategy4.store(item, lib);
+			}
+			break;
+		
+		}
 	}
 	
 	public void unstore_items(){
