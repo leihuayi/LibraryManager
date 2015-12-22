@@ -24,7 +24,17 @@ public class AnyFit implements StoringStrategy {
 						break;
 					}
 				}
+				
+				// if we have already found a location we stop the loop
+				if(!item.getLocation().equals(null)){
+					break;
+				}
 			}
+		// if we have already found a location we stop the loop
+		if(!item.getLocation().equals(null)){
+			break;
+		}
+		
 		}
 		if (item.getLocation().equals(null)){
 			System.out.println("No place was found to put the item");

@@ -47,6 +47,9 @@ public class LibraryFactory {
 				strategy4.store(item, lib);
 			}
 			break;
+			
+		default:
+			System.out.println("You did not call a valid storing stategy. You can use AnyFit / BestShelf / BestBookcase / BestRoom");
 		
 		}
 	}
