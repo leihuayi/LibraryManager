@@ -1,4 +1,8 @@
+
 import java.util.Iterator;
+
+import java.util.ArrayList;
+
 
 public class LibraryFactory {
 
@@ -50,6 +54,7 @@ public class LibraryFactory {
 			for (LibraryItem item : lib.getStorageRoom()){
 				strategy1.store(item, lib);
 			}
+			lib.setStorageRoom(new ArrayList<LibraryItem>());
 			break;
 		
 		case "bestbookcase":
@@ -57,6 +62,7 @@ public class LibraryFactory {
 			for (LibraryItem item : lib.getStorageRoom()){
 				strategy2.store(item, lib);
 			}
+			lib.setStorageRoom(new ArrayList<LibraryItem>());
 			break;
 		
 		case "bestroom":
@@ -64,6 +70,7 @@ public class LibraryFactory {
 			for (LibraryItem item : lib.getStorageRoom()){
 				strategy3.store(item, lib);
 			}
+			lib.setStorageRoom(new ArrayList<LibraryItem>());
 			break;
 		
 		case "bestshelf":
@@ -71,6 +78,7 @@ public class LibraryFactory {
 			for (LibraryItem item : lib.getStorageRoom()){
 				strategy4.store(item, lib);
 			}
+			lib.setStorageRoom(new ArrayList<LibraryItem>());
 			break;
 			
 		default:
@@ -79,7 +87,22 @@ public class LibraryFactory {
 		}
 	}
 	
-	public void unstore_items(){
+	public void unstore_items(Library lib){
+		ArrayList<Room> listRoom = lib.getListRooms();
+		for (Room room : listRoom){
+			ArrayList<Bookcase> listBookcase = room.getListBookcases();
+			for (Bookcase bookcase : listBookcase){
+				ArrayList<Shelf> listShelf = bookcase.getListShelves();
+				for (Shelf shelf : listShelf){
+					for (LibraryItem item : shelf.getListItems()){
+						lib.getStorageRoom().add(item);
+					}
+					//we clear the shelf once we have stored all its items
+					shelf.setListItems(new ArrayList<LibraryItem>());
+					shelf.setFreeSpace(shelf.getLength());
+				}
+			}
+		}
 	}
 	
 	public String list_items(){

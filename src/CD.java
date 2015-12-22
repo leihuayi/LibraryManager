@@ -18,9 +18,31 @@ public class CD extends LibraryItem{
 		super(title, publisher, publishingYear, volumeNumber, consultationType, length, height, width, location);
 	
 	this.borrowingDuration=1;
-
-
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + borrowingDuration;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CD other = (CD) obj;
+		if (borrowingDuration != other.borrowingDuration)
+			return false;
+		return true;
+	}
+	
+	
 
 	
 }

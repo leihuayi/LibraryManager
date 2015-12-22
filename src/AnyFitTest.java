@@ -24,10 +24,6 @@ public class AnyFitTest {
 		bookcase.getListShelves().add(shelfbis);
 		bookcasebis.getListShelves().add(shelfter);
 		bookcasebis.getListShelves().add(shelfquar);
-		Date date=new Date();
-<<<<<<< HEAD
-		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
-=======
 		Room roombis=new Room("room",5,5,5);
 		/*
 		 * but the room of shelf2 is placed before the room of the other shelves => shelf2
@@ -41,8 +37,7 @@ public class AnyFitTest {
 		//the first shelf in this room is shelf1 but is is too small to host the CD
 		bookcase2.getListShelves().add(shelf1);
 		bookcase2.getListShelves().add(1,shelf2);
-		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,date,1,1,1,null);
->>>>>>> 3302ead8dec71c46a551ee5863f21e11d72a93de
+		CD CD = new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
 		AnyFit strategy = new AnyFit();
 		strategy.store(CD,library);
 		assertTrue(shelf2.getListItems().contains(CD));

@@ -38,6 +38,43 @@ public class Bookcase extends Cuboid{
 	
 	}
 	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((bcName == null) ? 0 : bcName.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(freeSpace);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((listShelves == null) ? 0 : listShelves.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bookcase other = (Bookcase) obj;
+		if (bcName == null) {
+			if (other.bcName != null)
+				return false;
+		} else if (!bcName.equals(other.bcName))
+			return false;
+		if (Double.doubleToLongBits(freeSpace) != Double.doubleToLongBits(other.freeSpace))
+			return false;
+		if (listShelves == null) {
+			if (other.listShelves != null)
+				return false;
+		} else if (!listShelves.equals(other.listShelves))
+			return false;
+		return true;
+	}
+	
 	//to calculate the initial free space in the whole bookcase
 	public double initFreeSpace(){
 		double sum= 0.0;

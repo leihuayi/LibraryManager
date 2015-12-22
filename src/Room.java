@@ -42,6 +42,43 @@ public class Room extends Cuboid{
 		
 	}
 	
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		long temp;
+		temp = Double.doubleToLongBits(freeSpace);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((listBookcases == null) ? 0 : listBookcases.hashCode());
+		result = prime * result + ((roomName == null) ? 0 : roomName.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Room other = (Room) obj;
+		if (Double.doubleToLongBits(freeSpace) != Double.doubleToLongBits(other.freeSpace))
+			return false;
+		if (listBookcases == null) {
+			if (other.listBookcases != null)
+				return false;
+		} else if (!listBookcases.equals(other.listBookcases))
+			return false;
+		if (roomName == null) {
+			if (other.roomName != null)
+				return false;
+		} else if (!roomName.equals(other.roomName))
+			return false;
+		return true;
+	}
 	//to calculate the initial free space in the whole room
 	public double initFreeSpace(){
 		double sum= 0.0;

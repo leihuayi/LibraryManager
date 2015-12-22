@@ -179,6 +179,8 @@ public class Member implements Observer , java.io.Serializable{
 		
 	}
 	
+	
+	
 		
 	@Override
 	public String toString() {

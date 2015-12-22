@@ -12,8 +12,8 @@ public class BestRoom implements StoringStrategy {
 			for (Bookcase bookcase : listBookcase){
 				ArrayList<Shelf> listShelf = bookcase.getListShelves();
 				for (Shelf shelf : listShelf){
-					if (shelf.getFreeSpace()>=item.getLength()){
-						//this bookcase contains a shelf big enough to host our book
+					if (shelf.getFreeSpace()>=item.getLength() && shelf.getHeight() >= item.getHeight()){
+						//this room contains a shelf big enough to host our book
 						listPossibleHostRooms.add(room);
 						break;
 					}
