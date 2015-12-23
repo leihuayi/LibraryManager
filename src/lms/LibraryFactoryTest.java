@@ -134,11 +134,11 @@ public class LibraryFactoryTest {
 		Shelf shelfbis=new Shelf(2,2,2);
 		bookcase.getListShelves().add(shelf);
 		bookcase.getListShelves().add(shelfbis);
-		CD CD1 =new CD("CD1","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
-		CD CD2 =new CD("CD2","Alexandre Rozier",2016,1,ConsultationType.borrowing,2,1,1,null);
+		CD CD1 =new CD("CD1","ECP","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD2","ECP","Alexandre Rozier",2016,1,ConsultationType.borrowing,2,1,1,null);
 		shelf.getListItems().add(CD1);
 		shelf.getListItems().add(CD2);
-		DVD DVD =new DVD("DVD","yolo",2015,1,ConsultationType.borrowing,1,1,1,null);
+		DVD DVD =new DVD("DVD","ECP","yolo",2015,1,ConsultationType.borrowing,1,1,1,null);
 		shelfbis.getListItems().add(DVD);
 		
 		String result = "List of the items :\n"+
@@ -162,7 +162,7 @@ public class LibraryFactoryTest {
 		Shelf shelfbis=new Shelf(2,2,2);
 		bookcase.getListShelves().add(shelf);
 		bookcase.getListShelves().add(shelfbis);
-		CD CD1 =new CD("CD1","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD1 =new CD("CD1","ECP","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
 		shelf.getListItems().add(CD1);
 
 
@@ -205,8 +205,8 @@ public class LibraryFactoryTest {
 		room.getListBookcases().add(bookcase);
 		Shelf shelf = new Shelf(3,3,3);
 		bookcase.getListShelves().add(shelf);
-		CD CD1 =new CD("CD1","Alexandre",2015,1,ConsultationType.borrowing,1,1,1,null);
-		CD CD2 =new CD("CD2","Alexandre",2016,1,ConsultationType.borrowing,2,1,1,null);
+		CD CD1 =new CD("CD1","ECP","Alexandre",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD2","ECP","Alexandre",2016,1,ConsultationType.borrowing,2,1,1,null);
 		shelf.getListItems().add(CD2);
 		shelf.getListItems().add(CD1);
 		
@@ -226,8 +226,8 @@ public class LibraryFactoryTest {
 		room.getListBookcases().add(bookcase);
 		Shelf shelf = new Shelf(3,3,3);
 		bookcase.getListShelves().add(shelf);
-		CD CD1 =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
-		CD CD2 =new CD("CD","Alexandre Rozier",2016,1,ConsultationType.borrowing,2,1,1,null);
+		CD CD1 =new CD("CD","ECP","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD","ECP","Alexandre Rozier",2016,1,ConsultationType.borrowing,2,1,1,null);
 		shelf.getListItems().add(CD2);
 		shelf.getListItems().add(CD1);
 		

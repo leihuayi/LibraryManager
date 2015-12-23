@@ -13,9 +13,12 @@ public class DVD extends LibraryItem{
 		this.borrowingDuration = borrowingDuration;
 	}
 
-	public DVD(String title, String publisher, int publishingYear, int volumeNumber, ConsultationType consultationType,
-			 double length, double height, double width, Location location) {
-		super(title, publisher, publishingYear, volumeNumber, consultationType, length, height, width, location);
+	
+
+	public DVD(String title, String publisher, String author, int publishingYear, int volumeNumber,
+			ConsultationType consultationType, double length, double height, double width, Location location) {
+		super(title, publisher, author, publishingYear, volumeNumber, consultationType, length, height, width,
+				location);
 		this.borrowingDuration=2;
 	}
 

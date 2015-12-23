@@ -50,10 +50,10 @@ public class LibraryFactory {
 		
 		if (itemType.equalsIgnoreCase("BOOK")){
 			if (consultationType.equalsIgnoreCase("ONLINECONSULTATION")){
-				library.getStorageRoom().add(new Book(title,publisher,publishingYear,volumeNumber, ConsultationType.onlineConsultation,length,height,width,null,-1)); // -1 means it has no ISBN yet, but will be asked in the launcher
+				library.getStorageRoom().add(new Book(title,publisher,author,publishingYear,volumeNumber, ConsultationType.onlineConsultation,length,height,width,null,-1)); // -1 means it has no ISBN yet, but will be asked in the launcher
 				}
 			else if(consultationType.equalsIgnoreCase("BORROWING")){
-				library.getStorageRoom().add(new Book(title,publisher,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null,-1));
+				library.getStorageRoom().add(new Book(title,publisher,author,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null,-1));
 			}
 			else{
 				System.out.println("You didn't enter a valid consultation type");
@@ -61,10 +61,10 @@ public class LibraryFactory {
 		}
 		else if (itemType.equalsIgnoreCase("CD")){
 			if (consultationType.equalsIgnoreCase("ONLINECONSULTATION")){
-				library.getStorageRoom().add(new CD(title,publisher,publishingYear,volumeNumber, ConsultationType.onlineConsultation,length,height,width,null));
+				library.getStorageRoom().add(new CD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.onlineConsultation,length,height,width,null));
 				}
 			else if(consultationType.equalsIgnoreCase("BORROWING")){
-				library.getStorageRoom().add(new CD(title,publisher,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null));
+				library.getStorageRoom().add(new CD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null));
 			}
 			else{
 				System.out.println("You didn't enter a valid consultation type");
@@ -72,10 +72,10 @@ public class LibraryFactory {
 		}
 		else if (itemType.equalsIgnoreCase("DVD")){
 			if (consultationType.equalsIgnoreCase("ONLINECONSULTATION")){
-				library.getStorageRoom().add(new DVD(title,publisher,publishingYear,volumeNumber, ConsultationType.onlineConsultation,length,height,width,null));
+				library.getStorageRoom().add(new DVD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.onlineConsultation,length,height,width,null));
 				}
 			else if(consultationType.equalsIgnoreCase("BORROWING")){
-				library.getStorageRoom().add(new DVD(title,publisher,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null));
+				library.getStorageRoom().add(new DVD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null));
 			}
 			else{
 				System.out.println("You didn't enter a valid consultation type");
@@ -291,7 +291,7 @@ public class LibraryFactory {
 				ArrayList<Shelf> listShelf = bookcase.getListShelves();
 				for (Shelf shelf : listShelf){
 					for (LibraryItem item : shelf.getListItems()){
-						if(item.getPublisher().equalsIgnoreCase(author)){
+						if(item.getAuthor().equalsIgnoreCase(author)){
 							listItems += item.toString()+"\n";
 						}
 					}
@@ -350,26 +350,56 @@ public class LibraryFactory {
 	
 	public void borrow_item(Member member, LibraryItem item, Library library){
 		if (member.isUnsuspended()&&member.getCurrentItems().size()>=library.getNbi()){
+			boolean test=true;
 			for (Room room: library.getListRooms()){
 				for (Bookcase bookcase : room.getListBookcases()){
 					for (Shelf shelf: bookcase.getListShelves()){
 						for (LibraryItem libraryItem : shelf.getListItems()){
-							
+							if (libraryItem.getConsultationType().equals("borrowing")&&libraryItem.getHeight()==item.getHeight()&&libraryItem.getWidth()==item.getWidth()&&libraryItem.getLength()==item.getLength()&&libraryItem.getPublisher().equals(item.getPublisher())&&libraryItem.getPublishingYear()==item.getPublishingYear()&&libraryItem.getConsultationType()==item.getConsultationType()&&libraryItem.getVolumeNumber()==item.getVolumeNumber()&&libraryItem.getTitle().equals(item.getTitle())&&libraryItem.getAuthor().equals(item.getAuthor())){
+								libraryItem.setLocation(null);
+								libraryItem.setBorrowable(false);
+								libraryItem.getBorrowingList().add(member);
+								if (libraryItem instanceof Book){
+									if(member.getCard().getType()==CardType.golden){
+										
+									}
+									else{
+										
+									}
+								}
+								Date date = new Date();
+								Borrowing borrowing = new Borrowing(libraryItem,member,,null);
+								member.getHistory().add(borrowing);
+								member.getCurrentItems().add(borrowing);
+								test=false;
+								break;
+							}
 						}
 					}
 				}
+			}
+			if(test){
+				System.out.println("Your item currently isn't in the library, reserve it");
 			}
 		}
 		else{
 			System.out.println("You are currently not able to borrow any item");
 		}
-		storing of borrowing date
-		
-		reservation
+		cartes durées d'emprunt
 	}
 	
-	public String check_borrowed(){
-		return "";
+	public void check_borrowed(Library library, Member member){
+		// the work that method needs to do is partly done by the check method which launches when the program starts running from the class Library
+		//Hence members are already penalised
+		if (member.isUnsuspended()&&member.getCurrentItems().size()>=library.getNbi()){
+			System.out.println(member.getName()+" is allowed to borrow items");
+		}
+		else if(member.getCurrentItems().size()>=library.getNbi()){
+			System.out.println(member.getName()+" needs to return some items before borrowing again");
+		}
+		else{
+			System.out.println(member.getName()+" is currently suspended");
+		}
 	}
 	
 }

@@ -38,7 +38,7 @@ public class AnyFitTest {
 		//the first shelf in this room is shelf1 but is is too small to host the CD
 		bookcase2.getListShelves().add(shelf1);
 		bookcase2.getListShelves().add(1,shelf2);
-		CD CD = new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD = new CD("CD","ECP","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
 		AnyFit strategy = new AnyFit();
 		strategy.store(CD,library);
 		assertTrue(shelf2.getListItems().contains(CD));

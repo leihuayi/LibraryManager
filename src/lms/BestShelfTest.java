@@ -33,7 +33,7 @@ public class BestShelfTest {
 		Shelf shelf2=new Shelf(1,1,1);
 		bookcase2.getListShelves().add(shelf1);
 		bookcase2.getListShelves().add(1,shelf2);
-		CD CD =new CD("CD","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD =new CD("CD","ECP","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
 		BestShelf strategy = new BestShelf();
 		strategy.store(CD,library);
 		assertTrue(shelf.getListItems().contains(CD));

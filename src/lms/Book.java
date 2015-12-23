@@ -23,9 +23,13 @@ public class Book extends LibraryItem {
 		this.borrowingDuration = borrowingDuration;
 	}
 
-	public Book(String title, String publisher, int publishingYear, int volumeNumber, ConsultationType consultationType,
-			double length, double height, double width, Location location, int iSBNCode) {
-		super(title, publisher, publishingYear, volumeNumber, consultationType, length, height, width, location);
+
+
+	public Book(String title, String publisher, String author, int publishingYear, int volumeNumber,
+			ConsultationType consultationType, double length, double height, double width, Location location,
+			int iSBNCode) {
+		super(title, publisher, author, publishingYear, volumeNumber, consultationType, length, height, width,
+				location);
 		ISBNCode = iSBNCode;
 		this.borrowingDuration=4;
 	}

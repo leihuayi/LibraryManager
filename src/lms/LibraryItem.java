@@ -9,6 +9,7 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 	private String publisher;
 	private int publishingYear;
 	private int volumeNumber;
+	private String author;
 	private ConsultationType consultationType;
 	//location set as null when the item is borrowed or when it's in the storage box
 	private Location location;
@@ -18,6 +19,12 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 	
 	
 
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 	public boolean isBorrowable() {
 		return borrowable;
 	}
@@ -68,7 +75,7 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 	public void setLocation(Location location) {
 		this.location = location;
 	}
-	public LibraryItem(String title, String publisher, int publishingYear, int volumeNumber,
+	public LibraryItem(String title, String publisher,String author, int publishingYear, int volumeNumber,
 			ConsultationType consultationType,double length, double height, double width, Location location) {
 
 		super();
@@ -83,6 +90,7 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 		this.location = location;
 		this.borrowingList=new ArrayList<Member>();
 		this.borrowable=true;
+		this.author=author;
 	}
 	
 	
