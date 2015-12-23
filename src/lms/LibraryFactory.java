@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -361,16 +362,34 @@ public class LibraryFactory {
 								libraryItem.getBorrowingList().add(member);
 								if (libraryItem instanceof Book){
 									if(member.getCard().getType()==CardType.golden){
-										
+										member.getHistory().add(new Borrowing(libraryItem,member,modifyDate(-56),null));
+										member.getCurrentItems().add(new Borrowing(libraryItem,member,modifyDate(-56),null));
 									}
 									else{
-										
+										member.getHistory().add(new Borrowing(libraryItem,member,modifyDate(-28),null));
+										member.getCurrentItems().add(new Borrowing(libraryItem,member,modifyDate(-28),null));
 									}
 								}
-								Date date = new Date();
-								Borrowing borrowing = new Borrowing(libraryItem,member,,null);
-								member.getHistory().add(borrowing);
-								member.getCurrentItems().add(borrowing);
+								else if (libraryItem instanceof CD){
+									if(member.getCard().getType()==CardType.golden){
+										member.getHistory().add(new Borrowing(libraryItem,member,modifyDate(-21),null));
+										member.getCurrentItems().add(new Borrowing(libraryItem,member,modifyDate(-21),null));
+									}
+									else{
+										member.getHistory().add(new Borrowing(libraryItem,member,modifyDate(-7),null));
+										member.getCurrentItems().add(new Borrowing(libraryItem,member,modifyDate(-7),null));
+									}
+								}
+								else{
+									if(member.getCard().getType()==CardType.golden){
+										member.getHistory().add(new Borrowing(libraryItem,member,modifyDate(-28),null));
+										member.getCurrentItems().add(new Borrowing(libraryItem,member,modifyDate(-28),null));
+									}
+									else{
+										member.getHistory().add(new Borrowing(libraryItem,member,modifyDate(-14),null));
+										member.getCurrentItems().add(new Borrowing(libraryItem,member,modifyDate(-14),null));
+									}
+								}
 								test=false;
 								break;
 							}
@@ -385,7 +404,6 @@ public class LibraryFactory {
 		else{
 			System.out.println("You are currently not able to borrow any item");
 		}
-		cartes durées d'emprunt
 	}
 	
 	public void check_borrowed(Library library, Member member){
@@ -401,5 +419,12 @@ public class LibraryFactory {
 			System.out.println(member.getName()+" is currently suspended");
 		}
 	}
+	
+	private static Date modifyDate(int numberOfDay)
+	  {
+		  Calendar cal = Calendar.getInstance();
+		  cal.add(Calendar.DATE, numberOfDay);
+		  return cal.getTime();
+	  }
 	
 }
