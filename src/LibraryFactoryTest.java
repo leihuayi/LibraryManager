@@ -47,12 +47,15 @@ public class LibraryFactoryTest {
 		assertTrue(bool);
 	}
 	
-	/*
+	
 	@Test
 	public void testAdd_item() {
-		fail("Not yet implemented");
+		Library library = new Library("library",20,20,20,20);
+		Test.add_room(library,"room",10,10,10);
+		Test.add_item("Alexandre Prot","Book of JAVA","Book",1,"borrowIng","ECP",library,2015,5,5,5);
+		assertTrue(!library.getStorageRoom().isEmpty());
 	}
- 	*/
+ 	
 	
 	/*
 	@Test
