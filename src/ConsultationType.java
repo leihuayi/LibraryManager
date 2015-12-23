@@ -9,7 +9,7 @@ public enum ConsultationType {
 	borrowing{
         @Override
         public String toString() {
-            return "online consultation";
+            return "borrowing";
         }
 	};
 	

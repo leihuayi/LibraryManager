@@ -45,9 +45,16 @@ public class LibraryFactory {
 		}
 	}
 	
-	public void add_item(){
-		
+	public void add_item(String storing_strategy,String author,String title,String itemType,int volumeNumber,String consultationType,String publisher,Library library,int publishingYear,double length,double width,double height){
+		if (itemType.equalsIgnoreCase("BOOK")){
+			if (storing_strategy.equalsIgnoreCase("ANYFIT")){
+				if (consultationType.equalsIgnoreCase("ONLINECONSULTATION")){
+					library.getStorageRoom().add(new CD(title,publisher,publishingYear,volumeNumber, ConsultationType.onlineConsultation,length,height, double width, Location location)))
+				}
+			}
+		}
 	}
+		
 	
 	public void store_items(Library lib, String storing_strategy){
 		switch(storing_strategy.toLowerCase())
