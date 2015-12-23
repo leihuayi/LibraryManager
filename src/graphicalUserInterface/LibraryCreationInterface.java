@@ -37,7 +37,7 @@ public class LibraryCreationInterface extends JFrame {
 		add(panelbis);
 		JLabel labelExplication1 = new JLabel("In your library, members have different fidelity cards.");
 		JLabel labelExplication2 = new JLabel("If they borrow more than N books over M months, they become frequent members and therefore have privileges.");
-		JLabel labelExplication3 = new JLabel("If they borrow less than N books over M' months, they lose their frequent membership and become standard members again.");
+		JLabel labelExplication3 = new JLabel("If they borrow fewer than N books over M' months, they lose their frequent membership and become standard members again.");
 		panelbis.add(labelExplication1);
 		panelbis.add(labelExplication2);
 		panelbis.add(labelExplication3);
@@ -70,11 +70,12 @@ public class LibraryCreationInterface extends JFrame {
 		JButton buttonCreate = new JButton("Create");
 	    buttonCreate.addActionListener(new ActionListener(){
 	    	
-			//checks that the user enters the right parameters
-			boolean validAnswer = true;
+
 	  
 	    	@Override
 	        public void actionPerformed(ActionEvent ae) {
+				//checks that the user enters the right parameters
+				boolean validAnswer = true;
 	    		
 	    		String libName = textLibName.getText();
 	    		
@@ -88,7 +89,7 @@ public class LibraryCreationInterface extends JFrame {
 	    			}
 	    		}
 				catch(Exception NumberFormatException){
-					JOptionPane.showMessageDialog(LibraryCreationInterface.this, "You did not enter a number in the field : maximum items");
+					JOptionPane.showMessageDialog(LibraryCreationInterface.this, "You did not enter an integer in the field : maximum items");
 					validAnswer=false;
 				}
 	    		
@@ -103,7 +104,7 @@ public class LibraryCreationInterface extends JFrame {
 	    			}
 	    		}
 				catch(Exception NumberFormatException){
-					JOptionPane.showMessageDialog(LibraryCreationInterface.this, "You did not enter a number in the field : N");
+					JOptionPane.showMessageDialog(LibraryCreationInterface.this, "You did not enter an integer in the field : N");
 					validAnswer=false;
 				}
 	    		
@@ -118,7 +119,7 @@ public class LibraryCreationInterface extends JFrame {
 	    			}
 	    		}
 				catch(Exception NumberFormatException){
-					JOptionPane.showMessageDialog(LibraryCreationInterface.this, "You did not enter a number in the field : M");
+					JOptionPane.showMessageDialog(LibraryCreationInterface.this, "You did not enter an integer in the field : M");
 					validAnswer=false;
 				}
 	    		
@@ -133,7 +134,7 @@ public class LibraryCreationInterface extends JFrame {
 	    			}
 	    		}
 				catch(Exception NumberFormatException){
-					JOptionPane.showMessageDialog(LibraryCreationInterface.this, "You did not enter a number in the field : M'");
+					JOptionPane.showMessageDialog(LibraryCreationInterface.this, "You did not enter an integer in the field : M'");
 					validAnswer=false;
 				}
 	               

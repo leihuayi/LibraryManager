@@ -13,21 +13,39 @@ public class LibraryModifyer extends JFrame {
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
+		
+		//Tab : General Information
 		JPanel panelGeneral = new JPanel();
 		tabbedPane.addTab("General information", panelGeneral);
-		panelGeneral.add(new JLabel("General information"));
+		panelGeneral.setLayout(new BoxLayout(panelGeneral,BoxLayout.PAGE_AXIS));
+		panelGeneral.add(new JLabel("Welcome to the panel which enabled you to make actions on your Library !"));
+		panelGeneral.add(new JLabel("You have 3 different tabs where you can execute different kinds of actions:"));
 		this.setContentPane(tabbedPane);
 		
-		JPanel panelGeneral2 = new JPanel();
-		tabbedPane.addTab("General information", panelGeneral2);
-		panelGeneral2.add(new JLabel("General information"));
+		
+		
+		
+		
+		
+		//Tab : Add
+		
+		JPanel panelAdd = new JPanel();
+		tabbedPane.addTab("Add panel", panelAdd);
+		panelAdd.add(new JLabel("Add information"));
 		this.setContentPane(tabbedPane);
 		
-		JPanel panelGeneral3 = new JPanel();
-		tabbedPane.addTab("General information", panelGeneral3);
-		panelGeneral3.add(new JLabel("General information"));
+		
+		
+		JPanel panelList = new JPanel();
+		tabbedPane.addTab("List panel", panelList);
+		panelList.add(new JLabel("List information"));
 		this.setContentPane(tabbedPane);
 		
+		
+		JPanel panelMove = new JPanel();
+		tabbedPane.addTab("Move items", panelMove);
+		panelMove.add(new JLabel("Move information"));
+		this.setContentPane(tabbedPane);
 		
 		
 		
