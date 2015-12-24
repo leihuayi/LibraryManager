@@ -109,7 +109,7 @@ public class Launcher {
 					
 					break;
 				case 2:
-					System.out.println("The syntax is add_room(roomNameWhereAdded,numberOfShelves,bookcaseName,length,height,width)");
+					System.out.println("The syntax is add_bookcase(roomNameWhereAdded,numberOfShelves,bookcaseName,length,height,width)");
 					Scanner sc2 = new Scanner(System.in);
 					String addBookcase = sc2.nextLine();					
 					String nameOfMethod2 = addBookcase.substring(0,addBookcase.indexOf('('));
@@ -164,7 +164,20 @@ public class Launcher {
 					
 					break;
 				case 4:
+					System.out.println("The syntax is store_items(storingStrategy)\nsotringStrategy can be anyfit, bestshelf, bestbookcase, bestroom");
+					Scanner sc4 = new Scanner(System.in);
+					String storeItems = sc4.nextLine();
 					
+					String nameOfMethod4 = storeItems.substring(0,storeItems.indexOf('('));
+					String listOfArguments4 = storeItems.substring(storeItems.indexOf('(')+1,storeItems.indexOf(')'));
+					String tabArguments4[] = listOfArguments4.split(",");
+					if (tabArguments4[0].equalsIgnoreCase("ANYFIT")||tabArguments4[0].equalsIgnoreCase("BESTSHELF")||tabArguments4[0].equalsIgnoreCase("BESTROOM")||tabArguments4[0].equalsIgnoreCase("BESTBOOKCASE")){
+						libF.store_items(library,tabArguments4[0]);
+						System.out.println("The storage was successful");
+											}
+					else{
+						System.out.println("This algorithm doesn't exist");
+					}
 					break;
 				case 5:
 					
