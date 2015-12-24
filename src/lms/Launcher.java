@@ -238,7 +238,7 @@ public class Launcher {
 					String nameOfMethod10 = searchTitle.substring(0,searchTitle.indexOf('('));
 					String listOfArguments10 = searchTitle.substring(searchTitle.indexOf('(')+1,searchTitle.indexOf(')'));
 					String tabArguments10[] = listOfArguments10.split(",");
-					System.out.println(libF.find_items(library,tabArguments10[0]));	
+					System.out.println(libF.search_title(library,tabArguments10[0]));	
 					break;
 				case 11:
 					
