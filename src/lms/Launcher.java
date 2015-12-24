@@ -201,7 +201,7 @@ public class Launcher {
 					System.out.println(libF.list_items(library));
 					break;
 				case 7:
-					System.out.println("The syntax is list_room(room)");
+					System.out.println("The syntax is list_room(roomName)");
 					Scanner sc7 = new Scanner(System.in);
 					String listRoom = sc7.nextLine();
 					
@@ -211,7 +211,14 @@ public class Launcher {
 					System.out.println(libF.list_room(library,tabArguments7[0]));			
 					break;
 				case 8:
+					System.out.println("The syntax is list_bookcase(roomName,bookcaseName)\nNote:roomName is the name of the room where the bookcase is located");
+					Scanner sc8 = new Scanner(System.in);
+					String listBookcase = sc8.nextLine();
 					
+					String nameOfMethod8 = listBookcase.substring(0,listBookcase.indexOf('('));
+					String listOfArguments8 = listBookcase.substring(listBookcase.indexOf('(')+1,listBookcase.indexOf(')'));
+					String tabArguments8[] = listOfArguments8.split(",");
+					System.out.println(libF.list_bookcase(library, tabArguments8[0], tabArguments8[1]));
 					break;
 				case 9:
 					
