@@ -256,7 +256,22 @@ public class Launcher {
 					System.out.println(libF.search_title(library,tabArguments10[0]));	
 					break;
 				case 11:
+					System.out.println("The syntax is add_member(name,surname,creditCardNumber,birthDate)\nbirthDate:yyyy/MM/dd (ex : 1999/09/01)\ncreditCardNumber:without spaces");
+					Scanner sc11 = new Scanner(System.in);
+					String addMember = sc11.nextLine();
 					
+					String nameOfMethod11 = addMember.substring(0,addMember.indexOf('('));
+					String listOfArguments11 = addMember.substring(addMember.indexOf('(')+1,addMember.indexOf(')'));
+					String tabArguments11[] = listOfArguments11.split(",");	
+					int int1 = Integer.parseInt(tabArguments11[2]);
+					try{
+						libF.add_member(library,tabArguments11[0],tabArguments11[1],int1,tabArguments11[3]);
+						System.out.println("The member was successfully added to the library");
+					}
+					
+					catch(AlreadyExistsException e){
+						System.out.println("A member with this information already exists. Please create another one.");
+					}
 					break;
 				case 12:
 					

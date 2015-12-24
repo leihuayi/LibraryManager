@@ -16,7 +16,7 @@ public class LibraryFactoryTest {
 		assertTrue(lib.equals(libTest));
 	}
 
-		
+	/*	
 	@Test
 	public void testAdd_room() {
 		
@@ -56,7 +56,7 @@ public class LibraryFactoryTest {
 		Test.add_item("Alexandre Prot","Book of JAVA","Book",1,"borrowIng","ECP",library,2015,5,5,5);
 		assertTrue(!library.getStorageRoom().isEmpty());
 	}
- 	
+ 	*/
 	
 	/*
 	@Test
