@@ -208,6 +208,9 @@ public class LibraryFactory {
 				//we get out of the loop if we have found the room
 				break;
 			}
+			if (notRoom){
+				return "There is no such room";
+			}
 
 		}
 		

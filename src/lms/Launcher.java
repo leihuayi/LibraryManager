@@ -201,7 +201,14 @@ public class Launcher {
 					System.out.println(libF.list_items(library));
 					break;
 				case 7:
+					System.out.println("The syntax is list_room(room");
+					Scanner sc7 = new Scanner(System.in);
+					String listRoom = sc7.nextLine();
 					
+					String nameOfMethod7 = listRoom.substring(0,listRoom.indexOf('('));
+					String listOfArguments7 = listRoom.substring(listRoom.indexOf('(')+1,listRoom.indexOf(')'));
+					String tabArguments7[] = listOfArguments7.split(",");
+					System.out.println(libF.list_room(library,tabArguments7[0]));			
 					break;
 				case 8:
 					
