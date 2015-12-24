@@ -34,7 +34,7 @@ public class LibraryFactory {
 		
 	}
 	
-	public void add_bookcase(Library library, Room room,Integer numShelves,String bcName,double length,double height,double width){
+	public void add_bookcase(Library library, Room room,Integer numShelves,String bcName,double length,double height,double width) throws NoSuchFieldException, IndexOutOfBoundsException, AlreadyExistsException{
 		if(library.getListRooms().contains(room)){
 			double sumLength = 0;
 			double sumWidth = 0;
@@ -43,25 +43,33 @@ public class LibraryFactory {
 				sumWidth=sumWidth+bookcase.getWidth();
 			}
 			if(room.getLength()-sumLength>length&&room.getWidth()-sumWidth>width&&room.getHeight()>height){
-				Bookcase bookcase=new Bookcase(bcName,length,height,width);				
-				room.getListBookcases().add(bookcase);
-				double new_height=(double)height/numShelves;
-				for (int i = 1; i < numShelves+1; i++) {
-					Shelf shelf = new Shelf(length,new_height,width);
-					bookcase.getListShelves().add(shelf);
+				Bookcase bookcase=new Bookcase(bcName,length,height,width);
+				if(room.getListBookcases().contains(bookcase)){
+					throw new AlreadyExistsException();
 				}
+				else{
+					room.getListBookcases().add(bookcase);
+					double new_height=(double)height/numShelves;
+					for (int i = 1; i < numShelves+1; i++) {
+						Shelf shelf = new Shelf(length,new_height,width);
+						bookcase.getListShelves().add(shelf);
+					}
+				}
+				
 			}
 		
 			else{
-				System.out.println("There is an issue with your measures");
+				//the bookcase does not enter in the room because it is too big
+				throw new IndexOutOfBoundsException();
 			}
 		}
 		else{
-		System.out.println("That room is not in that library");	
+			//if there is no room with the name room
+			throw new NoSuchFieldException();
 		}
 	}
 	
-	public void add_item(String author,String title,String itemType,int volumeNumber,String consultationType,String publisher,Library library,int publishingYear,double length,double width,double height){
+	public void add_item(String author,String title,String itemType,int volumeNumber,String consultationType,String publisher,Library library,int publishingYear,double length,double width,double height) throws IllegalArgumentException{
 		
 		if (itemType.equalsIgnoreCase("BOOK")){
 			if (consultationType.equalsIgnoreCase("ONLINECONSULTATION")){
@@ -71,7 +79,7 @@ public class LibraryFactory {
 				library.getStorageRoom().add(new Book(title,publisher,author,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null,-1));
 			}
 			else{
-				System.out.println("You didn't enter a valid consultation type");
+				throw new IllegalArgumentException();
 			}
 		}
 		else if (itemType.equalsIgnoreCase("CD")){
@@ -82,7 +90,7 @@ public class LibraryFactory {
 				library.getStorageRoom().add(new CD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null));
 			}
 			else{
-				System.out.println("You didn't enter a valid consultation type");
+				throw new IllegalArgumentException();
 			}
 		}
 		else if (itemType.equalsIgnoreCase("DVD")){
@@ -93,16 +101,14 @@ public class LibraryFactory {
 				library.getStorageRoom().add(new DVD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null));
 			}
 			else{
-				System.out.println("You didn't enter a valid consultation type");
+				throw new IllegalArgumentException();
 			}			
 		}
-		else{
-			System.out.println("This object cannot be added to the library");
-		}
+		
 	}
 		
 	
-	public void store_items(Library lib, String storing_strategy){
+	public void store_items(Library lib, String storing_strategy) throws IllegalArgumentException{
 		switch(storing_strategy.toLowerCase())
 		{
 		case "anyfit": 
@@ -138,8 +144,7 @@ public class LibraryFactory {
 			break;
 			
 		default:
-			System.out.println("You did not call a valid storing stategy. You can use AnyFit / BestShelf / BestBookcase / BestRoom");
-		
+			throw new IllegalArgumentException();
 		}
 	}
 	

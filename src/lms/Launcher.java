@@ -96,7 +96,7 @@ public class Launcher {
 							}
 							
 							catch(AlreadyExistsException e){
-								System.out.println("A room with that name already exists");
+								System.out.println("A room with that name already exists. Please create another one.");
 							}
 					}
 					catch(Exception NumberFormatException){
@@ -118,20 +118,28 @@ public class Launcher {
 						double double1 = Double.parseDouble(tabArguments2[3]);
 						double double2 = Double.parseDouble(tabArguments2[4]);
 						double double3 = Double.parseDouble(tabArguments2[5]);
-						boolean existingRoom=false;
 						for (Room room : library.getListRooms()){
 							if (room.getRoomName().equalsIgnoreCase(tabArguments2[0])){
-								libF.add_bookcase(library,room,int1,tabArguments2[2],double1,double2,double3);
-								existingRoom=true;
-								break;
+								try{
+									libF.add_bookcase(library,room,int1,tabArguments2[2],double1,double2,double3);
+									System.out.println("The addition of the Bookcase was successful");
+								}
+								catch(AlreadyExistsException e){
+									System.out.println("A bookcase of this name already exits in the room "+tabArguments2[0]+". Please create another one.");
+								}
+								catch(NoSuchFieldException e){
+									System.out.println("That room is not in that library");
+									break;
+								}
+								catch(IndexOutOfBoundsException e){
+									System.out.println("There is an issue with your measures, your bookcase is too big for the room");
+								}
+								
 							}
 						}
-						if(existingRoom){
-							System.out.println("The addition of the Bookcase was successful");
-						}
-						else{
-							System.out.println("There is no such room");
-						}
+						
+							
+						
 					}
 					catch(Exception NumberFormatException){
 						System.out.println("You must have entered the wrong type of data or the wrong number of arguments.");
@@ -145,19 +153,28 @@ public class Launcher {
 					String nameOfMethod3 = addItem.substring(0,addItem.indexOf('('));
 					String listOfArguments3 = addItem.substring(addItem.indexOf('(')+1,addItem.indexOf(')'));
 					String tabArguments3[] = listOfArguments3.split(",");
-					if (tabArguments3[2].equalsIgnoreCase("BOOK")||tabArguments3[2].equalsIgnoreCase("CD")||tabArguments3[2].equalsIgnoreCase("DVD")||tabArguments3[4].equalsIgnoreCase("BORROWING")||tabArguments3[4].equalsIgnoreCase("ONLINECONSULTATION")){
+					if (tabArguments3[2].equalsIgnoreCase("BOOK")||tabArguments3[2].equalsIgnoreCase("CD")||tabArguments3[2].equalsIgnoreCase("DVD")){
 						try{
 							int int1 = Integer.parseInt(tabArguments3[3]);
 							int int2 = Integer.parseInt(tabArguments3[6]);
 							double double1 = Double.parseDouble(tabArguments3[7]);
 							double double2 = Double.parseDouble(tabArguments3[8]);
 							double double3 = Double.parseDouble(tabArguments3[9]);
-							libF.add_item(tabArguments3[0],tabArguments3[1],tabArguments3[2],int1,tabArguments3[4],tabArguments3[5],library,int2,double1,double2,double3);
-							System.out.println("The addition of the item was successful");
+							try{
+								libF.add_item(tabArguments3[0],tabArguments3[1],tabArguments3[2],int1,tabArguments3[4],tabArguments3[5],library,int2,double1,double2,double3);
+								System.out.println("The addition of the item was successful");
+							}
+							catch(IllegalArgumentException e){
+								System.out.println("You did not enter a valid consultation type. You have to enter either borrowing or online consultation.");
+							}
+							
 						}
 						catch(Exception NumberFormatException){
 							System.out.println("You must have entered the wrong type of data or the wrong number of arguments.");
 						}
+					}
+					else{
+						System.out.println("The object "+tabArguments3[2]+" is not a valid item. Pleae chose a book, CD or DVD.");
 					}
 					
 					break;
@@ -169,14 +186,14 @@ public class Launcher {
 					String nameOfMethod4 = storeItems.substring(0,storeItems.indexOf('('));
 					String listOfArguments4 = storeItems.substring(storeItems.indexOf('(')+1,storeItems.indexOf(')'));
 					String tabArguments4[] = listOfArguments4.split(",");
-					if (tabArguments4[0].equalsIgnoreCase("ANYFIT")||tabArguments4[0].equalsIgnoreCase("BESTSHELF")||tabArguments4[0].equalsIgnoreCase("BESTROOM")||tabArguments4[0].equalsIgnoreCase("BESTBOOKCASE")){
+					try{
 						libF.store_items(library,tabArguments4[0]);
 						System.out.println("The storage was successful");
 						}
-					else{
-						System.out.println("This algorithm doesn't exist");
+					catch(IllegalArgumentException e){
+						System.out.println("You did not call a valid storing stategy. You can use AnyFit / BestShelf / BestBookcase / BestRoom");
 					}
-					break;
+					
 				case 5:
 					System.out.println("The syntax is unstore_items()");
 					Scanner sc5 = new Scanner(System.in);
