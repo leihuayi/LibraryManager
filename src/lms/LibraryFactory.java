@@ -384,7 +384,7 @@ public class LibraryFactory {
 		
 	}
 	
-	public void borrow_item(Member member, LibraryItem item, Library library){
+	public void borrow_item(Member member, LibraryItem item, Library library) throws NullPointerException, IllegalStateException{
 		if (member.isUnsuspended()&&member.getCurrentItems().size()>=library.getNbi()){
 			boolean test=true;
 			for (Room room: library.getListRooms()){
@@ -433,25 +433,27 @@ public class LibraryFactory {
 				}
 			}
 			if(test){
-				System.out.println("Your item currently isn't in the library, reserve it");
+				//Your item currently isn't in the library, reserve it
+				throw new NullPointerException();
 			}
 		}
 		else{
-			System.out.println("You are currently not able to borrow any item");
+			//You are currently not able to borrow any item
+			throw new IllegalStateException();
 		}
 	}
 	
-	public void check_borrowed(Library library, Member member){
+	public String check_borrowed(Library library, Member member){
 		// the work that method needs to do is partly done by the check method which launches when the program starts running from the class Library
 		//Hence members are already penalised
 		if (member.isUnsuspended()&&member.getCurrentItems().size()>=library.getNbi()){
-			System.out.println(member.getName()+" is allowed to borrow items");
+			return (member.getName()+" is allowed to borrow items");
 		}
 		else if(member.getCurrentItems().size()>=library.getNbi()){
-			System.out.println(member.getName()+" needs to return some items before borrowing again");
+			return (member.getName()+" needs to return some items before borrowing again");
 		}
 		else{
-			System.out.println(member.getName()+" is currently suspended");
+			return (member.getName()+" is currently suspended");
 		}
 	}
 	
