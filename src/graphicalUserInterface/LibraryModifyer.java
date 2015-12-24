@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import lms.*;
 
@@ -42,6 +43,18 @@ public class LibraryModifyer extends JFrame {
 	    	@Override
 	        public void actionPerformed(ActionEvent ae) {
 				
+	    		Serialization ser = new Serialization();
+	    		try{
+	    			ser.saveLibrary(library);
+	    			JOptionPane.showMessageDialog(LibraryModifyer.this,"The Library "+library.getLibraryName()+" was successfully saved in the directory savedLibraries in the same directory as this application.");
+	    		}
+	    		catch(AlreadyExistsException e){
+	    			
+	    		}
+	    		catch(IOException i){
+	    			JOptionPane.showMessageDialog(LibraryModifyer.this,"Whoops there must have been a bug in the retrieval. Please try again.");
+	    		}
+
 	    		JOptionPane.showMessageDialog(LibraryModifyer.this,"saved!");
 	             
 	            }
