@@ -85,27 +85,25 @@ public class Launcher {
 					String nameOfMethod1 = addRoom.substring(0,addRoom.indexOf('('));
 					String listOfArguments1 = addRoom.substring(addRoom.indexOf('(')+1,addRoom.indexOf(')'));
 					String tabArguments1[] = listOfArguments1.split(",");
-					boolean nonExistingRoom=true;
-					for (Room room : library.getListRooms()){
-						if (room.getRoomName().equalsIgnoreCase(tabArguments1[0])){
-							nonExistingRoom=false;
-						}
-					}
-					if(nonExistingRoom){
-						try{
+					
+					try{
 							double double1 = Double.parseDouble(tabArguments1[1]);
 							double double2 = Double.parseDouble(tabArguments1[2]);
 							double double3 = Double.parseDouble(tabArguments1[3]);
-							libF.add_room(library,tabArguments1[0],double1,double2,double3);
-							System.out.println("The addition of the room was successful");
-						}
-						catch(Exception NumberFormatException){
-							System.out.println("You must have entered the wrong type of data or the wrong number of arguments.");
-						}
+							try{
+								libF.add_room(library,tabArguments1[0],double1,double2,double3);
+								System.out.println("The room "+tabArguments1[0]+" was successfully added to the library");
+							}
+							
+							catch(AlreadyExistsException e){
+								System.out.println("A room with that name already exists");
+							}
 					}
-					else{
-						System.out.println("A room with that name already exists");
+					catch(Exception NumberFormatException){
+						System.out.println("You must have entered the wrong type of data or the wrong number of arguments.");
 					}
+					
+					
 					
 					break;
 				case 2:

@@ -15,9 +15,23 @@ public class LibraryFactory {
 			return lib;
 	}
 	
-	public void add_room(Library lib, String roomName, double length, double height, double width){
-		Room room = new Room(roomName,length,height,width);
-		lib.getListRooms().add(room);
+	public void add_room(Library lib, String roomName, double length, double height, double width) throws AlreadyExistsException{
+		boolean existingRoom=false;
+		for (Room room : lib.getListRooms()){
+			if (room.getRoomName().equalsIgnoreCase(roomName)){
+				existingRoom=true;
+				break;
+			}
+		}
+		if(existingRoom){
+			throw new AlreadyExistsException();
+		}
+		
+		else{
+			Room room = new Room(roomName,length,height,width);
+			lib.getListRooms().add(room);
+		}
+		
 	}
 	
 	public void add_bookcase(Library library, Room room,Integer numShelves,String bcName,double length,double height,double width){

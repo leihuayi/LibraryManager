@@ -75,10 +75,10 @@ public class LibraryModifyer extends JFrame {
 		tabbedPane.addTab("Add panel", panelAdd);
 		this.setContentPane(tabbedPane);
 		panelAdd.add(new JLabel("Chose which kind of element you want to add to your library"));
-		final String addRoom = "add room <library name> : to add a room to a library with given name";
-		final String addBc = "add bookcase <num shelves, room name> : to add a bookcase with num shelves to a given room of the library";
-		final String addItem = "add item <list of parameters>: to add a library item with given parameters to the temporary storage box of library";
-		final String addMember = "add member <member name, ccard num, email, membership type> : to add a new member to the library";
+		final String addRoom = "add room : to add a room to the library";
+		final String addBc = "add bookcase : to add a bookcase with num shelves to a given room of the library";
+		final String addItem = "add item : to add a library item with given parameters to the temporary storage box of library";
+		final String addMember = "add member : to add a new member to the library";
 		final String[] addChoice = {addRoom,addBc,addItem,addMember};
 		JComboBox<String> comboBox = new JComboBox<String>(addChoice);
 		panelAdd.add(comboBox);
@@ -89,14 +89,100 @@ public class LibraryModifyer extends JFrame {
 	  	  
 	    	@Override
 	        public void actionPerformed(ActionEvent ae) {
+	    		
 	    		String selectedAdd = (String) comboBox.getSelectedItem();
 	    		
 	    		switch(selectedAdd){
+	    		
+	    		//addRoom
 	    		case addRoom :
-	    			JFrame frame = new JFrame();
-	    			String input = JOptionPane.showInputDialog(frame,"what ?","Parameters of add room",
-	    					JOptionPane.QUESTION_MESSAGE);
+	    			boolean validAnswer = true;
+	    			JPanel myPanel = new JPanel();
+	    			JTextField roomName = new JTextField(20);
+	    		    JTextField length = new JTextField(5);
+	    		    JTextField height = new JTextField(5);
+	    		    JTextField width = new JTextField(5);
+	    			myPanel.add(new JLabel("Name of the room:"));
+	    		    myPanel.add(roomName);
+	    		    myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+	    		    myPanel.add(new JLabel("Length of the room (in cm):"));
+	    		    myPanel.add(length);
+	    		    myPanel.add(new JLabel("Height of the room (in cm):"));
+	    		    myPanel.add(height);
+	    		    myPanel.add(new JLabel("Width of the room (in cm):"));
+	    		    myPanel.add(width);
+	    		    
+    	    		double l2 = 0.0;
+    	    		double h2 = 0.0;
+    	    		double w2 = 0.0;
+
+	    		    int result = JOptionPane.showConfirmDialog(null, myPanel, 
+	    		               "Please enter the parameters of the room", JOptionPane.OK_CANCEL_OPTION);
+	    		    if (result == JOptionPane.OK_OPTION) {
+	    		    		    		    	
+	    		    	//length
+	    	    		String l1 = length.getText();
+
+	    	    		try{
+	    	    			l2 = Double.parseDouble(l1);
+	    	    			if(l2 < 0){
+	    	    				JOptionPane.showMessageDialog(LibraryModifyer.this, "The  value of length must be positive");
+	    	    				validAnswer=false;
+	    	    			}
+	    	    		}
+	    				catch(Exception NumberFormatException){
+	    					JOptionPane.showMessageDialog(LibraryModifyer.this, "You did not enter a number in the field : length");
+	    					validAnswer=false;
+	    				}
+	    	    		
+	    	    		//height
+	    	    		String h1 = height.getText();
+
+	    	    		try{
+	    	    			h2 = Double.parseDouble(h1);
+	    	    			if(h2 < 0){
+	    	    				JOptionPane.showMessageDialog(LibraryModifyer.this, "The  value of height must be positive");
+	    	    				validAnswer=false;
+	    	    			}
+	    	    			else{validAnswer=true;};
+	    	    		}
+	    				catch(Exception NumberFormatException){
+	    					JOptionPane.showMessageDialog(LibraryModifyer.this, "You did not enter a number in the field : height");
+	    					validAnswer=false;
+	    				}
+	    	    		
+	    	    		//width
+	    	    		String w1 = width.getText();
+
+	    	    		try{
+	    	    			w2 = Double.parseDouble(w1);
+	    	    			if(w2 < 0){
+	    	    				JOptionPane.showMessageDialog(LibraryModifyer.this, "The  value of width must be positive");
+	    	    				validAnswer=false;
+	    	    			}
+	    	    		}
+	    				catch(Exception NumberFormatException){
+	    					JOptionPane.showMessageDialog(LibraryModifyer.this, "You did not enter a number in the field : width");
+	    					validAnswer=false;
+	    				}
+	    		    }
+	    		    
+	    		    if(validAnswer){
+		    			LibraryFactory libF = new LibraryFactory();
+		    			try{
+		    				libF.add_room(library, roomName.getText(),l2, h2, w2);
+		    				JOptionPane.showMessageDialog(LibraryModifyer.this, "The room "+roomName+" was successful added to the Library");
+			    			new LibraryModifyer(library);
+			    			dispose();
+		    			}
+		    			catch(AlreadyExistsException e){
+		    				JOptionPane.showMessageDialog(LibraryModifyer.this, "A room of the name "+roomName+" already exists in this library.");
+		    			}
+		    		}
+	    		    
 	    			break;
+	    			//end addRoom
+	    			
 	    			
 	    		case addBc :
 	    			
