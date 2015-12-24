@@ -199,7 +199,7 @@ public class Launcher {
 					System.out.println(libF.list_items(library));
 					break;
 				case 7:
-					System.out.println("The syntax is list_room(room)");
+					System.out.println("The syntax is list_room(roomName)");
 					Scanner sc7 = new Scanner(System.in);
 					String listRoom = sc7.nextLine();
 					
@@ -209,13 +209,34 @@ public class Launcher {
 					System.out.println(libF.list_room(library,tabArguments7[0]));			
 					break;
 				case 8:
+					System.out.println("The syntax is list_bookcase(roomName,bookcaseName)\nNote:roomName is the name of the room where the bookcase is located");
+					Scanner sc8 = new Scanner(System.in);
+					String listBookcase = sc8.nextLine();
 					
+					String nameOfMethod8 = listBookcase.substring(0,listBookcase.indexOf('('));
+					String listOfArguments8 = listBookcase.substring(listBookcase.indexOf('(')+1,listBookcase.indexOf(')'));
+					String tabArguments8[] = listOfArguments8.split(",");
+					System.out.println(libF.list_bookcase(library, tabArguments8[0], tabArguments8[1]));
 					break;
 				case 9:
+					System.out.println("The syntax is find_items(authorName)");
+					Scanner sc9 = new Scanner(System.in);
+					String findItems = sc9.nextLine();
 					
+					String nameOfMethod9 = findItems.substring(0,findItems.indexOf('('));
+					String listOfArguments9 = findItems.substring(findItems.indexOf('(')+1,findItems.indexOf(')'));
+					String tabArguments9[] = listOfArguments9.split(",");
+					System.out.println(libF.find_items(library,tabArguments9[0]));	
 					break;
 				case 10:
+					System.out.println("The syntax is search_title(titleOfItem)");
+					Scanner sc10 = new Scanner(System.in);
+					String searchTitle = sc10.nextLine();
 					
+					String nameOfMethod10 = searchTitle.substring(0,searchTitle.indexOf('('));
+					String listOfArguments10 = searchTitle.substring(searchTitle.indexOf('(')+1,searchTitle.indexOf(')'));
+					String tabArguments10[] = listOfArguments10.split(",");
+					System.out.println(libF.search_title(library,tabArguments10[0]));	
 					break;
 				case 11:
 					
