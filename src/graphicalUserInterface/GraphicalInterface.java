@@ -2,9 +2,10 @@ package graphicalUserInterface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.*;
 import javax.swing.*;
-
+import lms.*;
 
 
 
@@ -57,8 +58,39 @@ public class GraphicalInterface extends JFrame{
 	                 
 	                if (radioButtonFetch.isSelected()){
 	                	
-	                    
+	                	//open a file chooser window
+	                	JFrame dialogFrame = new JFrame();
+	                	JFileChooser fileChooser = new JFileChooser();
+	                	int returnVal = fileChooser.showOpenDialog(dialogFrame);
+	                	
+	                	if (returnVal == JFileChooser.APPROVE_OPTION) {
+	                		//we get the name of the file in order to use fetchLibrary from Serialization class
+	                        String libraryName = fileChooser.getSelectedFile().getName();
+	                        libraryName = libraryName.substring(0,libraryName.lastIndexOf("."));
+	                        
+	                        Serialization ser = new Serialization();
+	                        //fetching of the serialized library
+	                        try{
+	                        	Library library = ser.fetchLibrary(libraryName);
+		                        JOptionPane.showMessageDialog(GraphicalInterface.this,"The fetching of library "+libraryName+" was a success.");
+		                        new LibraryModifyer(library);
+	                        }
+	                        catch(AlreadyExistsException e){
+	                        	JOptionPane.showMessageDialog(GraphicalInterface.this,"Whoops there must have been a bug in the retrieval.Please try again.");
+	                        }
+	                        
+	    	    			
+	                    } else {
+	                    	JOptionPane.showMessageDialog(GraphicalInterface.this,"Open command cancelled by user.");
+	                    }
+	                	
+	                	
+	            		pack();
+	            		setVisible(true);
 	                }
+	                
+	                
+	                
 	                if (radioButtonNew.isSelected()){
 	                	new LibraryCreationInterface();
 	                }

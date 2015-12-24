@@ -58,8 +58,7 @@ public class Serialization {
 		}
 		catch(IOException i)
 		{
-			i.printStackTrace();
-			return null;
+			throw new AlreadyExistsException();
 		}
 		catch(ClassNotFoundException c)
 		{
