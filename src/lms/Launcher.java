@@ -231,7 +231,14 @@ public class Launcher {
 					System.out.println(libF.find_items(library,tabArguments9[0]));	
 					break;
 				case 10:
+					System.out.println("The syntax is search_title(titleOfItem)");
+					Scanner sc10 = new Scanner(System.in);
+					String searchTitle = sc10.nextLine();
 					
+					String nameOfMethod10 = searchTitle.substring(0,searchTitle.indexOf('('));
+					String listOfArguments10 = searchTitle.substring(searchTitle.indexOf('(')+1,searchTitle.indexOf(')'));
+					String tabArguments10[] = listOfArguments10.split(",");
+					System.out.println(libF.find_items(library,tabArguments10[0]));	
 					break;
 				case 11:
 					

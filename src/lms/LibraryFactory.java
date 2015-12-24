@@ -333,6 +333,11 @@ public class LibraryFactory {
 				}
 			}
 		}
+		for (LibraryItem item : lib.getStorageRoom()){
+			if(item.getTitle().equalsIgnoreCase(title)){
+				listItems += item.toString()+"\n";
+			}
+		}
 		if(listItems.equals("")){
 			listItems += "No item with the title "+title+" was found";
 		}		
