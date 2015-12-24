@@ -22,6 +22,10 @@ public class Launcher {
 		System.out.println("Welcome to the Library Management System (LMS), you will have to enter the corresponding number and then press Enter");
 		System.out.println("Type (1) if you want to use the already saved library or (2) if you want to create a new one\n(If you create a new library, you automatically erase the older one)");
 		int libraryChoice = sc.nextInt();
+		while (!(libraryChoice==1||libraryChoice==2)){
+			System.out.println("That is not a possible choice, retry");
+			libraryChoice = sc.nextInt();
+		}
 		if (libraryChoice==1){
 			Serialization ser = new Serialization();
 			Library library=ser.fetchLibrary();
