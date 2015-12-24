@@ -87,7 +87,7 @@ public class Launcher {
 					String tabArguments1[] = listOfArguments1.split(",");
 					boolean nonExistingRoom=true;
 					for (Room room : library.getListRooms()){
-						if (room.getRoomName()==tabArguments1[0]){
+						if (room.getRoomName().equalsIgnoreCase(tabArguments1[0])){
 							nonExistingRoom=false;
 						}
 					}
@@ -122,7 +122,7 @@ public class Launcher {
 						double double3 = Double.parseDouble(tabArguments2[5]);
 						boolean existingRoom=false;
 						for (Room room : library.getListRooms()){
-							if (room.getRoomName()==tabArguments2[0]){
+							if (room.getRoomName().equalsIgnoreCase(tabArguments2[0])){
 								libF.add_bookcase(library,room,int1,tabArguments2[2],double1,double2,double3);
 								existingRoom=true;
 								break;
@@ -201,7 +201,7 @@ public class Launcher {
 					System.out.println(libF.list_items(library));
 					break;
 				case 7:
-					System.out.println("The syntax is list_room(room");
+					System.out.println("The syntax is list_room(room)");
 					Scanner sc7 = new Scanner(System.in);
 					String listRoom = sc7.nextLine();
 					
