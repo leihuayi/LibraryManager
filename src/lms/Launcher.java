@@ -19,6 +19,7 @@ public class Launcher {
 		boolean correctAnswer = false;
 
 		LibraryFactory libF = new LibraryFactory();
+		Library library= new Library("empty_library",0,0,0,0);
 		System.out.println("Welcome to the Library Management System (LMS), you will have to enter the corresponding number and then press Enter");
 		System.out.println("Type (1) if you want to use the already saved library or (2) if you want to create a new one");
 		while(!correctAnswer){
@@ -36,7 +37,7 @@ public class Launcher {
 					String libraryName = sc2.nextLine();
 					Serialization ser = new Serialization();
 					try{
-						Library library=ser.fetchLibrary(libraryName);
+						library=ser.fetchLibrary(libraryName);
 						correctAnswer = true;
 					}
 					catch(AlreadyExistsException e){
@@ -56,9 +57,9 @@ public class Launcher {
 						int int2 = Integer.parseInt(tabArguments[2]);
 						int int3 = Integer.parseInt(tabArguments[3]);
 						int int4 = Integer.parseInt(tabArguments[4]);
-						libF.create_library(tabArguments[0],int1,int2,int3,int4);
+						library =libF.create_library(tabArguments[0],int1,int2,int3,int4);
 						correctAnswer = true;
-						System.out.println("the creation of the library was successful");
+						System.out.println("The creation of the library was successful");
 					}
 					catch(Exception NumberFormatException){
 						System.out.println("You must have entered the wrong type of data or the wrong number of arguments.");
@@ -70,8 +71,114 @@ public class Launcher {
 			}
 			
 		}
-		
-		
+		boolean goON=true;
+		while(goON=true){
+			System.out.println("Now you can choose the method you want to use by entering a number and pressing the Enter key.\n(1) add_room\n(2) add_bookcase\n(3) add_item\n(4) store_items\n(5) unstore_items\n(6) list_items\n(7) list_room\n(8) list_bookcase\n(9) find_items\n(10) search_title\n(11) add_member\n(12) borrow_item\n(13) check_borrowed\n(14) Quit the program ");
+			try {
+				Scanner sc = new Scanner(System.in);
+				int libraryChoice = sc.nextInt();
+				switch (libraryChoice) {
+				case 1:
+					System.out.println("The syntax is add_room(roomName,length,height,width) (you can't have two rooms with the same name)");
+					Scanner sc2 = new Scanner(System.in);
+					String addRoom = sc2.nextLine();					
+					String nameOfMethod2 = addRoom.substring(0,addRoom.indexOf('('));
+					String listOfArguments2 = addRoom.substring(addRoom.indexOf('(')+1,addRoom.indexOf(')'));
+					String tabArguments2[] = listOfArguments2.split(",");
+					boolean nonExistingRoom=true;
+					for (Room room : library.getListRooms()){
+						if (room.getRoomName()==tabArguments2[0]){
+							nonExistingRoom=false;
+						}
+					}
+					if(nonExistingRoom){
+						try{
+							int int1 = Integer.parseInt(tabArguments2[1]);
+							int int2 = Integer.parseInt(tabArguments2[2]);
+							int int3 = Integer.parseInt(tabArguments2[3]);
+							libF.add_room(library,tabArguments2[0],int1,int2,int3);
+							System.out.println("The addition of the room was successful");
+						}
+						catch(Exception NumberFormatException){
+							System.out.println("You must have entered the wrong type of data or the wrong number of arguments.");
+						}
+					}
+					else{
+						System.out.println("A room with that name already exists");
+					}
+					
+					break;
+				case 2:
+					System.out.println("The syntax is add_room(roomNameWhereAdded,numberOfShelves,bookcaseName,length,height,width)");
+					Scanner sc3 = new Scanner(System.in);
+					String addBookcase = sc3.nextLine();					
+					String nameOfMethod3 = addBookcase.substring(0,addBookcase.indexOf('('));
+					String listOfArguments3 = addBookcase.substring(addBookcase.indexOf('(')+1,addBookcase.indexOf(')'));
+					String tabArguments3[] = listOfArguments3.split(",");
+					try{
+						int int1 = Integer.parseInt(tabArguments3[1]);
+						int int2 = Integer.parseInt(tabArguments3[3]);
+						int int3 = Integer.parseInt(tabArguments3[4]);
+						int int4 = Integer.parseInt(tabArguments3[5]);
+						boolean existingRoom=false;
+						for (Room room : library.getListRooms()){
+							if (room.getRoomName()==tabArguments3[0]){
+								libF.add_bookcase(library,room,int1,tabArguments3[2],int2,int3,int4);
+								existingRoom=true;
+								break;
+							}
+						}
+						if(existingRoom){
+							System.out.println("The addition of the Bookcase was successful");
+						}
+						else{
+							System.out.println("There is no such room");
+						}
+					}
+					catch(Exception NumberFormatException){
+						System.out.println("You must have entered the wrong type of data or the wrong number of arguments.");
+					}
+					break;
+				case 3:
+					
+					break;
+				case 4:
+					
+					break;
+				case 5:
+					
+					break;
+				case 6:
+					
+					break;
+				case 7:
+					
+					break;
+				case 8:
+					
+					break;
+				case 9:
+					
+					break;
+				case 10:
+					
+					break;
+				case 11:
+					
+					break;
+				case 12:
+					
+					break;
+					
+
+				default:
+					System.out.println("This is not a number between (1) and (12)");
+					break;
+				}
+			} catch(Exception InputMismatchException){
+				System.out.println("That is not a possible choice, please try again");
+			}
+		}
 		
 		
 		/*
