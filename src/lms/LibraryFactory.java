@@ -161,6 +161,9 @@ public class LibraryFactory {
 				}
 			}
 		}
+		for (LibraryItem item : lib.getStorageRoom()){
+			listItems=listItems+"\n"+item.toString();
+		}
 		return listItems;
 	}
 	
@@ -204,6 +207,9 @@ public class LibraryFactory {
 				}
 				//we get out of the loop if we have found the room
 				break;
+			}
+			if (notRoom){
+				return "There is no such room";
 			}
 
 		}
