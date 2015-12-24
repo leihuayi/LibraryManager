@@ -305,6 +305,11 @@ public class LibraryFactory {
 				}
 			}
 		}
+		for (LibraryItem item : lib.getStorageRoom()){
+			if(item.getAuthor().equalsIgnoreCase(author)){
+				listItems += item.toString()+"\n";
+			}
+		}
 		if(listItems.equals("")){
 			listItems += "No item with publisher name "+author+" was found";
 		}		
