@@ -174,13 +174,21 @@ public class Launcher {
 					if (tabArguments4[0].equalsIgnoreCase("ANYFIT")||tabArguments4[0].equalsIgnoreCase("BESTSHELF")||tabArguments4[0].equalsIgnoreCase("BESTROOM")||tabArguments4[0].equalsIgnoreCase("BESTBOOKCASE")){
 						libF.store_items(library,tabArguments4[0]);
 						System.out.println("The storage was successful");
-											}
+						}
 					else{
 						System.out.println("This algorithm doesn't exist");
 					}
 					break;
 				case 5:
+					System.out.println("The syntax is unstore_items()");
+					Scanner sc5 = new Scanner(System.in);
+					String unstoreItems = sc5.nextLine();
 					
+					String nameOfMethod5 = unstoreItems.substring(0,unstoreItems.indexOf('('));
+					String listOfArguments5 = unstoreItems.substring(unstoreItems.indexOf('(')+1,unstoreItems.indexOf(')'));
+					String tabArguments5[] = listOfArguments5.split(",");
+					libF.unstore_items(library);
+					System.out.println("Unstorage was successful");
 					break;
 				case 6:
 					
