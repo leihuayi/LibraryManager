@@ -221,7 +221,14 @@ public class Launcher {
 					System.out.println(libF.list_bookcase(library, tabArguments8[0], tabArguments8[1]));
 					break;
 				case 9:
+					System.out.println("The syntax is find_items(authorName)");
+					Scanner sc9 = new Scanner(System.in);
+					String findItems = sc9.nextLine();
 					
+					String nameOfMethod9 = findItems.substring(0,findItems.indexOf('('));
+					String listOfArguments9 = findItems.substring(findItems.indexOf('(')+1,findItems.indexOf(')'));
+					String tabArguments9[] = listOfArguments9.split(",");
+					System.out.println(libF.find_items(library,tabArguments9[0]));	
 					break;
 				case 10:
 					
