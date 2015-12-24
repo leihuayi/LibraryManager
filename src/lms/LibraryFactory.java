@@ -161,6 +161,9 @@ public class LibraryFactory {
 				}
 			}
 		}
+		for (LibraryItem item : lib.getStorageRoom()){
+			listItems=listItems+"\n"+item.toString();
+		}
 		return listItems;
 	}
 	
