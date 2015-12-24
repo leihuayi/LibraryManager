@@ -191,7 +191,14 @@ public class Launcher {
 					System.out.println("Unstorage was successful");
 					break;
 				case 6:
+					System.out.println("The syntax is list_items()");
+					Scanner sc6 = new Scanner(System.in);
+					String listItems = sc6.nextLine();
 					
+					String nameOfMethod6 = listItems.substring(0,listItems.indexOf('('));
+					String listOfArguments6 = listItems.substring(listItems.indexOf('(')+1,listItems.indexOf(')'));
+					String tabArguments6[] = listOfArguments6.split(",");					
+					System.out.println(libF.list_items(library));
 					break;
 				case 7:
 					
