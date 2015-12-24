@@ -17,9 +17,39 @@ public class LibraryModifyer extends JFrame {
 		//Tab : General Information
 		JPanel panelGeneral = new JPanel();
 		tabbedPane.addTab("General information", panelGeneral);
-		panelGeneral.setLayout(new BoxLayout(panelGeneral,BoxLayout.PAGE_AXIS));
-		panelGeneral.add(new JLabel("Welcome to the panel which enabled you to make actions on your Library !"));
-		panelGeneral.add(new JLabel("You have 3 different tabs where you can execute different kinds of actions:"));
+		panelGeneral.setLayout(new GridLayout(2,1));
+		
+		JPanel panelGeneral1 = new JPanel();
+		panelGeneral.add(panelGeneral1);
+		panelGeneral1.setLayout(new BoxLayout(panelGeneral1,BoxLayout.PAGE_AXIS));
+		panelGeneral1.add(new JLabel("Welcome to the panel which enabled you to make actions on your Library !"));
+		panelGeneral1.add(new JLabel("You have 3 different tabs where you can execute different kinds of actions:"));
+		panelGeneral1.add(new JLabel("	* Add panel: to add any component to your Library (member, item, bookcase...)"));
+		panelGeneral1.add(new JLabel("	* List panel: to obtain the list of components of your library respecting a criteria (for instance list of rooms named 'Paolini')"));
+		panelGeneral1.add(new JLabel("	* Move items: to move items inside the library (store/unstore from the storage box) or outside (borrow/return a book)"));
+
+		
+		JPanel panelGeneral2 = new JPanel();
+		panelGeneral2.setBorder(BorderFactory.createEmptyBorder(40, 0, 0, 0)); ;
+		panelGeneral.add(panelGeneral2);
+		panelGeneral2.setLayout(new BoxLayout(panelGeneral2,BoxLayout.PAGE_AXIS));
+		panelGeneral2.add(new JLabel("You can also save your library in order to work on it later:"));
+		JButton buttonSave = new JButton("Save");
+	    buttonSave.addActionListener(new ActionListener(){
+	    	
+
+	  	  
+	    	@Override
+	        public void actionPerformed(ActionEvent ae) {
+				
+	    		JOptionPane.showMessageDialog(LibraryModifyer.this,"saved!");
+	             
+	            }
+	        });
+	    
+	    panelGeneral2.add(buttonSave);
+		
+		
 		this.setContentPane(tabbedPane);
 		
 		
