@@ -5,7 +5,7 @@ public class Serialization {
 	
 	public Serialization() {};
 	
-	public void saveLibrary(Library library) throws AlreadyExistsException{
+	public void saveLibrary(Library library) throws AlreadyExistsException, IOException{
 		
 		if (new File("savedLibraries/"+library.getLibraryName()+".ser").exists()){
 			throw new AlreadyExistsException();
@@ -40,12 +40,12 @@ public class Serialization {
 		
 		
 			catch(IOException i){
-				i.printStackTrace();
+				throw new IOException();
 			}
 		}
 	}
 	
-	public Library fetchLibrary(String name) throws AlreadyExistsException {
+	public Library fetchLibrary(String name) throws IOException {
 		Library lib = null;
 		try
 		{			
@@ -58,11 +58,11 @@ public class Serialization {
 		}
 		catch(IOException i)
 		{
-			throw new AlreadyExistsException();
+			throw new IOException();
 		}
 		catch(ClassNotFoundException c)
 		{
-			throw new AlreadyExistsException();
+			throw new IOException();
 		}
 	}
 

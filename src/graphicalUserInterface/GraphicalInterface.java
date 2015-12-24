@@ -3,6 +3,7 @@ package graphicalUserInterface;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.awt.*;
 import javax.swing.*;
 import lms.*;
@@ -60,7 +61,9 @@ public class GraphicalInterface extends JFrame{
 	                	
 	                	//open a file chooser window
 	                	JFrame dialogFrame = new JFrame();
-	                	JFileChooser fileChooser = new JFileChooser();
+	                	//the file chooser will open in the same directory as our application
+	                	String currentPath = System.getProperty("user.dir");
+	                	JFileChooser fileChooser = new JFileChooser(currentPath);
 	                	int returnVal = fileChooser.showOpenDialog(dialogFrame);
 	                	
 	                	if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -75,8 +78,8 @@ public class GraphicalInterface extends JFrame{
 		                        JOptionPane.showMessageDialog(GraphicalInterface.this,"The fetching of library "+libraryName+" was a success.");
 		                        new LibraryModifyer(library);
 	                        }
-	                        catch(AlreadyExistsException e){
-	                        	JOptionPane.showMessageDialog(GraphicalInterface.this,"Whoops there must have been a bug in the retrieval.Please try again.");
+	                        catch(IOException i){
+	                        	JOptionPane.showMessageDialog(GraphicalInterface.this,"Whoops there must have been a bug in the retrieval. Please try again.");
 	                        }
 	                        
 	    	    			

@@ -40,7 +40,7 @@ public class Launcher {
 						library=ser.fetchLibrary(libraryName);
 						correctAnswer = true;
 					}
-					catch(AlreadyExistsException e){
+					catch(IOException e){
 						System.out.println("Sorry, no library of the name "+libraryName+" exists, you must have spelled it wrong. \n Please write again either 1 or 2.");
 					}
 				}
