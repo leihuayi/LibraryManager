@@ -49,15 +49,15 @@ public class Launcher {
 					Scanner sc2 = new Scanner(System.in);
 					String libraryCreation = sc2.nextLine();
 					
-					String nameOfMethod = libraryCreation.substring(0,libraryCreation.indexOf('('));
-					String listOfArguments = libraryCreation.substring(libraryCreation.indexOf('(')+1,libraryCreation.indexOf(')'));
-					String tabArguments[] = listOfArguments.split(",");
+					String nameOfMethod0 = libraryCreation.substring(0,libraryCreation.indexOf('('));
+					String listOfArguments0 = libraryCreation.substring(libraryCreation.indexOf('(')+1,libraryCreation.indexOf(')'));
+					String tabArguments0[] = listOfArguments0.split(",");
 					try{
-						int int1 = Integer.parseInt(tabArguments[1]);
-						int int2 = Integer.parseInt(tabArguments[2]);
-						int int3 = Integer.parseInt(tabArguments[3]);
-						int int4 = Integer.parseInt(tabArguments[4]);
-						library =libF.create_library(tabArguments[0],int1,int2,int3,int4);
+						int int1 = Integer.parseInt(tabArguments0[1]);
+						int int2 = Integer.parseInt(tabArguments0[2]);
+						int int3 = Integer.parseInt(tabArguments0[3]);
+						int int4 = Integer.parseInt(tabArguments0[4]);
+						library =libF.create_library(tabArguments0[0],int1,int2,int3,int4);
 						correctAnswer = true;
 						System.out.println("The creation of the library was successful");
 					}
@@ -80,23 +80,23 @@ public class Launcher {
 				switch (libraryChoice) {
 				case 1:
 					System.out.println("The syntax is add_room(roomName,length,height,width) (you can't have two rooms with the same name)");
-					Scanner sc2 = new Scanner(System.in);
-					String addRoom = sc2.nextLine();					
-					String nameOfMethod2 = addRoom.substring(0,addRoom.indexOf('('));
-					String listOfArguments2 = addRoom.substring(addRoom.indexOf('(')+1,addRoom.indexOf(')'));
-					String tabArguments2[] = listOfArguments2.split(",");
+					Scanner sc1 = new Scanner(System.in);
+					String addRoom = sc1.nextLine();					
+					String nameOfMethod1 = addRoom.substring(0,addRoom.indexOf('('));
+					String listOfArguments1 = addRoom.substring(addRoom.indexOf('(')+1,addRoom.indexOf(')'));
+					String tabArguments1[] = listOfArguments1.split(",");
 					boolean nonExistingRoom=true;
 					for (Room room : library.getListRooms()){
-						if (room.getRoomName()==tabArguments2[0]){
+						if (room.getRoomName()==tabArguments1[0]){
 							nonExistingRoom=false;
 						}
 					}
 					if(nonExistingRoom){
 						try{
-							int int1 = Integer.parseInt(tabArguments2[1]);
-							int int2 = Integer.parseInt(tabArguments2[2]);
-							int int3 = Integer.parseInt(tabArguments2[3]);
-							libF.add_room(library,tabArguments2[0],int1,int2,int3);
+							double double1 = Double.parseDouble(tabArguments1[1]);
+							double double2 = Double.parseDouble(tabArguments1[2]);
+							double double3 = Double.parseDouble(tabArguments1[3]);
+							libF.add_room(library,tabArguments1[0],double1,double2,double3);
 							System.out.println("The addition of the room was successful");
 						}
 						catch(Exception NumberFormatException){
@@ -110,20 +110,20 @@ public class Launcher {
 					break;
 				case 2:
 					System.out.println("The syntax is add_room(roomNameWhereAdded,numberOfShelves,bookcaseName,length,height,width)");
-					Scanner sc3 = new Scanner(System.in);
-					String addBookcase = sc3.nextLine();					
-					String nameOfMethod3 = addBookcase.substring(0,addBookcase.indexOf('('));
-					String listOfArguments3 = addBookcase.substring(addBookcase.indexOf('(')+1,addBookcase.indexOf(')'));
-					String tabArguments3[] = listOfArguments3.split(",");
+					Scanner sc2 = new Scanner(System.in);
+					String addBookcase = sc2.nextLine();					
+					String nameOfMethod2 = addBookcase.substring(0,addBookcase.indexOf('('));
+					String listOfArguments2 = addBookcase.substring(addBookcase.indexOf('(')+1,addBookcase.indexOf(')'));
+					String tabArguments2[] = listOfArguments2.split(",");
 					try{
-						int int1 = Integer.parseInt(tabArguments3[1]);
-						int int2 = Integer.parseInt(tabArguments3[3]);
-						int int3 = Integer.parseInt(tabArguments3[4]);
-						int int4 = Integer.parseInt(tabArguments3[5]);
+						int int1 = Integer.parseInt(tabArguments2[1]);
+						double double1 = Double.parseDouble(tabArguments2[3]);
+						double double2 = Double.parseDouble(tabArguments2[4]);
+						double double3 = Double.parseDouble(tabArguments2[5]);
 						boolean existingRoom=false;
 						for (Room room : library.getListRooms()){
-							if (room.getRoomName()==tabArguments3[0]){
-								libF.add_bookcase(library,room,int1,tabArguments3[2],int2,int3,int4);
+							if (room.getRoomName()==tabArguments2[0]){
+								libF.add_bookcase(library,room,int1,tabArguments2[2],double1,double2,double3);
 								existingRoom=true;
 								break;
 							}
@@ -140,6 +140,27 @@ public class Launcher {
 					}
 					break;
 				case 3:
+					System.out.println("The syntax is add_item(author,title,itemType,volumeNumber,consultationType,publisher,publishingYear,length,height,width)\nitemType: Book, CD or DVD\nconsultationType: borrowing or onlineConsultation");
+					Scanner sc3 = new Scanner(System.in);
+					String addItem = sc3.nextLine();
+					
+					String nameOfMethod3 = addItem.substring(0,addItem.indexOf('('));
+					String listOfArguments3 = addItem.substring(addItem.indexOf('(')+1,addItem.indexOf(')'));
+					String tabArguments3[] = listOfArguments3.split(",");
+					if (tabArguments3[2].equalsIgnoreCase("BOOK")||tabArguments3[2].equalsIgnoreCase("CD")||tabArguments3[2].equalsIgnoreCase("DVD")||tabArguments3[4].equalsIgnoreCase("BORROWING")||tabArguments3[4].equalsIgnoreCase("ONLINECONSULTATION")){
+						try{
+							int int1 = Integer.parseInt(tabArguments3[3]);
+							int int2 = Integer.parseInt(tabArguments3[6]);
+							double double1 = Double.parseDouble(tabArguments3[7]);
+							double double2 = Double.parseDouble(tabArguments3[8]);
+							double double3 = Double.parseDouble(tabArguments3[9]);
+							libF.add_item(tabArguments3[0],tabArguments3[1],tabArguments3[2],int1,tabArguments3[4],tabArguments3[5],library,int2,double1,double2,double3);
+							System.out.println("The addition of the item was successful");
+						}
+						catch(Exception NumberFormatException){
+							System.out.println("You must have entered the wrong type of data or the wrong number of arguments.");
+						}
+					}
 					
 					break;
 				case 4:
