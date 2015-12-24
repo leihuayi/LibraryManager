@@ -61,7 +61,9 @@ public class GraphicalInterface extends JFrame{
 	                	
 	                	//open a file chooser window
 	                	JFrame dialogFrame = new JFrame();
-	                	JFileChooser fileChooser = new JFileChooser();
+	                	//the file chooser will open in the same directory as our application
+	                	String currentPath = System.getProperty("user.dir");
+	                	JFileChooser fileChooser = new JFileChooser(currentPath);
 	                	int returnVal = fileChooser.showOpenDialog(dialogFrame);
 	                	
 	                	if (returnVal == JFileChooser.APPROVE_OPTION) {
