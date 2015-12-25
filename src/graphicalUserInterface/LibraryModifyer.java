@@ -24,7 +24,7 @@ public class LibraryModifyer extends JFrame {
 		JPanel panelGeneral1 = new JPanel();
 		panelGeneral.add(panelGeneral1);
 		panelGeneral1.setLayout(new BoxLayout(panelGeneral1,BoxLayout.PAGE_AXIS));
-		panelGeneral1.add(new JLabel("Welcome to the panel which enabled you to make actions on your Library !"));
+		panelGeneral1.add(new JLabel("Welcome to the panel which enables you to make actions on your Library "+library.getLibraryName()+"!"));
 		panelGeneral1.add(new JLabel("You have 3 different tabs where you can execute different kinds of actions:"));
 		panelGeneral1.add(new JLabel("	* Add panel: to add any component to your Library (member, item, bookcase...)"));
 		panelGeneral1.add(new JLabel("	* List panel: to obtain the list of components of your library respecting a criteria (for instance list of rooms named 'Paolini')"));
@@ -61,6 +61,7 @@ public class LibraryModifyer extends JFrame {
 	    		    if(libName.getText().equals("")){
 		    		    	try{
 		    		    		ser.saveLibrary(library, true);
+		    		    		JOptionPane.showMessageDialog(LibraryModifyer.this,"Your library "+library.getLibraryName()+" was successfully saved over the older one.");
 		    		    	}
 		    		    	catch(AlreadyExistsException i){
 		    		    	}
@@ -534,6 +535,7 @@ public class LibraryModifyer extends JFrame {
 	    		    JTextField surnameMember = new JTextField(20);
 	    		    JTextField ccNumber = new JTextField(16);
 	    		    JTextField birthdate = new JTextField(10);
+	    		    JTextField email = new JTextField(10);
 	    			myPanelMember.add(new JLabel("Name:"));
 	    		    myPanelMember.add(nameMember);
 	    		    myPanelMember.add(new JLabel("Surname:"));
@@ -542,6 +544,17 @@ public class LibraryModifyer extends JFrame {
 	    		    myPanelMember.add(ccNumber);
 	    		    myPanelMember.add(new JLabel("Birthdate (dd/mm/yyyy):"));
 	    		    myPanelMember.add(birthdate);
+	    		    
+	    		    myPanelMember.add(new JLabel("Membership type:"));
+	    			final String[] memberChoice = {"Standard","Golden"};
+	    			JComboBox<String> comboBoxmember = new JComboBox<String>(memberChoice);
+	    			comboBoxmember.setMaximumSize(new Dimension(1000, 30));
+	    			myPanelMember.add(comboBoxmember);
+	    			myPanelMember.add(new JLabel("E-mail:"));
+	    		    myPanelMember.add(email);
+	    		    
+	    		    //MemberShip Type
+    		    	String membership = (String) comboBoxmember.getSelectedItem();
 	    		    
 
 	    		    int resultMember = JOptionPane.showConfirmDialog(null, myPanelMember, 
@@ -558,7 +571,7 @@ public class LibraryModifyer extends JFrame {
 	    	    		}
 	    	    		
 	    	    		//Other text fields
-	    	    		if(surnameMember.getText().equals("")||birthdate.getText().equals("")||ccNumber.getText().equals("")){
+	    	    		if(surnameMember.getText().equals("")||birthdate.getText().equals("")||ccNumber.getText().equals("")||email.getText().equals("")){
 	    		    		JOptionPane.showMessageDialog(LibraryModifyer.this, "You have to fill all the fields.");
 	    		    		validAnswerMember = false;
 	    		    	}
@@ -570,8 +583,9 @@ public class LibraryModifyer extends JFrame {
 	    		    if(validAnswerMember){
 	    		    	
 	    		    	LibraryFactory libF = new LibraryFactory();
+	    		    	
 	    		    	try{			    			
-			    			libF.add_member(library, nameMember.getText(), surnameMember.getText(), ccNumber.getText(), birthdate.getText());
+			    			libF.add_member(library, nameMember.getText(), surnameMember.getText(), ccNumber.getText(), birthdate.getText(), membership, email.getText());
 				   			JOptionPane.showMessageDialog(LibraryModifyer.this, "The member "+nameMember.getText()+" was successful added to the Library");
 					
 	    		    	}	
@@ -696,7 +710,7 @@ public class LibraryModifyer extends JFrame {
 		tabbedPane.addTab("Move items", panelMove);
 		panelMove.setLayout(new BoxLayout(panelMove,BoxLayout.PAGE_AXIS));
 		this.setContentPane(tabbedPane);
-		panelMove.add(new JLabel("What elements do yo want to list in your library?"));
+		panelMove.add(new JLabel("Move items inside and ouside your Library"));
 		panelMove.add(Box.createVerticalStrut(50)); //Space for a more pretty window
 		final String storeItems = "store items : to store all library items contained in the temporary storage box into the bookcases of the library using the given storing strategy.";
 		final String unstoreItems = "list room: to list all the bookcases (together with their content) in a given room.";
