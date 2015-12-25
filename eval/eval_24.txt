@@ -71,65 +71,139 @@
 
 # Addition of the items
 
->>> 3 
+>>> 3
 
 >>> add_item(Albert Camus,Book1,Book,1,borrowing,ECP,2000,1,1,1)
+#When it's a book, you have to enter the ISBN Code
 
->>> 3 
+>>> 50
 
->>> add_item(Albert Camus,Book2,Book,1,borrowing,ECP,2000,1,1,1)
+>>> 3
 
->>> 3 
+>>> add_item(Albert Camus,The stranger,Book,1,borrowing,ECP,2000,1,1,1)
+
+>>> 51
+
+>>> 3
 
 >>> add_item(Albert Camus,Book3,Book,1,borrowing,ECP,2000,1,1,1)
 
->>> 3 
+>>> 52
+
+>>> 3
 
 >>> add_item(Albert Camus,Book4,Book,1,borrowing,ECP,2000,1,1,1)
 
->>> 3 
+>>> 53
+
+>>> 3
 
 >>> add_item(Izhu,Book5,Book,1,borrowing,ECP,2000,1,1,1)
 
->>> 3 
+>>> 54
 
->>> add_item(Manu,Book6,Book,1,borrowing,ECP,2000,1,1,1)
+>>> 3
 
->>> 3 
+>>> add_item(Manu,Book6,Book,1,onlyConsultation,ECP,2000,1,1,1)
+
+>>> 55
+
+>>> 3
 
 >>> add_item(Lizzou,Book7,Book,1,borrowing,ECP,2000,1,1,1)
 
->>> 3 
+>>> 56
 
->>> add_item(Div,Book8,Book,1,borrowing,ECP,2000,1,1,1)
+>>> 3
 
->>> 3 
+>>> add_item(Div,Book8,Book,1,onlyConsultation,ECP,2000,1,1,1)
+
+>>> 57
+
+>>> 3
 
 >>> add_item(Coco,Book9,Book,1,borrowing,ECP,2000,1,1,1)
 
->>> 3 
+>>> 58
+
+>>> 3
 
 >>> add_item(Manu,Book10,Book,1,borrowing,ECP,2000,1,1,1)
 
->>> 3 
+>>> 59
 
->>> add_item(Manu,Book10,CD,1,borrowing,ECP,2000,1,1,1)
+>>> 3
 
->>> 3 
+>>> add_item(Daft Punk,Homework,CD,1,onlyConsultation,ECP,2000,1,1,1)
 
->>> add_item(Manu,Book10,CD,1,borrowing,ECP,2000,1,1,1)
+>>> 3
 
->>> 3 
+>>> add_item(Daft Punk,CD2,CD,1,borrowing,ECP,2000,1,1,1)
 
->>> add_item(Manu,Book10,CD,1,borrowing,ECP,2000,1,1,1)
+>>> 3
 
->>> 3 
+>>> add_item(Fat Rat,CD3,CD,1,borrowing,ECP,2000,1,1,1)
 
->>> add_item(Manu,Book10,CD,1,borrowing,ECP,2000,1,1,1)
+>>> 3
 
->>> 3 
+>>> add_item(Fat Rat,CD4,CD,1,borrowing,ECP,2000,1,1,1)
 
->>> add_item(Manu,Book10,CD,1,borrowing,ECP,2000,1,1,1)
+>>> 3
+
+>>> add_item(Fat Rat,CD5,CD,1,onlyConsultation,ECP,2000,1,1,1)
+
+>>> 3
+
+>>> add_item(Hugh Grant,DVD1,CD,1,borrowing,Pixar,2000,1,1,1)
+
+>>> 3
+
+>>> add_item(Geronimo,DVD2,CD,1,borrowing,Pixar,2000,1,1,1)
+
+>>> 3
+
+>>> add_item(Heya,DVD3,CD,1,borrowing,Pixar,2001,1,1,1)
+
+>>> 3
+
+>>> add_item(Batman,DVD4,CD,1,borrowing,Pixar,2010,1,1,1)
+
+>>> 3
+
+>>> add_item(Sarah Gross,DVD5,CD,1,borrowing,Pixar,2005,1,1,1)
+
+# list of items of the library
+
+>>> 6
+
+>>> list_items()
+
+# find the items
+
+>>> 9
+
+>>> find_items(Albert Camus)
+
+>>> 9
+
+>>> find_items(Daft Punk)
+
+# search an item
+
+>>> 10
+
+>>> search_title(The stranger)
+
+>>> 10
+
+>>> search_title(Homework)
+
+>>> 10
+
+>>> search_title(NonExisting)
+
+
+
 
 
 

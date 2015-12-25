@@ -376,7 +376,7 @@ public class LibraryFactory {
 		return listItems;
 	}
 	
-	public void add_member(Library lib, String name, String surname, String ccNumber, String birthDate ) throws AlreadyExistsException, IllegalArgumentException {
+	public void add_member(Library lib, String name, String surname, String ccNumber, String birthDate, String membershipType,String email ) throws AlreadyExistsException, IllegalArgumentException {
 
 		Date date = new Date();
 	    try {
@@ -398,7 +398,16 @@ public class LibraryFactory {
 	    	throw new IllegalArgumentException();
 	    }
 
-	    Member member = new Member(name, surname, date, ccNumber, lib);
+	    Member member = new Member(name, surname, date, ccNumber,email, lib);
+	    if(membershipType.equalsIgnoreCase("STANDARD")){
+	    }
+	    else if (membershipType.equalsIgnoreCase("GOLDEN")){
+	    	member.getCard().setType(CardType.golden);
+	    }
+	    else{
+	    	throw new IllegalArgumentException();
+	    }
+	    
 	    if(lib.getListMembers().contains(member)){
 	    	throw new AlreadyExistsException();
 	    }
