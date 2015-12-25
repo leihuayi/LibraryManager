@@ -160,8 +160,23 @@ public class Launcher {
 							double double2 = Double.parseDouble(tabArguments3[8]);
 							double double3 = Double.parseDouble(tabArguments3[9]);
 							try{
-								libF.add_item(tabArguments3[0],tabArguments3[1],tabArguments3[2],int1,tabArguments3[4],tabArguments3[5],library,int2,double1,double2,double3);
-								System.out.println("The addition of the item was successful");
+									libF.add_item(tabArguments3[0],tabArguments3[1],tabArguments3[2],int1,tabArguments3[4],tabArguments3[5],library,int2,double1,double2,double3);
+									if (tabArguments3[2].equalsIgnoreCase("BOOK")){
+										System.out.println("That item is a book, please enter the ISBN Code");
+										Scanner sc31 = new Scanner(System.in);
+										int ISBN = sc.nextInt();
+										for (LibraryItem item : library.getStorageRoom()){
+											if (item instanceof Book){
+												Book book =(Book)item;
+												if(book.getISBNCode()==-1){
+													book.setISBNCode(ISBN);
+												}
+											}
+										}
+										
+									System.out.println("The addition of the item was successful");
+								}
+								
 							}
 							catch(IllegalArgumentException e){
 								System.out.println("You did not enter a valid consultation type. You have to enter either borrowing or online consultation.");
@@ -333,7 +348,7 @@ public class Launcher {
 						System.out.println("That member is not in the library");
 					}
 					break;
-				case 14:
+				case 14:	
 					loop=false;
 					break;
 					
