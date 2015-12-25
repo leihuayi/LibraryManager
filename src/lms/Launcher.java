@@ -313,7 +313,25 @@ public class Launcher {
 					}
 					break;
 				case 13:
+					System.out.println("The syntax is check_borrowed(name,creditCardNumber)\ncreditCardNumber:without spaces");
+					Scanner sc13 = new Scanner(System.in);
+					String checkBorrowed = sc13.nextLine();
 					
+					String nameOfMethod13 = checkBorrowed.substring(0,checkBorrowed.indexOf('('));
+					String listOfArguments13 = checkBorrowed.substring(checkBorrowed.indexOf('(')+1,checkBorrowed.indexOf(')'));
+					String tabArguments13[] = listOfArguments13.split(",");
+					int int1=Integer.parseInt(tabArguments13[1]);
+					boolean memberNotInLibrary=true;
+					for (Member member:library.getListMembers()){
+						if(member.getName().equalsIgnoreCase(tabArguments13[0])&&int1==member.getCcNumber()){
+							System.out.println(libF.check_borrowed(library, member));
+							memberNotInLibrary=false;
+							break;
+							}						
+					}
+					if(memberNotInLibrary){
+						System.out.println("That member is not in the library");
+					}
 					break;
 				case 14:
 					loop=false;
