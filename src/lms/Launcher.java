@@ -284,6 +284,9 @@ public class Launcher {
 					catch(AlreadyExistsException e){
 						System.out.println("A member with this information already exists. Please create another one.");
 					}
+					catch(IllegalArgumentException e){
+						System.out.println("You did not enter the date in the right format.");
+					}
 					break;
 				case 12:
 					System.out.println("The syntax is borrow_item(name,creditCardNumber,itemTitle,volumeNumber,author)\ncreditCardNumber:without spaces");

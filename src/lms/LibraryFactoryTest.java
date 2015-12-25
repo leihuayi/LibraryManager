@@ -44,7 +44,7 @@ public class LibraryFactoryTest {
 		}
 		Room room=library.getListRooms().get(0);
 		try {
-			Test.add_bookcase(library, room,3, "bookcase", 5, 5,5);
+			Test.add_bookcase(library, "room",3, "bookcase", 5, 5,5);
 		} catch (NoSuchFieldException e) {
 		} catch (IndexOutOfBoundsException e) {
 		} catch (AlreadyExistsException e) {

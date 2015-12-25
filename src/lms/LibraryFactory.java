@@ -378,14 +378,15 @@ public class LibraryFactory {
 		return listItems;
 	}
 	
-	public void add_member(Library lib, String name, String surname, int ccNumber, String birthDate ) throws AlreadyExistsException {
+	public void add_member(Library lib, String name, String surname, int ccNumber, String birthDate ) throws AlreadyExistsException, IllegalArgumentException {
 
 		Date date = new Date();
 	    try {
 	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 	        date = formatter.parse(birthDate);
-	      } catch (ParseException e) {
-	        e.printStackTrace();
+	      } 
+	    catch (ParseException e) {
+	    	throw new IllegalArgumentException();
 	      }
 
 	    Member member = new Member(name, surname, date, ccNumber, lib);
