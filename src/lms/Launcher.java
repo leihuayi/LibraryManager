@@ -141,7 +141,7 @@ public class Launcher {
 					}
 					break;
 				case 3:
-					System.out.println("The syntax is add_item(author,title,itemType,volumeNumber,consultationType,publisher,publishingYear,length,height,width)\nitemType: Book, CD or DVD\nconsultationType: borrowing or onlineConsultation");
+					System.out.println("The syntax is add_item(author,title,itemType,volumeNumber,consultationType,publisher,publishingYear,length,height,width)\nitemType: Book, CD or DVD\nconsultationType: borrowing or onlyConsultation");
 					Scanner sc3 = new Scanner(System.in);
 					String addItem = sc3.nextLine();
 					

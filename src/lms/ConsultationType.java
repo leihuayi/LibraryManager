@@ -1,10 +1,10 @@
 package lms;
 
 public enum ConsultationType {
-	onlineConsultation{
+	onlyConsultation{
         @Override
         public String toString() {
-            return "online consultation";
+            return "only consultation";
         }
 	},
 	borrowing{

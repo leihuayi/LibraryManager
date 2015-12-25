@@ -1,0 +1,139 @@
+#
+# To launch the program, you have to run the main method from the class Launcher.
+# Detailed instructions are then shown at screen
+#
+
+# Creation of the Mitterand library
+
+>>> 2
+
+>>> create_library(Mitterand,20,20,20,20)
+
+>>> 1
+
+>>> add_room(room1,50,50,50)
+
+>>> 1
+
+>>> add_room(room2,50,50,50)
+
+>>> 1
+
+>>> add_room(room3,50,50,50)
+
+>>> 2
+
+>>> add_bookcase(room1,8,bookcase1,10,10,10)
+
+>>> 2
+
+>>> add_bookcase(room1,8,bookcase2,10,10,10)
+
+>>> 2
+
+>>> add_bookcase(room1,8,bookcase3,10,10,10)
+
+>>> 2
+
+>>> add_bookcase(room1,8,bookcase4,10,10,10)
+
+>>> 2
+
+>>> add_bookcase(room2,8,bookcase1,10,10,10)
+
+>>> 2
+
+>>> add_bookcase(room2,8,bookcase2,10,10,10)
+
+>>> 2
+
+>>> add_bookcase(room2,8,bookcase3,10,10,10)
+
+>>> 2
+
+>>> add_bookcase(room2,8,bookcase4,10,10,10)
+
+>>> 2
+
+>>> add_bookcase(room3,8,bookcase1,10,10,10)
+
+>>> 2
+
+>>> add_bookcase(room3,8,bookcase2,10,10,10)
+
+>>> 2
+
+>>> add_bookcase(room3,8,bookcase3,10,10,10)
+
+>>> 2
+
+>>> add_bookcase(room3,8,bookcase4,10,10,10)
+
+# Addition of the items
+
+>>> 3 
+
+>>> add_item(Albert Camus,Book1,Book,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Albert Camus,Book2,Book,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Albert Camus,Book3,Book,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Albert Camus,Book4,Book,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Izhu,Book5,Book,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Manu,Book6,Book,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Lizzou,Book7,Book,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Div,Book8,Book,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Coco,Book9,Book,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Manu,Book10,Book,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Manu,Book10,CD,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Manu,Book10,CD,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Manu,Book10,CD,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Manu,Book10,CD,1,borrowing,ECP,2000,1,1,1)
+
+>>> 3 
+
+>>> add_item(Manu,Book10,CD,1,borrowing,ECP,2000,1,1,1)
+
+
+
+
+
+
+

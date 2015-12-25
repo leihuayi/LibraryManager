@@ -87,8 +87,8 @@ public class LibraryFactory {
 	public void add_item(String author,String title,String itemType,int volumeNumber,String consultationType,String publisher,Library library,int publishingYear,double length,double width,double height) throws IllegalArgumentException{
 		
 		if (itemType.equalsIgnoreCase("BOOK")){
-			if (consultationType.equalsIgnoreCase("ONLINECONSULTATION")){
-				library.getStorageRoom().add(new Book(title,publisher,author,publishingYear,volumeNumber, ConsultationType.onlineConsultation,length,height,width,null,-1)); // -1 means it has no ISBN yet, but will be asked in the launcher
+			if (consultationType.equalsIgnoreCase("ONLY")){
+				library.getStorageRoom().add(new Book(title,publisher,author,publishingYear,volumeNumber, ConsultationType.onlyConsultation,length,height,width,null,-1)); // -1 means it has no ISBN yet, but will be asked in the launcher
 				}
 			else if(consultationType.equalsIgnoreCase("BORROWING")){
 				library.getStorageRoom().add(new Book(title,publisher,author,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null,-1));
@@ -99,7 +99,7 @@ public class LibraryFactory {
 		}
 		else if (itemType.equalsIgnoreCase("CD")){
 			if (consultationType.equalsIgnoreCase("ONLINECONSULTATION")){
-				library.getStorageRoom().add(new CD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.onlineConsultation,length,height,width,null));
+				library.getStorageRoom().add(new CD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.onlyConsultation,length,height,width,null));
 				}
 			else if(consultationType.equalsIgnoreCase("BORROWING")){
 				library.getStorageRoom().add(new CD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null));
@@ -110,7 +110,7 @@ public class LibraryFactory {
 		}
 		else if (itemType.equalsIgnoreCase("DVD")){
 			if (consultationType.equalsIgnoreCase("ONLINECONSULTATION")){
-				library.getStorageRoom().add(new DVD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.onlineConsultation,length,height,width,null));
+				library.getStorageRoom().add(new DVD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.onlyConsultation,length,height,width,null));
 				}
 			else if(consultationType.equalsIgnoreCase("BORROWING")){
 				library.getStorageRoom().add(new DVD(title,publisher,author,publishingYear,volumeNumber, ConsultationType.borrowing,length,height,width,null));
