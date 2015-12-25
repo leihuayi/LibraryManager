@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Scanner;
 
 import lms.*;
 
@@ -56,19 +55,23 @@ public class LibraryModifyer extends JFrame {
 	    			myPanel.add(new JLabel("A Library of this name already exists. You can change you library name below, enter nothing if you want to save over it"));
 	    			JTextField libName = new JTextField(20);
 	    			myPanel.add(libName);
+	    			int result = JOptionPane.showConfirmDialog(null, myPanel, 
+	    		               "Library already exists", JOptionPane.OK_CANCEL_OPTION);
+	    		    if (result == JOptionPane.OK_OPTION) {
 	    		    if(libName.getText().equals("")){
-	    		    	try{
-	    		    		ser.saveLibrary(library, true);
-	    		    	}
-	    		    	catch(AlreadyExistsException i){
-	    		    	}
-	    		    	catch(IOException i){
-	    		    		JOptionPane.showMessageDialog(LibraryModifyer.this,"Whoops there must have been a bug in the saving. Please try again.");
-	    		    	}
-	    		    }
-	    		    else{
-	    		    	library.setLibraryName(libName.getText());
-	    		    	JOptionPane.showMessageDialog(LibraryModifyer.this,"Your library name was successfully changed to "+". Try again to save.");
+		    		    	try{
+		    		    		ser.saveLibrary(library, true);
+		    		    	}
+		    		    	catch(AlreadyExistsException i){
+		    		    	}
+		    		    	catch(IOException i){
+		    		    		JOptionPane.showMessageDialog(LibraryModifyer.this,"Whoops there must have been a bug in the saving. Please try again.");
+		    		    	}
+		    		    }
+		    		    else{
+		    		    	library.setLibraryName(libName.getText());
+		    		    	JOptionPane.showMessageDialog(LibraryModifyer.this,"Your library name was successfully changed to "+". Try again to save.");
+		    		    }
 	    		    }
 	    		
 	    		}
@@ -105,7 +108,7 @@ public class LibraryModifyer extends JFrame {
 		panelAdd.add(new JLabel("Chose which kind of element you want to add to your library"));
 		panelAdd.add(Box.createVerticalStrut(50)); //Space for a more pretty window
 		final String addRoom = "add room : to add a room to the library";
-		final String addBc = "add bookcase : to add a bookcase with num shelves to a given room of the library";
+		final String addBc = "add bookcase : to add a bookcase to a given room of the library";
 		final String addItem = "add item : to add a library item with given parameters to the temporary storage box of library";
 		final String addMember = "add member : to add a new member to the library";
 		final String[] addChoice = {addRoom,addBc,addItem,addMember};
@@ -383,7 +386,7 @@ public class LibraryModifyer extends JFrame {
 	    		    myPanelItem.add(publisher);
 	    		    myPanelItem.add(new JLabel("Publishing year:"));
 	    		    myPanelItem.add(publishingYear);
-	    		    myPanelItem.add(new JLabel("Consultation type:"));
+	    		    myPanelItem.add(new JLabel("Consultation type (borrowing/online consultation):"));
 	    		    myPanelItem.add(consultationType);
 	    		    myPanelItem.add(new JLabel("Volume number (put 0 if unique volume):"));
 	    		    myPanelItem.add(volumeNumber);
@@ -573,10 +576,10 @@ public class LibraryModifyer extends JFrame {
 					
 	    		    	}	
 			    		catch(AlreadyExistsException e){
-			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "A member of these parameters already exists in this library.");
+			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "A member of these parameters already exists in this library. Please create another one.");
 			    		}
 	    		    	catch(IllegalArgumentException e){
-			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "Your date does not respect the pattern dd/mm/yyyy.");
+			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "You did not enter the date or your credit cart number in the right format. A date has the pattern dd/mm/yyyy, a credit card number has 16 numbers.");
 		    			}
 	    		    	
 		    			
@@ -600,9 +603,91 @@ public class LibraryModifyer extends JFrame {
 		
 		JPanel panelList = new JPanel();
 		tabbedPane.addTab("List panel", panelList);
-		panelList.add(new JLabel("List information"));
+		panelList.setLayout(new BoxLayout(panelList,BoxLayout.PAGE_AXIS));
 		this.setContentPane(tabbedPane);
+		panelList.add(new JLabel("What elements do yo want to list in your library?"));
+		panelList.add(Box.createVerticalStrut(50)); //Space for a more pretty window
+		final String listItems = "list items : to list all the items (books, CDs, DVDs) of the library";
+		final String listRoom = "list room: to list all the bookcases (together with their content) in a given room.";
+		final String listBc = "list bookcase : to list all the shelves (together with their content) of a given bookcase name located in a given room.";
+		final String findItems = "find items : to list all the items (books, CDs, DVDs) whose author is a given author";
+		final String searchTitle = "search title <title name> : to list all items (books, CDs, DVDs) whose title is a given title.";
+		final String[] addChoiceList = {listItems,listRoom,listBc,findItems,searchTitle};
+		JComboBox<String> comboBoxList = new JComboBox<String>(addChoiceList);
+		comboBoxList.setMaximumSize(new Dimension(1000, 30));
+		panelList.add(comboBoxList);
+		panelList.add(Box.createVerticalStrut(50));
+		JButton buttonNextList = new JButton("Next");
+	    buttonNextList.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				// TODO Auto-generated method stub
+				
+	    		String selectedAdd = (String) comboBoxList.getSelectedItem();
+    			LibraryFactory libF = new LibraryFactory();
+	    		
+	    		switch(selectedAdd){
+	    		
+	    		//listItems
+	    		case listItems :
+	    			JOptionPane.showMessageDialog(LibraryModifyer.this,libF.list_items(library));
+	    			break;
+	    			
+	    			
+	    		//listRoom
+	    		case listRoom :
+	    			String roomName = JOptionPane.showInputDialog(LibraryModifyer.this,"Enter the name of the room from which you want to know the content","Parameters of the function list room",JOptionPane.QUESTION_MESSAGE);
+	    			JOptionPane.showMessageDialog(LibraryModifyer.this,libF.list_room(library,roomName));
+	    			break;
+	    		
+	    			
+	    		//beginning listBc
+	    		case listBc :
+	    			JPanel myPanelListBc = new JPanel();
+	    			myPanelListBc.setLayout(new BoxLayout(myPanelListBc,BoxLayout.PAGE_AXIS));
+
+	    			JTextField bcName = new JTextField(20);
+	    			JTextField rName = new JTextField(20);
+	    			
+	    			myPanelListBc.add(new JLabel("Please enter the name of the bookcase you want to list the content and the room in which is located this bookcase:"));
+	    			myPanelListBc.add(new JLabel("Name of the bookcase:"));
+	    		    myPanelListBc.add(bcName);
+	    		    myPanelListBc.add(new JLabel("Name of the room:"));
+	    		    myPanelListBc.add(rName);
+
+	    		    
+	    		    int resultItem = JOptionPane.showConfirmDialog(null, myPanelListBc, 
+	    		               "Parameters of the list bookcase function", JOptionPane.OK_CANCEL_OPTION);
+	    		    if (resultItem == JOptionPane.OK_OPTION) {
+		    			JOptionPane.showMessageDialog(LibraryModifyer.this,libF.list_bookcase(library,rName.getText(),bcName.getText()));
+	    		    }
+	    			
+	    			break;
+	    		//fin litsBc
+	    			
+	    		//findItems
+	    		case findItems :
+	    			String authorName = JOptionPane.showInputDialog(LibraryModifyer.this,"Enter the name of an author to list all the items from this author in the library","Parameters of the function list items",JOptionPane.QUESTION_MESSAGE);
+	    			JOptionPane.showMessageDialog(LibraryModifyer.this,libF.list_room(library,authorName));
+	    			break;
+
+	    			
+	    		//searchTitle
+	    		case searchTitle :
+	    			String titleName = JOptionPane.showInputDialog(LibraryModifyer.this,"Enter a title to list all the items with this title in the library ","Parameters of the function search",JOptionPane.QUESTION_MESSAGE);
+	    			JOptionPane.showMessageDialog(LibraryModifyer.this,libF.list_room(library,titleName));
+	    			break;
+	    		
+	    			
+	    		}
+				
+			}
 		
+	    	
+		});
+		panelList.add(buttonNextList);	
+	    	
 		/*
 		 * Tab : Move items
 		 */
