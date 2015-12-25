@@ -472,7 +472,7 @@ public class LibraryFactory {
 	
 	public String check_borrowed(Library library, Member member){
 		// the work that method needs to do is partly done by the check method which launches when the program starts running from the class Library
-		//Hence members are already penalised
+		//Hence members are already penalized
 		if (member.isUnsuspended()&&member.getCurrentItems().size()<=library.getNbi()){
 			return (member.getName()+" is allowed to borrow items");
 		}

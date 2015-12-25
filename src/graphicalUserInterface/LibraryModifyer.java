@@ -540,8 +540,6 @@ public class LibraryModifyer extends JFrame {
 	    		    myPanelMember.add(new JLabel("Birthdate (dd/mm/yyyy):"));
 	    		    myPanelMember.add(birthdate);
 	    		    
-    	    		int ccNum2 = 0;
-
 
 	    		    int resultMember = JOptionPane.showConfirmDialog(null, myPanelMember, 
 	    		               "Please enter the parameters of the room", JOptionPane.OK_CANCEL_OPTION);
@@ -557,25 +555,11 @@ public class LibraryModifyer extends JFrame {
 	    	    		}
 	    	    		
 	    	    		//Other text fields
-	    	    		if(surnameMember.getText().equals("")||birthdate.getText().equals("")){
+	    	    		if(surnameMember.getText().equals("")||birthdate.getText().equals("")||ccNumber.getText().equals("")){
 	    		    		JOptionPane.showMessageDialog(LibraryModifyer.this, "You have to fill all the fields.");
 	    		    		validAnswerMember = false;
 	    		    	}
 
-	    	    		
-	    	    		//length
-	    	    		String ccNum1 = ccNumber.getText();
-	    	    		try{
-	    	    			ccNum2 = Integer.parseInt(ccNum1);
-	    	    			if(ccNum1.length() != 10){
-	    	    				JOptionPane.showMessageDialog(LibraryModifyer.this, "A credit card number has 10 numbers");
-	    	    				validAnswerMember=false;
-	    	    			}
-	    	    		}
-	    				catch(Exception NumberFormatException){
-	    					JOptionPane.showMessageDialog(LibraryModifyer.this, "You did not enter an integer in the field : credit card");
-	    					validAnswerMember=false;
-	    				}
 	    	    		
 
 	    		    }
@@ -584,7 +568,7 @@ public class LibraryModifyer extends JFrame {
 	    		    	
 	    		    	LibraryFactory libF = new LibraryFactory();
 	    		    	try{			    			
-			    			libF.add_member(library, nameMember.getText(), surnameMember.getText(), ccNum2, birthdate.getText());
+			    			libF.add_member(library, nameMember.getText(), surnameMember.getText(), ccNumber.getText(), birthdate.getText());
 				   			JOptionPane.showMessageDialog(LibraryModifyer.this, "The member "+nameMember.getText()+" was successful added to the Library");
 					
 	    		    	}	
