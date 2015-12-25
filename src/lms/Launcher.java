@@ -170,13 +170,15 @@ public class Launcher {
 												Book book =(Book)item;
 												if(book.getISBNCode()==-1){
 													book.setISBNCode(ISBN);
+													
+													break;
 												}
 											}
 										}
 										
+									
+									}
 									System.out.println("The addition of the item was successful");
-								}
-								
 							}
 							catch(IllegalArgumentException e){
 								System.out.println("You did not enter a valid consultation type. You have to enter either borrowing or online consultation.");

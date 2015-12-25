@@ -385,7 +385,7 @@ public class LibraryFactory {
 	}
 	
 	public void borrow_item(Member member, LibraryItem item, Library library) throws NullPointerException, IllegalStateException{
-		if (member.isUnsuspended()&&member.getCurrentItems().size()>=library.getNbi()){
+		if (member.isUnsuspended()&&member.getCurrentItems().size()<=library.getNbi()){
 			boolean test=true;
 			for (Room room: library.getListRooms()){
 				for (Bookcase bookcase : room.getListBookcases()){
@@ -446,7 +446,7 @@ public class LibraryFactory {
 	public String check_borrowed(Library library, Member member){
 		// the work that method needs to do is partly done by the check method which launches when the program starts running from the class Library
 		//Hence members are already penalised
-		if (member.isUnsuspended()&&member.getCurrentItems().size()>=library.getNbi()){
+		if (member.isUnsuspended()&&member.getCurrentItems().size()<=library.getNbi()){
 			return (member.getName()+" is allowed to borrow items");
 		}
 		else if(member.getCurrentItems().size()>=library.getNbi()){
