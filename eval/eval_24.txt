@@ -202,8 +202,85 @@
 
 >>> search_title(NonExisting)
 
+# addition of 2 members : one standard and one golden
 
+>>> 11
 
+>>> add_member(thomas,cocher,1234567891234567,1994/10/11,standard,thomas.cocher@student.ecp.fr)
+
+>>> 11
+
+>>> add_member(sarah,gross,2345678912345678,1994/10/23,golden,sarah.gross@student.ecp.fr)
+
+# borrowing of items
+
+>>> 12
+
+>>> borrow_item(thomas,1234567891234567,CD2,1,Daft Punk)
+
+>>> 12
+
+>>> borrow_item(thomas,1234567891234567,CD2,1,Daft Punk)
+
+>>> 12
+
+>>> borrow_item(sarah,2345678912345678,CD5,1,Fat Rat)
+
+>>> 12
+
+>>> borrow_item(sarah,2345678912345678,CD5,1,Fat Rat)
+
+# what was asked for check_borrowed is indeed automatically done for us by the progam when a library is fetch !
+
+# storing of the items with "anyfit" then "bestroom" then "bestbookcase" then "bestshelf"
+
+>>> 4
+
+>>> store_items(anyfit)
+
+>>> 6
+
+>>> list_items()
+
+>>> 5
+
+>>> unstore_items()
+
+>>> 4
+
+>>> store_items(bestroom)
+
+>>> 6
+
+>>> list_items()
+
+>>> 5
+
+>>> unstore_items()
+
+>>> 4
+
+>>> store_items(bestbookcase)
+
+>>> 6
+
+>>> list_items()
+
+>>> 5
+
+>>> unstore_items()
+
+>>> 4
+
+>>> store_items(bestshelf)
+
+>>> 6
+
+>>> list_items()
+
+>>> 5
+
+>>> unstore_items()
 
 
 
