@@ -18,6 +18,7 @@ public class Member implements Observer , java.io.Serializable{
 	private Library library;
 	private boolean unsuspended;
 	private Date endingOfSuspension;
+	private String email;
 	private int lowerSuspensionTimeStandard =6;
 	private int lowerSuspensionTimeFrequent =3;
 	private int lowerSuspensionTimeGolden =2;
@@ -34,6 +35,12 @@ public class Member implements Observer , java.io.Serializable{
 	
 	
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public ArrayList<Date> getPenalties() {
 		return penalties;
 	}
@@ -166,8 +173,9 @@ public class Member implements Observer , java.io.Serializable{
 	public void setHistory(ArrayList<Borrowing> history) {
 		this.history = history;
 	}
-	public Member(String name, String surname, Date birthDate, String ccNumber, Library library) {
+	public Member(String name, String surname, Date birthDate, String ccNumber,String email, Library library) {
 		super();
+		this.email=email;
 		this.name = name;
 		this.surname = surname;
 		this.birthDate = birthDate;
