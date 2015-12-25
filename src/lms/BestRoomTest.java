@@ -27,9 +27,11 @@ public class BestRoomTest {
 		Room roombis=new Room("room",5,5,5);
 		library.getListRooms().add(roombis);;
 		Bookcase bookcase2=new Bookcase("bookcase",4,4,4);
-		roombis.getListBookcases().add(bookcase2);
-		Shelf shelf2=new Shelf(2,2,2);
-		bookcase2.getListShelves().add(shelf2);
+		roombis.getListBookcases().add(0,bookcase2);
+		Shelf shelf1 = new Shelf(0.5,1,1);
+		Shelf shelf2=new Shelf(1,1,1);
+		bookcase2.getListShelves().add(shelf1);
+		bookcase2.getListShelves().add(1,shelf2);
 		CD CD =new CD("CD","ECP","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
 		BestRoom strategy = new BestRoom();
 		strategy.store(CD,library);

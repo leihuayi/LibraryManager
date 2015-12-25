@@ -9,13 +9,13 @@ public class BestBookcaseTest {
 
 	@Test
 	public void testStore() {
-		Library library = new Library("library",10,10,10,10);
+		Library library = new Library("library",20,20,20,20);
 		Room room = new Room("room",10,10,10);
 		library.getListRooms().add(room);
 		Bookcase bookcase = new Bookcase("bookcase", 5,5,5);
 		Bookcase bookcasebis = new Bookcase("bookcase", 5,5,5);
 		room.getListBookcases().add(bookcase);
-		room.getListBookcases().add(bookcasebis);
+		room.getListBookcases().add(bookcase);
 		Shelf shelf = new Shelf(3,3,3);
 		Shelf shelfbis=new Shelf(2,2,2);
 		Shelf shelfter=new Shelf(2,2,2);
@@ -24,9 +24,16 @@ public class BestBookcaseTest {
 		bookcase.getListShelves().add(shelfbis);
 		bookcasebis.getListShelves().add(shelfter);
 		bookcasebis.getListShelves().add(shelfquar);
-		Date date=new Date();
+		Room roombis=new Room("room",5,5,5);
+		library.getListRooms().add(roombis);;
+		Bookcase bookcase2=new Bookcase("bookcase",4,4,4);
+		roombis.getListBookcases().add(bookcase2);
+		Shelf shelf1 = new Shelf(0.5,1,1);
+		Shelf shelf2=new Shelf(1,1,1);
+		bookcase2.getListShelves().add(shelf1);
+		bookcase2.getListShelves().add(1,shelf2);
 		CD CD =new CD("CD","ECP","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
-		BestBookcase strategy = new BestBookcase();
+		BestRoom strategy = new BestRoom();
 		strategy.store(CD,library);
 		assertTrue(shelf.getListItems().contains(CD)||shelfbis.getListItems().contains(CD));
 	}

@@ -123,11 +123,11 @@ public class LibraryFactoryTest {
 		room.getListBookcases().add(bookcase);
 		Shelf shelf = new Shelf(3,3,3);
 		Shelf shelfbis=new Shelf(2,2,2);
-		CD CD1 =new CD("CD1","Alexandre Prot",2015,1,ConsultationType.borrowing,1,1,1,null);
-		CD CD2 =new CD("CD2","Alexandre Rozier",2016,1,ConsultationType.borrowing,2,1,1,null);
+		CD CD1 =new CD("CD1","Alexandre Prot", "moi",2015,1,ConsultationType.borrowing,1,1,1,null);
+		CD CD2 =new CD("CD2","Alexandre Rozier", "moi",2016,1,ConsultationType.borrowing,2,1,1,null);
 		shelf.getListItems().add(CD1);
 		shelf.getListItems().add(CD2);
-		DVD DVD =new DVD("DVD","yolo",2015,1,ConsultationType.borrowing,1,1,1,null);
+		DVD DVD =new DVD("DVD","yolo", "toi",2015,1,ConsultationType.borrowing,1,1,1,null);
 		shelfbis.getListItems().add(DVD);
 
 		Test.unstore_items(library);
@@ -136,7 +136,7 @@ public class LibraryFactoryTest {
 	}
 	*/
 
-	
+	/*
 	@Test
 	public void testList_items() {
 		Library library = new Library("library",20,20,20,20);
@@ -163,7 +163,7 @@ public class LibraryFactoryTest {
 		assertTrue(Test.list_items(library).equals(result));
 	}
 	
-
+	
 	@Test
 	public void testList_room() {
 		Library library = new Library("library",20,20,20,20);
@@ -188,8 +188,8 @@ public class LibraryFactoryTest {
 	 		
 		assertTrue(Test.list_room(library,"beautiful room").equals(result));
 	}
-
-	/*
+	
+	
 	@Test
 	public void testList_bookcase() {
 		Library library = new Library("library",20,20,20,20);
@@ -208,7 +208,7 @@ public class LibraryFactoryTest {
 		
 		assertTrue(Test.list_bookcase(library,"beautiful room", "bookcase 1").equals(result));
 	}
-	*/
+	
 	
 	@Test
 	public void testFind_items() {
@@ -250,8 +250,7 @@ public class LibraryFactoryTest {
 	
 		assertTrue(Test.search_title(library,"CD").equals(result));
 	
-	}
-	
+	}	
 	/*
 
 	@Test
