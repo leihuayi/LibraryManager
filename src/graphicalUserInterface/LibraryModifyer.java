@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Scanner;
 
 import lms.*;
 
@@ -45,14 +46,36 @@ public class LibraryModifyer extends JFrame {
 				
 	    		Serialization ser = new Serialization();
 	    		try{
-	    			ser.saveLibrary(library);
+	    			ser.saveLibrary(library,false);
 	    			JOptionPane.showMessageDialog(LibraryModifyer.this,"The Library "+library.getLibraryName()+" was successfully saved in the directory savedLibraries in the same directory as this application.");
 	    		}
 	    		catch(AlreadyExistsException e){
 	    			
+	    			/*
+	    			boolean oOrc = false;	    		
+					System.out.println("A library of this name already exists. Enter: \n\t (o) if you want to save over it \n\t (c) if you want to change your library name");
+					while (!oOrc){
+						Scanner scOC = new Scanner(System.in);
+						String answerOC = scOC.nextLine();
+						if(answer.equalsIgnoreCase("o")){
+							ser.saveLibrary(library,true);
+							oOrc = true;
+						}
+						else if(answer.equalsIgnoreCase("c")){
+						System.out.println("Write your new library name");
+						Scanner scLibN = new Scanner(System.in);
+						library.setLibraryName(scLibN.nextLine());
+						System.out.println("You library name was successfully changed to "+library.getLibraryName()+". Try to save again with (14).");
+						oOrc = true;
+						}
+						else{
+							System.out.println("Please enter either o or c .");
+						}
+					}
+					*/
 	    		}
 	    		catch(IOException i){
-	    			JOptionPane.showMessageDialog(LibraryModifyer.this,"Whoops there must have been a bug in the retrieval. Please try again.");
+	    			JOptionPane.showMessageDialog(LibraryModifyer.this,"Whoops there must have been a bug in the saving. Please try again.");
 	    		}
 	             
 	            }
@@ -75,13 +98,16 @@ public class LibraryModifyer extends JFrame {
 		tabbedPane.addTab("Add panel", panelAdd);
 		this.setContentPane(tabbedPane);
 		panelAdd.add(new JLabel("Chose which kind of element you want to add to your library"));
+		panelAdd.add(Box.createVerticalStrut(50)); //Space for a more pretty window
 		final String addRoom = "add room : to add a room to the library";
 		final String addBc = "add bookcase : to add a bookcase with num shelves to a given room of the library";
 		final String addItem = "add item : to add a library item with given parameters to the temporary storage box of library";
 		final String addMember = "add member : to add a new member to the library";
 		final String[] addChoice = {addRoom,addBc,addItem,addMember};
 		JComboBox<String> comboBox = new JComboBox<String>(addChoice);
+		comboBox.setMaximumSize(new Dimension(1000, 30));
 		panelAdd.add(comboBox);
+		panelAdd.add(Box.createVerticalStrut(50));
 		JButton buttonNextAdd = new JButton("Next");
 	    buttonNextAdd.addActionListener(new ActionListener(){
 	    	
@@ -96,15 +122,15 @@ public class LibraryModifyer extends JFrame {
 	    		
 	    		//addRoom
 	    		case addRoom :
-	    			boolean validAnswer = true;
+	    			boolean validAnswer = false;
 	    			JPanel myPanel = new JPanel();
+	    			myPanel.setLayout(new BoxLayout(myPanel,BoxLayout.PAGE_AXIS));
 	    			JTextField roomName = new JTextField(20);
 	    		    JTextField length = new JTextField(5);
 	    		    JTextField height = new JTextField(5);
 	    		    JTextField width = new JTextField(5);
 	    			myPanel.add(new JLabel("Name of the room:"));
 	    		    myPanel.add(roomName);
-	    		    myPanel.add(Box.createHorizontalStrut(15)); // a spacer
 	    		    myPanel.add(new JLabel("Length of the room (in cm):"));
 	    		    myPanel.add(length);
 	    		    myPanel.add(new JLabel("Height of the room (in cm):"));
@@ -122,6 +148,12 @@ public class LibraryModifyer extends JFrame {
 	    		    		    		    	
 	    		    	//length
 	    	    		String l1 = length.getText();
+	    	    		if(roomName.getText().equals("")){
+	    		    		JOptionPane.showMessageDialog(LibraryModifyer.this, "You have to enter a room name");
+	    		    	}
+	    	    		else{
+	    	    			validAnswer = true;
+	    	    		}
 
 	    	    		try{
 	    	    			l2 = Double.parseDouble(l1);
@@ -144,7 +176,7 @@ public class LibraryModifyer extends JFrame {
 	    	    				JOptionPane.showMessageDialog(LibraryModifyer.this, "The  value of height must be positive");
 	    	    				validAnswer=false;
 	    	    			}
-	    	    			else{validAnswer=true;};
+	    	    			
 	    	    		}
 	    				catch(Exception NumberFormatException){
 	    					JOptionPane.showMessageDialog(LibraryModifyer.this, "You did not enter a number in the field : height");
@@ -168,16 +200,19 @@ public class LibraryModifyer extends JFrame {
 	    		    }
 	    		    
 	    		    if(validAnswer){
-		    			LibraryFactory libF = new LibraryFactory();
-		    			try{
-		    				libF.add_room(library, roomName.getText(),l2, h2, w2);
-		    				JOptionPane.showMessageDialog(LibraryModifyer.this, "The room "+roomName+" was successful added to the Library");
-			    			new LibraryModifyer(library);
-			    			dispose();
-		    			}
-		    			catch(AlreadyExistsException e){
-		    				JOptionPane.showMessageDialog(LibraryModifyer.this, "A room of the name "+roomName+" already exists in this library.");
-		    			}
+	    		    	
+	    		    	LibraryFactory libF = new LibraryFactory();
+	    		    	try{
+			    			libF.add_room(library, roomName.getText(),l2, h2, w2);
+			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "The room "+roomName.getText()+" was successful added to the Library");
+				    		new LibraryModifyer(library);
+				    		dispose();
+			    		}
+			    		catch(AlreadyExistsException e){
+			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "A room of the name "+roomName.getText()+" already exists in this library.");
+			    		}
+	    		    	
+		    			
 		    		}
 	    		    
 	    			break;

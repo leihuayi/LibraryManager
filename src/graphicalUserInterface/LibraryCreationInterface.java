@@ -35,6 +35,7 @@ public class LibraryCreationInterface extends JFrame {
 		JPanel panelbis = new JPanel();
 		panelbis.setLayout(new BoxLayout(panelbis,BoxLayout.PAGE_AXIS));
 		add(panelbis);
+		panelbis.add(Box.createVerticalStrut(20)); //A little space for a more pretty window
 		JLabel labelExplication1 = new JLabel("In your library, members have different fidelity cards.");
 		JLabel labelExplication2 = new JLabel("If they borrow more than N books over M months, they become frequent members and therefore have privileges.");
 		JLabel labelExplication3 = new JLabel("If they borrow fewer than N books over M' months, they lose their frequent membership and become standard members again.");
@@ -75,9 +76,15 @@ public class LibraryCreationInterface extends JFrame {
 	    	@Override
 	        public void actionPerformed(ActionEvent ae) {
 				//checks that the user enters the right parameters
-				boolean validAnswer = true;
+				boolean validAnswer = false;
 	    		
 	    		String libName = textLibName.getText();
+	    		if(libName.equals("")){
+	    			JOptionPane.showMessageDialog(LibraryCreationInterface.this, "You need to enter a library name");
+	    		}
+	    		else{
+	    			validAnswer = true;
+	    		}
 	    		
 	    		String libNbi = textLibNbi.getText();
 	    		int nbi = 0;

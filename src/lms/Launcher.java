@@ -352,6 +352,50 @@ public class Launcher {
 					break;
 				case 14:	
 					loop=false;
+					boolean yesOrNo = false;
+					System.out.println("You have decided to quit the program. Do you want to save your changes? (y/n) ");
+					while(!yesOrNo){
+						Scanner scYN = new Scanner(System.in);
+						String answer = scYN.nextLine();
+						if(answer.equalsIgnoreCase("y")){
+							Serialization ser = new Serialization();
+							try{
+								ser.saveLibrary(library, false);
+							}
+							catch(AlreadyExistsException e){
+								boolean oOrc = false;
+								System.out.println("A library of this name already exists. Enter: \n\t (o) if you want to save over it \n\t (c) if you want to change your library name");
+								while (!oOrc){
+									Scanner scOC = new Scanner(System.in);
+									String answerOC = scOC.nextLine();
+									if(answerOC.equalsIgnoreCase("o")){
+										ser.saveLibrary(library,true);
+										oOrc = true;
+									}
+									else if(answerOC.equalsIgnoreCase("c")){
+									System.out.println("Write your new library name");
+									Scanner scLibN = new Scanner(System.in);
+									library.setLibraryName(scLibN.nextLine());
+									System.out.println("You library name was successfully changed to "+library.getLibraryName()+". Try to save again with (14).");
+									oOrc = true;
+									}
+									else{
+										System.out.println("Please enter either o or c .");
+									}
+								}
+							}
+							catch(IOException e){
+								System.out.println("Whoops there must have been a bug in the saving. Please try again.");
+							}
+							yesOrNo = true;
+						}
+						else if(answer.equalsIgnoreCase("n")){
+							yesOrNo = true;
+						}
+						else{
+							System.out.println("Please enter either y or n .");
+						}
+					}
 					break;
 					
 
@@ -364,7 +408,7 @@ public class Launcher {
 			}
 		}
 		
-		System.out.println("The sytem will now save everything ");
+		
 		
 	
 

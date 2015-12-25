@@ -5,9 +5,10 @@ public class Serialization {
 	
 	public Serialization() {};
 	
-	public void saveLibrary(Library library) throws AlreadyExistsException, IOException{
+	//i=0 if we do not want to save a library over another of the same name, 1 if we don't care if we save over
+	public void saveLibrary(Library library, boolean over) throws AlreadyExistsException, IOException{
 		
-		if (new File("savedLibraries/"+library.getLibraryName()+".ser").exists()){
+		if (new File("savedLibraries/"+library.getLibraryName()+".ser").exists() && !over){
 			throw new AlreadyExistsException();
 		}
 		
