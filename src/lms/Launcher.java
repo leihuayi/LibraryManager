@@ -62,12 +62,12 @@ public class Launcher {
 						System.out.println("The creation of the library was successful");
 					}
 					catch(Exception NumberFormatException){
-						System.out.println("You must have entered the wrong type of data or the wrong number of arguments.");
+						System.out.println("You must have entered the wrong type of data or the wrong number of arguments.\nPress (1) to fetch a library and (2) to create a new one.");
 					}
 				}
 			}
 			catch(Exception InputMismatchException){
-				System.out.println("That is not a possible choice, please try again");
+				System.out.println("That is not a possible choice, please try again.\nPress (1) to fetch a library and (2) to create a new one.");
 			}
 			
 		}

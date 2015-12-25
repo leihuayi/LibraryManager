@@ -395,7 +395,7 @@ public class LibraryFactory {
 	}
 	
 	public void borrow_item(Member member, LibraryItem item, Library library) throws NullPointerException, IllegalStateException{
-		if (member.isUnsuspended()&&member.getCurrentItems().size()<=library.getNbi()){
+		if (member.isUnsuspended()&&member.getCurrentItems().size()<=library.getNbi()&&item.getConsultationType().equals(ConsultationType.borrowing)&&item.isBorrowable()){
 			boolean test=true;
 			for (Room room: library.getListRooms()){
 				for (Bookcase bookcase : room.getListBookcases()){
