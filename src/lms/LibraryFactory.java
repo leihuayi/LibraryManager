@@ -241,9 +241,7 @@ public class LibraryFactory {
 				//we get out of the loop if we have found the room
 				break;
 			}
-			if (notRoom){
-				return "There is no such room";
-			}
+			
 
 		}
 		
@@ -256,6 +254,7 @@ public class LibraryFactory {
 	
 	public String list_bookcase(Library lib, String roomName, String bookcaseName){
 		boolean notRoom = true;
+		boolean notBookcase = true;
 
 		ArrayList<Room> listRoom = lib.getListRooms();
 		String listContent = new String();
@@ -265,7 +264,7 @@ public class LibraryFactory {
 				//we have found the room : notRoom = false
 				notRoom = false;
 				
-				boolean notBookcase = true;
+				
 				
 				ArrayList<Bookcase> listBookcase = room.getListBookcases();
 				for (Bookcase bookcase : listBookcase){
@@ -301,17 +300,17 @@ public class LibraryFactory {
 						
 					}
 					
-					//we get out of the loop if we have found the bookcase
-					break;
+					
 				}
 				
-				if(notBookcase){
-					listContent += "No bookcase with the name "+bookcaseName+" was found.";
-				}
 				//we get out of the loop if we have found the room
 				break;
 			}
 
+		}
+		
+		if(notBookcase){
+			listContent += "No bookcase with the name "+bookcaseName+" was found.";
 		}
 		
 		if(notRoom){

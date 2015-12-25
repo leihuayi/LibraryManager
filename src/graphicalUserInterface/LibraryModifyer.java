@@ -343,7 +343,7 @@ public class LibraryModifyer extends JFrame {
 			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "The bookcase "+bcNameBc.getText()+" was successful added to the room "+roomNameBc.getText());
 			    		}
 			    		catch(AlreadyExistsException e){
-			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "A bookcase of the name "+roomNameBc.getText()+" already exists in this room.");
+			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "A bookcase of the name "+bcNameBc.getText()+" already exists in this room.");
 			    		}
 	    		    	catch(NoSuchFieldException e){
 			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "No room of the name "+roomNameBc.getText()+" exists in this library");
@@ -694,10 +694,30 @@ public class LibraryModifyer extends JFrame {
 		
 		JPanel panelMove = new JPanel();
 		tabbedPane.addTab("Move items", panelMove);
-		panelMove.add(new JLabel("Move information"));
+		panelMove.setLayout(new BoxLayout(panelMove,BoxLayout.PAGE_AXIS));
 		this.setContentPane(tabbedPane);
+		panelMove.add(new JLabel("What elements do yo want to list in your library?"));
+		panelMove.add(Box.createVerticalStrut(50)); //Space for a more pretty window
+		final String storeItems = "store items : to store all library items contained in the temporary storage box into the bookcases of the library using the given storing strategy.";
+		final String unstoreItems = "list room: to list all the bookcases (together with their content) in a given room.";
+		final String borrowItem = "borrow item : to let a member borrow an item given its title.";
+		final String checkBorrowed = "check borrowed : to check the borrowing situation for a member and possibly penalize the member.";
+		final String[] addChoiceMove = {storeItems,unstoreItems,borrowItem,checkBorrowed};
+		JComboBox<String> comboBoxMove = new JComboBox<String>(addChoiceMove);
+		comboBoxMove.setMaximumSize(new Dimension(1000, 30));
+		panelMove.add(comboBoxMove);
+		panelMove.add(Box.createVerticalStrut(50));
+		JButton buttonNextMove = new JButton("Next");
+	    buttonNextMove.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				JOptionPane.showMessageDialog(LibraryModifyer.this,"Sorry we didn't have time to implement this part ! Please try the on the CLUI");
+			}
 		
-		
+	    });
+		panelMove.add(buttonNextMove);	
 		
 		pack();
 		setVisible(true);
