@@ -34,49 +34,54 @@ public class LibraryFactory {
 		
 	}
 	
-	public void add_bookcase(Library library, Room room,Integer numShelves,String bcName,double length,double height,double width) throws NoSuchFieldException, IndexOutOfBoundsException, AlreadyExistsException{
+	public void add_bookcase(Library library, String roomName,Integer numShelves,String bcName,double length,double height,double width) throws NoSuchFieldException, IndexOutOfBoundsException, AlreadyExistsException{
 		boolean existingBc=false;
-		if(library.getListRooms().contains(room)){
-			double sumLength = 0;
-			double sumWidth = 0;
-			for(Bookcase bookcase:room.getListBookcases()){
-				sumLength=sumLength+bookcase.getLength();
-				sumWidth=sumWidth+bookcase.getWidth();
-				//we cannot have two bookcases with the same name in the same room
-				if(bookcase.getBcName().equalsIgnoreCase(bcName)){
-					existingBc = true;
-					break;
-				}
-			}
-			if(!existingBc){
-				
-				if (room.getLength()-sumLength>length&&room.getWidth()-sumWidth>width&&room.getHeight()>height){
-					
-					Bookcase bookcase=new Bookcase(bcName,length,height,width);
-					room.getListBookcases().add(bookcase);
-					double new_height=(double)height/numShelves;
-					for (int i = 1; i < numShelves+1; i++) {
-						Shelf shelf = new Shelf(length,new_height,width);
-						bookcase.getListShelves().add(shelf);
+		boolean existingRoom = false;
+		for(Room room : library.getListRooms()){
+			if(room.getRoomName().equalsIgnoreCase(roomName)){
+				existingRoom = true;
+				double sumLength = 0;
+				double sumWidth = 0;
+				for(Bookcase bookcase:room.getListBookcases()){
+					sumLength=sumLength+bookcase.getLength();
+					sumWidth=sumWidth+bookcase.getWidth();
+					//we cannot have two bookcases with the same name in the same room
+					if(bookcase.getBcName().equalsIgnoreCase(bcName)){
+						existingBc = true;
+						break;
 					}
 				}
+				if(!existingBc){
+					
+					if (room.getLength()-sumLength>length&&room.getWidth()-sumWidth>width&&room.getHeight()>height){
+						
+						Bookcase bookcase=new Bookcase(bcName,length,height,width);
+						room.getListBookcases().add(bookcase);
+						double new_height=(double)height/numShelves;
+						for (int i = 1; i < numShelves+1; i++) {
+							Shelf shelf = new Shelf(length,new_height,width);
+							bookcase.getListShelves().add(shelf);
+						}
+					}
+					else{
+						//the bookcase does not enter in the room because it is too big
+						throw new IndexOutOfBoundsException();		
+					
+					}
+				}
+					
+			
 				else{
-					//the bookcase does not enter in the room because it is too big
-					throw new IndexOutOfBoundsException();		
-				
+					//A bookcase of this name already exists in the room
+					throw new AlreadyExistsException();
 				}
 			}
-				
-		
-			else{
-				//A bookcase of this name already exists in the room
-				throw new AlreadyExistsException();
-			}
+	
 		}
-		else{
-			//if there is no room with the name room
+		if(!existingRoom){
 			throw new NoSuchFieldException();
 		}
+	
 	}
 	
 	public void add_item(String author,String title,String itemType,int volumeNumber,String consultationType,String publisher,Library library,int publishingYear,double length,double width,double height) throws IllegalArgumentException{
