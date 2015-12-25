@@ -11,8 +11,7 @@ import java.lang.reflect.Array;
 
 public class Launcher {
 	
-	
-	
+
 	public static void main(String[] args) throws ParseException{
 		// TODO Auto-generated method stub	
 		
@@ -43,6 +42,7 @@ public class Launcher {
 					catch(IOException e){
 						System.out.println("Sorry, no library of the name "+libraryName+" exists, you must have spelled it wrong. \n Please write again either 1 or 2.");
 					}
+					libF.check(library);
 				}
 				else if (libraryChoice==2){
 					System.out.println("You decided to create a new library, respect the following syntax:\ncreate_library(libraryName,NBI,N,M,MP)\nNBI:a registered member can borrow at most NBI items at the same time\nN and M :a member who has borrowed at least N items over the last M months should be automatically granted the frequent member card\nMP:a frequent member who has borrowed less N items over the last MP months will lose frequent membership ");
