@@ -121,8 +121,7 @@ public class LibraryFactory {
 		}
 		
 	}
-		
-	
+			
 	public void store_items(Library lib, String storing_strategy) throws IllegalArgumentException{
 		switch(storing_strategy.toLowerCase())
 		{
