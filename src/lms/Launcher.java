@@ -118,28 +118,24 @@ public class Launcher {
 						double double1 = Double.parseDouble(tabArguments2[3]);
 						double double2 = Double.parseDouble(tabArguments2[4]);
 						double double3 = Double.parseDouble(tabArguments2[5]);
-						for (Room room : library.getListRooms()){
-							if (room.getRoomName().equalsIgnoreCase(tabArguments2[0])){
-								try{
-									libF.add_bookcase(library,room,int1,tabArguments2[2],double1,double2,double3);
-									System.out.println("The addition of the Bookcase was successful");
-								}
-								catch(AlreadyExistsException e){
-									System.out.println("A bookcase of this name already exits in the room. Please create another one.");
-								}
-								catch(NoSuchFieldException e){
-									System.out.println("That room is not in that library");
-								}
-								catch(IndexOutOfBoundsException e){
-									System.out.println("There is an issue with your measures, your bookcase is too big for the room");
-								}
-								
-							}
+
+						try{
+							libF.add_bookcase(library,tabArguments2[0],int1,tabArguments2[2],double1,double2,double3);
+							System.out.println("The addition of the Bookcase was successful");
 						}
-						
-							
+						catch(AlreadyExistsException e){
+							System.out.println("A bookcase of this name already exits in the room. Please create another one.");
+						}
+						catch(NoSuchFieldException e){
+							System.out.println("That room is not in that library");
+						}
+						catch(IndexOutOfBoundsException e){
+							System.out.println("There is an issue with your measures, your bookcase is too big for the room");
+						}
+									
 						
 					}
+					
 					catch(Exception NumberFormatException){
 						System.out.println("You must have entered the wrong type of data or the wrong number of arguments.");
 					}
