@@ -131,12 +131,5 @@ public class Library implements java.io.Serializable{
 		return true;
 	}
 	
-	private static Date modifyDate(int numberOfDay)
-	  {
-		  Calendar cal = Calendar.getInstance();
-		  cal.add(Calendar.DATE, numberOfDay);
-		  return cal.getTime();
-	  }
-
 	
 }
