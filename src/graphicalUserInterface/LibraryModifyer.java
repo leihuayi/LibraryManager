@@ -567,13 +567,13 @@ public class LibraryModifyer extends JFrame {
 	    	    		String ccNum1 = ccNumber.getText();
 	    	    		try{
 	    	    			ccNum2 = Integer.parseInt(ccNum1);
-	    	    			if(ccNum1.length() < 10){
+	    	    			if(ccNum1.length() != 10){
 	    	    				JOptionPane.showMessageDialog(LibraryModifyer.this, "A credit card number has 10 numbers");
 	    	    				validAnswerMember=false;
 	    	    			}
 	    	    		}
 	    				catch(Exception NumberFormatException){
-	    					JOptionPane.showMessageDialog(LibraryModifyer.this, "You did not enter a number in the field : credit card");
+	    					JOptionPane.showMessageDialog(LibraryModifyer.this, "You did not enter an integer in the field : credit card");
 	    					validAnswerMember=false;
 	    				}
 	    	    		
@@ -583,14 +583,17 @@ public class LibraryModifyer extends JFrame {
 	    		    if(validAnswerMember){
 	    		    	
 	    		    	LibraryFactory libF = new LibraryFactory();
-	    		    	try{
-			    			libF.add_room(library, roomName.getText(),l2, h2, w2);
-			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "The room "+roomName.getText()+" was successful added to the Library");
-				    		
-			    		}
+	    		    	try{			    			
+			    			libF.add_member(library, nameMember.getText(), surnameMember.getText(), ccNum2, birthdate.getText());
+				   			JOptionPane.showMessageDialog(LibraryModifyer.this, "The member "+nameMember.getText()+" was successful added to the Library");
+					
+	    		    	}	
 			    		catch(AlreadyExistsException e){
-			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "A room of the name "+roomName.getText()+" already exists in this library.");
+			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "A member of these parameters already exists in this library.");
 			    		}
+	    		    	catch(IllegalArgumentException e){
+			    			JOptionPane.showMessageDialog(LibraryModifyer.this, "Your date does not respect the pattern dd/mm/yyyy.");
+		    			}
 	    		    	
 		    			
 		    		}

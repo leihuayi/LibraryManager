@@ -276,8 +276,7 @@ public class Launcher {
 					String listOfArguments11 = addMember.substring(addMember.indexOf('(')+1,addMember.indexOf(')'));
 					String tabArguments11[] = listOfArguments11.split(",");						
 					try{
-						int int1 = Integer.parseInt(tabArguments11[2]);
-						libF.add_member(library,tabArguments11[0],tabArguments11[1],int1,tabArguments11[3]);
+						libF.add_member(library,tabArguments11[0],tabArguments11[1],tabArguments11[2],tabArguments11[3]);
 						System.out.println("The member was successfully added to the library");
 					}
 					
@@ -285,7 +284,7 @@ public class Launcher {
 						System.out.println("A member with this information already exists. Please create another one.");
 					}
 					catch(IllegalArgumentException e){
-						System.out.println("You did not enter the date in the right format.");
+						System.out.println("You did not enter the date or your credit cart number in the right format. \n A date has the pattern dd/mm/yyyy, a credit card number has 16 numbers.");
 					}
 					break;
 				case 12:
@@ -297,11 +296,10 @@ public class Launcher {
 					String listOfArguments12 = borrowItem.substring(borrowItem.indexOf('(')+1,borrowItem.indexOf(')'));
 					String tabArguments12[] = listOfArguments12.split(",");	
 					try{
-						int int1 = Integer.parseInt(tabArguments12[1]);
 						int int2 = Integer.parseInt(tabArguments12[3]);
-						Member member = new Member(null,null,null,0,library);
+						Member member = new Member(null,null,null,null,library);
 						for (Member memberbis : library.getListMembers()){
-							if(memberbis.getCcNumber()==int1&&memberbis.getName().equalsIgnoreCase(tabArguments12[0])){
+							if(memberbis.getCcNumber()==tabArguments12[1]&&memberbis.getName().equalsIgnoreCase(tabArguments12[0])){
 								member=memberbis;
 								break;
 							}
@@ -336,10 +334,9 @@ public class Launcher {
 					String nameOfMethod13 = checkBorrowed.substring(0,checkBorrowed.indexOf('('));
 					String listOfArguments13 = checkBorrowed.substring(checkBorrowed.indexOf('(')+1,checkBorrowed.indexOf(')'));
 					String tabArguments13[] = listOfArguments13.split(",");
-					int int1=Integer.parseInt(tabArguments13[1]);
 					boolean memberNotInLibrary=true;
 					for (Member member:library.getListMembers()){
-						if(member.getName().equalsIgnoreCase(tabArguments13[0])&&int1==member.getCcNumber()){
+						if(member.getName().equalsIgnoreCase(tabArguments13[0])&&tabArguments13[1]==member.getCcNumber()){
 							System.out.println(libF.check_borrowed(library, member));
 							memberNotInLibrary=false;
 							break;

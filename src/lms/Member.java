@@ -11,7 +11,7 @@ public class Member implements Observer , java.io.Serializable{
 	private String surname;
 	private Date birthDate;
 	//Credit card number
-	private int ccNumber;
+	private String ccNumber;
 	private ArrayList<Borrowing> currentItems;
 	private ArrayList<Borrowing> history;
 	private Card card;
@@ -148,10 +148,10 @@ public class Member implements Observer , java.io.Serializable{
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
-	public int getCcNumber() {
+	public String getCcNumber() {
 		return ccNumber;
 	}
-	public void setCcNumber(int ccNumber) {
+	public void setCcNumber(String ccNumber) {
 		this.ccNumber = ccNumber;
 	}
 	public ArrayList<Borrowing> getCurrentItems() {
@@ -166,7 +166,7 @@ public class Member implements Observer , java.io.Serializable{
 	public void setHistory(ArrayList<Borrowing> history) {
 		this.history = history;
 	}
-	public Member(String name, String surname, Date birthDate, int ccNumber, Library library) {
+	public Member(String name, String surname, Date birthDate, String ccNumber, Library library) {
 		super();
 		this.name = name;
 		this.surname = surname;

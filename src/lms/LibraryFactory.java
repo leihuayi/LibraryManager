@@ -378,7 +378,7 @@ public class LibraryFactory {
 		return listItems;
 	}
 	
-	public void add_member(Library lib, String name, String surname, int ccNumber, String birthDate ) throws AlreadyExistsException, IllegalArgumentException {
+	public void add_member(Library lib, String name, String surname, String ccNumber, String birthDate ) throws AlreadyExistsException, IllegalArgumentException {
 
 		Date date = new Date();
 	    try {
@@ -388,6 +388,17 @@ public class LibraryFactory {
 	    catch (ParseException e) {
 	    	throw new IllegalArgumentException();
 	      }
+	    if (ccNumber.length() !=16){
+	    	throw new IllegalArgumentException();
+	    }
+	    try{
+	    	for(int i=0; i<ccNumber.length();i++){
+	    		int num = Integer.parseInt(Character.toString(ccNumber.charAt(i)));
+	    	}
+	    }
+	    catch(NumberFormatException f){
+	    	throw new IllegalArgumentException();
+	    }
 
 	    Member member = new Member(name, surname, date, ccNumber, lib);
 	    if(lib.getListMembers().contains(member)){
