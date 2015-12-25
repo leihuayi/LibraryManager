@@ -98,7 +98,7 @@ public abstract class LibraryItem extends Cuboid implements java.io.Serializable
 	
 	@Override
 	public String toString() {
-		return "title=" + title + ", publisher=" + publisher + ", publishingYear=" + publishingYear
+		return "title=" + title +",author=" + author + ", publisher=" + publisher + ", publishingYear=" + publishingYear
 				+ ", volumeNumber=" + volumeNumber + ", consultationType=" + consultationType + ", location=" + location
 				+ ", borrowingList=" + borrowingList + ", borrowable=" + borrowable;
 	}

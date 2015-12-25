@@ -71,8 +71,8 @@ public class Launcher {
 			}
 			
 		}
-		boolean goON=true;
-		while(goON=true){
+		boolean loop=true;
+		while(loop==true){
 			System.out.println("Now you can choose the method you want to use by entering a number and pressing the Enter key.\n(1) add_room\n(2) add_bookcase\n(3) add_item\n(4) store_items\n(5) unstore_items\n(6) list_items\n(7) list_room\n(8) list_bookcase\n(9) find_items\n(10) search_title\n(11) add_member\n(12) borrow_item\n(13) check_borrowed\n(14) Quit the program ");
 			try {
 				Scanner sc = new Scanner(System.in);
@@ -125,11 +125,10 @@ public class Launcher {
 									System.out.println("The addition of the Bookcase was successful");
 								}
 								catch(AlreadyExistsException e){
-									System.out.println("A bookcase of this name already exits in the room "+tabArguments2[0]+". Please create another one.");
+									System.out.println("A bookcase of this name already exits in the room. Please create another one.");
 								}
 								catch(NoSuchFieldException e){
 									System.out.println("That room is not in that library");
-									break;
 								}
 								catch(IndexOutOfBoundsException e){
 									System.out.println("There is an issue with your measures, your bookcase is too big for the room");
@@ -179,7 +178,7 @@ public class Launcher {
 					
 					break;
 				case 4:
-					System.out.println("The syntax is store_items(storingStrategy)\nsotringStrategy can be anyfit, bestshelf, bestbookcase, bestroom");
+					System.out.println("The syntax is store_items(storingStrategy)\nstoringStrategy can be anyfit, bestshelf, bestbookcase, bestroom");
 					Scanner sc4 = new Scanner(System.in);
 					String storeItems = sc4.nextLine();
 					
@@ -193,7 +192,7 @@ public class Launcher {
 					catch(IllegalArgumentException e){
 						System.out.println("You did not call a valid storing stategy. You can use AnyFit / BestShelf / BestBookcase / BestRoom");
 					}
-					
+					break;
 				case 5:
 					System.out.println("The syntax is unstore_items()");
 					Scanner sc5 = new Scanner(System.in);
@@ -219,7 +218,7 @@ public class Launcher {
 					System.out.println("The syntax is list_room(roomName)");
 					Scanner sc7 = new Scanner(System.in);
 					String listRoom = sc7.nextLine();
-					
+						
 					String nameOfMethod7 = listRoom.substring(0,listRoom.indexOf('('));
 					String listOfArguments7 = listRoom.substring(listRoom.indexOf('(')+1,listRoom.indexOf(')'));
 					String tabArguments7[] = listOfArguments7.split(",");
@@ -262,9 +261,9 @@ public class Launcher {
 					
 					String nameOfMethod11 = addMember.substring(0,addMember.indexOf('('));
 					String listOfArguments11 = addMember.substring(addMember.indexOf('(')+1,addMember.indexOf(')'));
-					String tabArguments11[] = listOfArguments11.split(",");	
-					int int1 = Integer.parseInt(tabArguments11[2]);
+					String tabArguments11[] = listOfArguments11.split(",");						
 					try{
+						int int1 = Integer.parseInt(tabArguments11[2]);
 						libF.add_member(library,tabArguments11[0],tabArguments11[1],int1,tabArguments11[3]);
 						System.out.println("The member was successfully added to the library");
 					}
@@ -274,13 +273,50 @@ public class Launcher {
 					}
 					break;
 				case 12:
+					System.out.println("The syntax is borrow_item(name,creditCardNumber,itemTitle,volumeNumber,author)\ncreditCardNumber:without spaces");
+					Scanner sc12 = new Scanner(System.in);
+					String borrowItem = sc12.nextLine();
 					
+					String nameOfMethod12 = borrowItem.substring(0,borrowItem.indexOf('('));
+					String listOfArguments12 = borrowItem.substring(borrowItem.indexOf('(')+1,borrowItem.indexOf(')'));
+					String tabArguments12[] = listOfArguments12.split(",");	
+					try{
+						int int1 = Integer.parseInt(tabArguments12[1]);
+						int int2 = Integer.parseInt(tabArguments12[3]);
+						Member member = new Member(null,null,null,0,library);
+						for (Member memberbis : library.getListMembers()){
+							if(memberbis.getCcNumber()==int1&&memberbis.getName().equalsIgnoreCase(tabArguments12[0])){
+								member=memberbis;
+								break;
+							}
+						}
+						boolean test=true;
+						for(Room room:library.getListRooms()){
+							for(Bookcase bookcase:room.getListBookcases()){
+								for(Shelf shelf:bookcase.getListShelves()){
+									for(LibraryItem item:shelf.getListItems()){
+										if(item.getAuthor().equalsIgnoreCase(tabArguments12[4])&&item.getTitle().equalsIgnoreCase(tabArguments12[2])&&item.getVolumeNumber()==int2){
+											libF.borrow_item(member, item, library);
+											test=false;
+											break;
+										}
+									}
+								}
+							}
+						}
+					}
+					catch(NullPointerException e){
+						System.out.println("The item currently isn't in the library, reserve it");
+					}
+					catch(IllegalStateException e){
+						System.out.println("That member is currently not able to borrow any item");
+					}
 					break;
 				case 13:
 					
 					break;
 				case 14:
-					goON=false;
+					loop=false;
 					break;
 					
 

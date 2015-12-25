@@ -16,12 +16,15 @@ public class LibraryFactoryTest {
 		assertTrue(lib.equals(libTest));
 	}
 
-	/*	
+		
 	@Test
 	public void testAdd_room() {
 		
 		Library library = new Library("library",20,20,20,20);
-		Test.add_room(library,"room",10,10,10);
+		try {
+			Test.add_room(library,"room",10,10,10);
+		} catch (AlreadyExistsException e) {		
+		}
 		boolean bool = false;
 		for (Room room : library.getListRooms()){
 			if (room.getRoomName().equals("room")&&room.getHeight()==10&&room.getLength()==10&&room.getWidth()==10){
@@ -35,9 +38,17 @@ public class LibraryFactoryTest {
 	@Test
 	public void testAdd_bookcase() {
 		Library library = new Library("library",20,20,20,20);
-		Test.add_room(library,"room",10,10,10);
+		try {
+			Test.add_room(library,"room",10,10,10);
+		} catch (AlreadyExistsException e) {;
+		}
 		Room room=library.getListRooms().get(0);
-		Test.add_bookcase(library, room,3, "bookcase", 5, 5,5);
+		try {
+			Test.add_bookcase(library, room,3, "bookcase", 5, 5,5);
+		} catch (NoSuchFieldException e) {
+		} catch (IndexOutOfBoundsException e) {
+		} catch (AlreadyExistsException e) {
+		}
 		boolean bool = false;
 		for (Bookcase bookcase:room.getListBookcases()){
 			if (bookcase.getBcName().equals("bookcase")&&bookcase.getHeight()==5&&bookcase.getLength()==5&&bookcase.getWidth()==5){
@@ -52,11 +63,14 @@ public class LibraryFactoryTest {
 	@Test
 	public void testAdd_item() {
 		Library library = new Library("library",20,20,20,20);
-		Test.add_room(library,"room",10,10,10);
+		try {
+			Test.add_room(library,"room",10,10,10);
+		} catch (AlreadyExistsException e) {
+		}
 		Test.add_item("Alexandre Prot","Book of JAVA","Book",1,"borrowIng","ECP",library,2015,5,5,5);
 		assertTrue(!library.getStorageRoom().isEmpty());
 	}
- 	*/
+ 	
 	
 	/*
 	@Test
